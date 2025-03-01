@@ -44,7 +44,7 @@
 <body>
 
 <div class="etiqueta-borde">
-  <div class="titulo">Muestra de Aceite</div>
+  <div class="titulo">Muestra de materia prima</div>
   <hr>
   <table>
     <tr>
@@ -82,5 +82,47 @@
   </table>
 </div>
 
+<script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var params = new URLSearchParams(window.location.search)
+
+        function setElementContent(id, paramName, isPrice = false) {
+          var element = document.getElementById(id);
+        }
+
+        // Información general
+        setElementContent("remito", "remito");
+        setElementContent("empresa", "empresa");
+        setElementContent("descarga", "descarga");
+        setElementContent("transp", "transp");
+        setElementContent("producto", "producto");
+        setElementContent("proveedor", "proveedor");
+        setElementContent("chasis", "chasis");
+        setElementContent("acoplado", "acoplado");
+
+        // Configurar opciones para html2pdf
+        var opt = {
+          margin: 5,
+          filename: `Etiqueta${remito}.pdf`,
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2, letterRendering: true },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+          pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+        };
+
+        // Generar y descargar el PDF
+        html2pdf()
+          .set(opt)
+          .from(document.body)
+          .save()
+          .then(function () {
+            console.log("PDF generado y descargado");
+          });
+      });
+    </script>
+
+
+
+  
 </body>
 </html>
