@@ -83,43 +83,25 @@
 </div>
 
 <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var params = new URLSearchParams(window.location.search)
+  // Función para obtener los parámetros de la URL
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
 
-        function setElementContent(id, paramName, isPrice = false) {
-          var element = document.getElementById(id);
-        }
+  // Obtener los valores de los parámetros
+  document.getElementById("remito").innerHTML = getUrlParameter('remito');
+  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+  document.getElementById("descarga").innerHTML = getUrlParameter('descarga');
+  document.getElementById("transp").innerHTML = getUrlParameter('transp');
+  document.getElementById("producto").innerHTML = getUrlParameter('producto');
+  document.getElementById("proveedor").innerHTML = getUrlParameter('proveedor');
+  document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
+  document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
+</script>
 
-        // Información general
-        setElementContent("remito", "remito");
-        setElementContent("empresa", "empresa");
-        setElementContent("descarga", "descarga");
-        setElementContent("transp", "transp");
-        setElementContent("producto", "producto");
-        setElementContent("proveedor", "proveedor");
-        setElementContent("chasis", "chasis");
-        setElementContent("acoplado", "acoplado");
-
-        // Configurar opciones para html2pdf
-        var opt = {
-          margin: 5,
-          filename: `Etiqueta${remito}.pdf`,
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2, letterRendering: true },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-          pagebreak: { mode: ["avoid-all", "css", "legacy"] },
-        };
-
-        // Generar y descargar el PDF
-        html2pdf()
-          .set(opt)
-          .from(document.body)
-          .save()
-          .then(function () {
-            console.log("PDF generado y descargado");
-          });
-      });
-    </script>
 
 
 
