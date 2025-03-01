@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Balanza</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .ticket {
+            width: 21cm;
+            height: 29.7cm;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2cm;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            border: 1px solid #ddd;
+        }
+
+        .header {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .numero {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .details .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .details .row:last-child {
+            border-bottom: none;
+        }
+
+        .details .label {
+            font-weight: 600;
+            color: #555;
+            width: 40%;
+        }
+
+        .details .value {
+            color: #333;
+            width: 60%;
+            text-align: right;
+        }
+
+        .neto {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            border-top: 1px solid #ddd;
+        }
+
+        @media print {
+            body, .ticket {
+                width: auto;
+                height: auto;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <div class="header">
+            <h1>TICKET BALANZA</h1>
+        </div>
+        <div class="numero">
+            N° <span id="numero-ticket">5.790</span>
+        </div>
+        <div class="details">
+            <div class="row">
+                <div class="label">INGRESO</div>
+                <div class="value" id="ingreso">15:00:00</div>
+                <div class="label">TARA</div>
+                <div class="value" id="tara">15.880</div>
+            </div>
+            <div class="row">
+                <div class="label">EGRESO</div>
+                <div class="value" id="egreso">16:26:00</div>
+                <div class="label">BRUTO</div>
+                <div class="value" id="bruto">40.580</div>
+            </div>
+            <div class="row">
+                <div class="label">PRODUCTO</div>
+                <div class="value" id="producto">Glicerina cruda</div>
+            </div>
+            <div class="row">
+                <div class="label">PROVEEDOR</div>
+                <div class="value" id="proveedor">DIFEROIL</div>
+                <div class="label">CUIT</div>
+                <div class="value" id="cuit-proveedor"></div>
+            </div>
+            <div class="row">
+                <div class="label">TRANSPORTE</div>
+                <div class="value" id="transporte">SAVINO</div>
+                <div class="label">CUIT</div>
+                <div class="value" id="cuit-transporte">20-29500215-9</div>
+            </div>
+            <div class="row">
+                <div class="label">CHOFER</div>
+                <div class="value" id="chofer">LUNA MATIAS EDUARDO</div>
+                <div class="label">DNI</div>
+                <div class="value" id="dni-chofer">33.956.066</div>
+            </div>
+            <div class="row">
+                <div class="label">DOMINIO CHASIS</div>
+                <div class="value" id="dominio-chasis">KXN440</div>
+                <div class="label">DOMINIO ACOPLADO</div>
+                <div class="value" id="dominio-acoplado">FAS244</div>
+            </div>
+        </div>
+        <div class="neto">
+            NETO <span id="neto"><<[Neto Balanza BC]>></span>
+        </div>
+    </div>
+</body>
+</html>
