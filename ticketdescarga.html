@@ -6,150 +6,202 @@
     <title>Ticket Balanza</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
-        }
-
-        .ticket {
-            width: 21cm;
-            height: 29.7cm;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 2cm;
-            box-sizing: border-box;
-            display: grid;
-            grid-template-rows: auto auto 1fr auto;
-            border: 1px solid #ddd;
-        }
-
-        .header {
-            text-align: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-            color: #333;
-        }
-
-        .numero {
-            text-align: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
+            box-sizing: border-box;
         }
-
-        .details .row {
+        
+        .ticket {
+            border: 2px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .ticket-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        
+        .ticket-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .ticket-number {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        
+        .data-section {
+            margin-bottom: 15px;
+        }
+        
+        .data-row {
+            display: flex;
+            margin-bottom: 5px;
+        }
+        
+        .data-label {
+            font-weight: bold;
+            width: 120px;
+        }
+        
+        .data-value {
+            flex-grow: 1;
+        }
+        
+        .weight-section {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 8px 10px;
-            border-bottom: 1px solid #eee;
+            background-color: #eaeaea;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
         }
-
-        .details .row:last-child {
-            border-bottom: none;
+        
+        .weight-column {
+            width: 48%;
         }
-
-        .details .label {
-            font-weight: 600;
-            color: #555;
-            width: 40%;
-        }
-
-        .details .value {
-            color: #333;
-            width: 60%;
-            text-align: right;
-        }
-
-        .neto {
-            text-align: center;
-            padding: 20px;
-            font-size: 1.2em;
+        
+        .weight-title {
             font-weight: bold;
-            color: #333;
-            border-top: 1px solid #ddd;
+            text-align: center;
+            margin-bottom: 10px;
+            background-color: #444;
+            color: white;
+            padding: 3px;
+            border-radius: 3px;
         }
-
-        @media print {
-            body, .ticket {
-                width: auto;
-                height: auto;
-                margin: 0;
-                padding: 0;
-                box-shadow: none;
-                border: none;
-            }
+        
+        .weight-data {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .net-weight {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #ddd;
+            padding: 7px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .transport-section {
+            background-color: #e8e8e8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
     <div class="ticket">
-        <div class="header">
-            <h1>TICKET BALANZA</h1>
+        <div class="ticket-header">
+            <h1 class="ticket-title">TICKET BALANZA</h1>
+            <div class="ticket-number">N° <span id="numero">TD-2928</span></div>
         </div>
-        <div class="numero">
-            N° <span id="numero-ticket">5.790</span>
-        </div>
-        <div class="details">
-            <div class="row">
-                <div class="label">INGRESO</div>
-                <div class="value" id="ingreso">15:00:00</div>
-                <div class="label">TARA</div>
-                <div class="value" id="tara">15.880</div>
+        
+        <div class="weight-section">
+            <div class="weight-column">
+                <div class="weight-title">INGRESO</div>
+                <div class="weight-data">
+                    <span class="data-label">Fecha/Hora:</span>
+                    <span id="fecha-ingreso" class="data-value">28/2/2025 09:06:54</span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">TARA:</span>
+                    <span id="tara" class="data-value">15.680</span>
+                </div>
             </div>
-            <div class="row">
-                <div class="label">EGRESO</div>
-                <div class="value" id="egreso">16:26:00</div>
-                <div class="label">BRUTO</div>
-                <div class="value" id="bruto">40.580</div>
-            </div>
-            <div class="row">
-                <div class="label">PRODUCTO</div>
-                <div class="value" id="producto">Glicerina cruda</div>
-            </div>
-            <div class="row">
-                <div class="label">PROVEEDOR</div>
-                <div class="value" id="proveedor">DIFEROIL</div>
-                <div class="label">CUIT</div>
-                <div class="value" id="cuit-proveedor"></div>
-            </div>
-            <div class="row">
-                <div class="label">TRANSPORTE</div>
-                <div class="value" id="transporte">SAVINO</div>
-                <div class="label">CUIT</div>
-                <div class="value" id="cuit-transporte">20-29500215-9</div>
-            </div>
-            <div class="row">
-                <div class="label">CHOFER</div>
-                <div class="value" id="chofer">LUNA MATIAS EDUARDO</div>
-                <div class="label">DNI</div>
-                <div class="value" id="dni-chofer">33.956.066</div>
-            </div>
-            <div class="row">
-                <div class="label">DOMINIO CHASIS</div>
-                <div class="value" id="dominio-chasis">KXN440</div>
-                <div class="label">DOMINIO ACOPLADO</div>
-                <div class="value" id="dominio-acoplado">FAS244</div>
+            
+            <div class="weight-column">
+                <div class="weight-title">EGRESO</div>
+                <div class="weight-data">
+                    <span class="data-label">Fecha/Hora:</span>
+                    <span id="fecha-egreso" class="data-value">28/2/2025 10:15:21</span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">BRUTO:</span>
+                    <span id="bruto" class="data-value">44.760</span>
+                </div>
             </div>
         </div>
-        <div class="neto">
-            NETO <span id="neto"><<[Neto Balanza BC]>></span>
+        
+        <div class="net-weight">
+            PESO NETO: <span id="neto">29.080</span>
+        </div>
+        
+        <div class="data-section">
+            <div class="data-row">
+                <span class="data-label">PRODUCTO:</span>
+                <span id="producto" class="data-value">CUTTER</span>
+            </div>
+        </div>
+        
+        <div class="data-section">
+            <div class="data-row">
+                <span class="data-label">PROVEEDOR:</span>
+                <span id="proveedor" class="data-value">BRAVO ENERGY ARGENTINA S.C.A.</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">CUIT:</span>
+                <span id="cuit-proveedor" class="data-value">30-70723244-3</span>
+            </div>
+        </div>
+        
+        <div class="transport-section">
+            <div class="data-row">
+                <span class="data-label">TRANSPORTE:</span>
+                <span id="transporte" class="data-value">BRAVO ENERGY ARGENTINA S.C.A.</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">CUIT:</span>
+                <span id="cuit-transporte" class="data-value">30-70723244-3</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">CHOFER:</span>
+                <span id="chofer" class="data-value">PERREN OMAR</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">DNI:</span>
+                <span id="dni-chofer" class="data-value">13.911.080</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">DOMINIO:</span>
+                <span id="dominio" class="data-value">AD 914 SF</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">ACOPLADO:</span>
+                <span id="dominio-acoplado" class="data-value">MLV 865</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">CHASIS:</span>
+                <span id="chasis" class="data-value">V2</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div id="empresa"></div>
+            <div id="cuit-empresa">CUIT: 30-71196993-0</div>
+            <div id="direccion">Santiago Mattiazzi 1798, Junín (6000), Buenos Aires</div>
+            <div id="contacto">TE 0236-4632272 - porteria@gbe.com.ar</div>
         </div>
     </div>
 </body>
