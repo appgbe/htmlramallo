@@ -197,9 +197,37 @@
         <div class="footer">
             <div id="empresa"></div>
             <div id="cuit-empresa">CUIT: 30-71196993-0</div>
-            <div id="direccion">Santiago Mattiazzi 1798, Junín (6000), Buenos Aires</div>
+            <div id="direccion.">Parque Comirsa, Ramallo, Buenos Aires</div>
             <div id="contacto">TE 0236-4632272 - porteria@gbe.com.ar</div>
         </div>
     </div>
+
+
+    <script>
+  // Función para obtener los parámetros de la URL
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  // Obtener los valores de los parámetros
+  document.getElementById("numero").innerHTML = getUrlParameter('numero');
+  document.getElementById("fecha-ingreso").innerHTML = getUrlParameter('fecha-ingreso');
+  document.getElementById("fecha-egreso").innerHTML = getUrlParameter('fecha-egreso');
+  document.getElementById("tara").innerHTML = getUrlParameter('tara');
+  document.getElementById("bruto").innerHTML = getUrlParameter('bruto');
+  document.getElementById("proveedor").innerHTML = getUrlParameter('proveedor');
+  document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
+  document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
+  document.getElementById("producto").innerHTML = getUrlParameter('producto');
+  document.getElementById("cuit-proveedor").innerHTML = getUrlParameter('cuit-proveedor');
+  document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
+  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
+  document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
+  document.getElementById("cuit-transporte").innerHTML = getUrlParameter('cuit-transporte');
+  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+</script>
 </body>
 </html>
