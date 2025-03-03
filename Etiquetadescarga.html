@@ -137,6 +137,54 @@
     var results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
+
+function formatearFecha(fechaString) {
+    if (!fechaString) return '';
+    
+    try {
+      // Intentar crear un objeto fecha
+      const fecha = new Date(fechaString);
+      
+      // Verificar si la fecha es válida
+      if (isNaN(fecha.getTime())) {
+        // Si no es válida, intentar extraer la fecha mediante regex
+        const match = fechaString.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
+        if (match) {
+          const dia = match[1].padStart(2, '0');
+          let mes;
+          switch (match[2].toLowerCase()) {
+            case 'jan': case 'enero': case 'ene': mes = '01'; break;
+            case 'feb': case 'febrero': mes = '02'; break;
+            case 'mar': case 'marzo': mes = '03'; break;
+            case 'apr': case 'abril': case 'abr': mes = '04'; break;
+            case 'may': case 'mayo': mes = '05'; break;
+            case 'jun': case 'junio': mes = '06'; break;
+            case 'jul': case 'julio': mes = '07'; break;
+            case 'aug': case 'agosto': case 'ago': mes = '08'; break;
+            case 'sep': case 'septiembre': mes = '09'; break;
+            case 'oct': case 'octubre': mes = '10'; break;
+            case 'nov': case 'noviembre': mes = '11'; break;
+            case 'dec': case 'diciembre': case 'dic': mes = '12'; break;
+            default: mes = '01';
+          }
+          const anio = match[3];
+          return `${dia}/${mes}/${anio}`;
+        }
+        return fechaString;
+      }
+      
+      // Formatear la fecha como DD/MM/YYYY
+      const dia = fecha.getDate().toString().padStart(2, '0');
+      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+      const anio = fecha.getFullYear();
+      
+      return `${dia}/${mes}/${anio}`;
+    } catch (e) {
+      console.log("Error al formatear fecha:", e);
+      return fechaString;
+    }
+  }
+
   
   // Obtener los valores de los parámetros
   document.getElementById("remito").innerHTML = getUrlParameter('remito');
