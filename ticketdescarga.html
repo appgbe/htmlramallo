@@ -211,17 +211,81 @@
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
 
-  // Obtener los valores de los parámetros
+  // Función para formatear fecha
+  function formatearFecha(fechaString) {
+    if (!fechaString) return '';
+    
+    try {
+      // Crear objeto de fecha a partir del string
+      const fecha = new Date(fechaString);
+      
+      // Verificar si la fecha es válida
+      if (isNaN(fecha.getTime())) return fechaString;
+      
+      // Formatear la fecha como DD/MM/YYYY
+      const dia = fecha.getDate().toString().padStart(2, '0');
+      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+      const año = fecha.getFullYear();
+      
+      return `${dia}/${mes}/${año}`;
+    } catch (e) {
+      return fechaString;
+    }
+  }
+
+  // Función para formatear fecha y hora
+  function formatearFechaHora(fechaHoraString) {
+    if (!fechaHoraString) return '';
+    
+    try {
+      // Crear objeto de fecha a partir del string
+      const fecha = new Date(fechaHoraString);
+      
+      // Verificar si la fecha es válida
+      if (isNaN(fecha.getTime())) return fechaHoraString;
+      
+      // Formatear la fecha como DD/MM/YYYY HH:MM
+      const dia = fecha.getDate().toString().padStart(2, '0');
+      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+      const año = fecha.getFullYear();
+      const horas = fecha.getHours().toString().padStart(2, '0');
+      const minutos = fecha.getMinutes().toString().padStart(2, '0');
+      
+      return `${dia}/${mes}/${año} ${horas}:${minutos}`;
+    } catch (e) {
+      return fechaHoraString;
+    }
+  }
+
+  // Obtener los valores de los parámetros y aplicar formato
   document.getElementById("numero").innerHTML = getUrlParameter('numero');
-  // Obtener el mismo valor de fecha para ambos campos
+  
+  // Formatear y aplicar la fecha simple
+  var fechaValor = formatearFecha(getUrlParameter('fecha'));
   var fechaElementos = document.querySelectorAll("#fecha");
   fechaElementos.forEach(function(elemento) {
-    elemento.innerHTML = getUrlParameter('fecha');
+    elemento.innerHTML = fechaValor;
   });
-  document.getElementById("fecha-ingreso").innerHTML = getUrlParameter('fecha-ingreso');
-  document.getElementById("fecha-egreso").innerHTML = getUrlParameter('fecha-egreso');
-  document.getElementById("tara").innerHTML = getUrlParameter('tara');
-  document.getElementById("bruto").innerHTML = getUrlParameter('bruto');
+  
+  // Formatear y aplicar fechas con hora
+  document.getElementById("fecha-ingreso").innerHTML = formatearFechaHora(getUrlParameter('fecha-ingreso'));
+  document.getElementById("fecha-egreso").innerHTML = formatearFechaHora(getUrlParameter('fecha-egreso'));
+  
+  // Formatear valores numéricos para peso
+  document.getElementById("tara").innerHTML = getUrlParameter('tara') + " kg";
+  document.getElementById("bruto").innerHTML = getUrlParameter('bruto') + " kg";
+  
+  // Calcular y formatear el peso neto si están disponibles tara y bruto
+  var tara = parseFloat(getUrlParameter('tara')) || 0;
+  var bruto = parseFloat(getUrlParameter('bruto')) || 0;
+  if (tara > 0 && bruto > 0) {
+    var neto = bruto - tara;
+    document.getElementById("neto").innerHTML = neto + " kg";
+  } else {
+    document.getElementById("neto").innerHTML = getUrlParameter('neto') || "0 kg";
+  }
+  
+  // Resto de campos
   document.getElementById("proveedor").innerHTML = getUrlParameter('proveedor');
   document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
   document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
@@ -230,7 +294,6 @@
   document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
   document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
   document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
-  document.getElementById("neto").innerHTML = getUrlParameter('neto');
 </script>
 </body>
 </html>
