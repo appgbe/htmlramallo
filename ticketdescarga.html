@@ -122,6 +122,10 @@
             <div class="weight-column">
                 <div class="weight-title">INGRESO</div>
                 <div class="weight-data">
+                    <span class="data-label">Fecha:</span>
+                    <span id="fecha" class="data-value"></span>
+                </div>
+                <div class="weight-data">
                     <span class="data-label">Fecha/Hora:</span>
                     <span id="fecha-ingreso" class="data-value"></span>
                 </div>
@@ -133,6 +137,10 @@
             
             <div class="weight-column">
                 <div class="weight-title">EGRESO</div>
+                <div class="weight-data">
+                    <span class="data-label">Fecha:</span>
+                    <span id="fecha" class="data-value"></span>
+                </div>
                 <div class="weight-data">
                     <span class="data-label">Fecha/Hora:</span>
                     <span id="fecha-egreso" class="data-value"></span>
@@ -160,20 +168,12 @@
                 <span class="data-label">PROVEEDOR:</span>
                 <span id="proveedor" class="data-value"></span>
             </div>
-            <div class="data-row">
-                <span class="data-label">CUIT:</span>
-                <span id="cuit-proveedor" class="data-value"></span>
-            </div>
         </div>
         
         <div class="transport-section">
             <div class="data-row">
                 <span class="data-label">TRANSPORTE:</span>
                 <span id="transporte" class="data-value"></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">CUIT:</span>
-                <span id="cuit-transporte" class="data-value"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">CHOFER:</span>
@@ -191,7 +191,6 @@
                 <span class="data-label">DOMINIO CHASIS:</span>
                 <span id="chasis" class="data-value"></span>
             </div>
-            
         </div>
         
         <div class="footer">
@@ -214,6 +213,11 @@
 
   // Obtener los valores de los parámetros
   document.getElementById("numero").innerHTML = getUrlParameter('numero');
+  // Obtener el mismo valor de fecha para ambos campos
+  var fechaElementos = document.querySelectorAll("#fecha");
+  fechaElementos.forEach(function(elemento) {
+    elemento.innerHTML = getUrlParameter('fecha');
+  });
   document.getElementById("fecha-ingreso").innerHTML = getUrlParameter('fecha-ingreso');
   document.getElementById("fecha-egreso").innerHTML = getUrlParameter('fecha-egreso');
   document.getElementById("tara").innerHTML = getUrlParameter('tara');
@@ -222,12 +226,11 @@
   document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
   document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
   document.getElementById("producto").innerHTML = getUrlParameter('producto');
-  document.getElementById("cuit-proveedor").innerHTML = getUrlParameter('cuit-proveedor');
   document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
   document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
   document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
-  document.getElementById("cuit-transporte").innerHTML = getUrlParameter('cuit-transporte');
   document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+  document.getElementById("neto").innerHTML = getUrlParameter('neto');
 </script>
 </body>
 </html>
