@@ -322,14 +322,14 @@
   }
   
   // Corregir los parámetros con formato incorrecto
-  document.getElementById("chofer").innerHTML = getUrlParameter('chofer') || getUrlParameter('=chofer');
-  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer') || getUrlParameter('=dni-chofer');
+  document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
+  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
   document.getElementById("proveedor").innerHTML = getUrlParameter('proveedor');
   document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
   document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
   document.getElementById("producto").innerHTML = getUrlParameter('producto');
   document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
-  document.getElementById("empresa").innerHTML = getUrlParameter('empresa') || getUrlParameter('=empresa');
+  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
 </script>
 </body>
 </html>
