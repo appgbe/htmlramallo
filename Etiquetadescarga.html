@@ -197,7 +197,12 @@ function formatearFecha(fechaString) {
   document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
   
   // Obtener y formatear la fecha
-  document.getElementById("fecha").innerHTML = getUrlParameter('fecha') || new Date().toLocaleDateString();
+  var fechaValor = formatearFecha(getUrlParameter('fecha'));
+  var fechaElementos = document.querySelectorAll("#fecha");
+  fechaElementos.forEach(function(elemento) {
+    elemento.innerHTML = fechaValor;
+  });
+  
 </script>
 </body>
 </html>
