@@ -10,109 +10,101 @@
     };
   </script>
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
+            color: black; /* Asegura que el texto sea negro */
+            background-color: white; /* Asegura que el fondo sea blanco */
         }
-        
+
         .ticket {
-            border: 2px solid #333;
+            border: 2px solid black;
             padding: 20px;
             border-radius: 8px;
-            background-color: #f9f9f9;
         }
-        
+
         .ticket-header {
             text-align: center;
             margin-bottom: 20px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #333;
             padding-bottom: 10px;
         }
-        
+
         .ticket-title {
             font-size: 24px;
             font-weight: bold;
             margin: 0;
         }
-        
+
         .ticket-number {
             font-size: 18px;
             margin: 5px 0;
         }
-        
-        .data-section {
+
+        .data-section, .weight-section, .transport-section {
             margin-bottom: 15px;
         }
-        
+
         .data-row {
             display: flex;
             margin-bottom: 5px;
         }
-        
+
         .data-label {
             font-weight: bold;
             width: 120px;
         }
-        
+
         .data-value {
             flex-grow: 1;
         }
-        
+
         .weight-section {
             display: flex;
             justify-content: space-between;
-            background-color: #eaeaea;
             padding: 10px;
             border-radius: 5px;
-            margin-bottom: 15px;
         }
-        
+
         .weight-column {
             width: 48%;
         }
-        
+
         .weight-title {
             font-weight: bold;
             text-align: center;
             margin-bottom: 10px;
-            background-color: #444;
+            background-color: #333;
             color: white;
             padding: 3px;
             border-radius: 3px;
         }
-        
+
         .weight-data {
             display: flex;
             justify-content: space-between;
             margin-bottom: 5px;
         }
-        
+
         .net-weight {
             text-align: center;
             font-size: 16px;
             font-weight: bold;
-            background-color: #ddd;
+            background-color: #ddd; /* Gris claro para destacar el peso neto */
             padding: 7px;
             border-radius: 5px;
             margin: 10px 0;
         }
-        
-        .transport-section {
-            background-color: #e8e8e8;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        
+
         .footer {
             text-align: center;
             font-size: 14px;
             margin-top: 20px;
             padding-top: 10px;
-            border-top: 1px solid #ccc;
+            border-top: 1px solid #333;
         }
     </style>
 </head>
