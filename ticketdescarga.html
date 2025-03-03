@@ -126,7 +126,7 @@
                     <span id="fecha" class="data-value"></span>
                 </div>
                 <div class="weight-data">
-                    <span class="data-label">Fecha/Hora:</span>
+                    <span class="data-label">Hora:</span>
                     <span id="fecha-ingreso" class="data-value"></span>
                 </div>
                 <div class="weight-data">
@@ -142,7 +142,7 @@
                     <span id="fecha" class="data-value"></span>
                 </div>
                 <div class="weight-data">
-                    <span class="data-label">Fecha/Hora:</span>
+                    <span class="data-label">Hora:</span>
                     <span id="fecha-egreso" class="data-value"></span>
                 </div>
                 <div class="weight-data">
@@ -211,48 +211,81 @@
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
 
-  // Función para formatear fecha
+  // Función para extraer la fecha como DD/MM/YYYY de cualquier string de fecha
   function formatearFecha(fechaString) {
     if (!fechaString) return '';
     
     try {
-      // Crear objeto de fecha a partir del string
+      // Intentar crear un objeto fecha
       const fecha = new Date(fechaString);
       
       // Verificar si la fecha es válida
-      if (isNaN(fecha.getTime())) return fechaString;
+      if (isNaN(fecha.getTime())) {
+        // Si no es válida, intentar extraer la fecha mediante regex
+        const match = fechaString.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
+        if (match) {
+          const dia = match[1].padStart(2, '0');
+          let mes;
+          switch (match[2].toLowerCase()) {
+            case 'jan': case 'enero': case 'ene': mes = '01'; break;
+            case 'feb': case 'febrero': mes = '02'; break;
+            case 'mar': case 'marzo': mes = '03'; break;
+            case 'apr': case 'abril': case 'abr': mes = '04'; break;
+            case 'may': case 'mayo': mes = '05'; break;
+            case 'jun': case 'junio': mes = '06'; break;
+            case 'jul': case 'julio': mes = '07'; break;
+            case 'aug': case 'agosto': case 'ago': mes = '08'; break;
+            case 'sep': case 'septiembre': mes = '09'; break;
+            case 'oct': case 'octubre': mes = '10'; break;
+            case 'nov': case 'noviembre': mes = '11'; break;
+            case 'dec': case 'diciembre': case 'dic': mes = '12'; break;
+            default: mes = '01';
+          }
+          const anio = match[3];
+          return `${dia}/${mes}/${anio}`;
+        }
+        return fechaString;
+      }
       
       // Formatear la fecha como DD/MM/YYYY
       const dia = fecha.getDate().toString().padStart(2, '0');
       const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
-      const año = fecha.getFullYear();
+      const anio = fecha.getFullYear();
       
-      return `${dia}/${mes}/${año}`;
+      return `${dia}/${mes}/${anio}`;
     } catch (e) {
+      console.log("Error al formatear fecha:", e);
       return fechaString;
     }
   }
 
-  // Función para formatear fecha y hora
-  function formatearFechaHora(fechaHoraString) {
+  // Función para extraer solo la hora (HH:MM) de cualquier string de fecha
+  function formatearHora(fechaHoraString) {
     if (!fechaHoraString) return '';
     
     try {
-      // Crear objeto de fecha a partir del string
+      // Intentar crear un objeto fecha
       const fecha = new Date(fechaHoraString);
       
       // Verificar si la fecha es válida
-      if (isNaN(fecha.getTime())) return fechaHoraString;
+      if (isNaN(fecha.getTime())) {
+        // Si no es válida, intentar extraer la hora mediante regex
+        const match = fechaHoraString.match(/(\d{1,2}):(\d{1,2})/);
+        if (match) {
+          const horas = match[1].padStart(2, '0');
+          const minutos = match[2].padStart(2, '0');
+          return `${horas}:${minutos}`;
+        }
+        return fechaHoraString;
+      }
       
-      // Formatear la fecha como DD/MM/YYYY HH:MM
-      const dia = fecha.getDate().toString().padStart(2, '0');
-      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
-      const año = fecha.getFullYear();
+      // Formatear solo la hora como HH:MM
       const horas = fecha.getHours().toString().padStart(2, '0');
       const minutos = fecha.getMinutes().toString().padStart(2, '0');
       
-      return `${dia}/${mes}/${año} ${horas}:${minutos}`;
+      return `${horas}:${minutos}`;
     } catch (e) {
+      console.log("Error al formatear hora:", e);
       return fechaHoraString;
     }
   }
@@ -267,33 +300,37 @@
     elemento.innerHTML = fechaValor;
   });
   
-  // Formatear y aplicar fechas con hora
-  document.getElementById("fecha-ingreso").innerHTML = formatearFechaHora(getUrlParameter('fecha-ingreso'));
-  document.getElementById("fecha-egreso").innerHTML = formatearFechaHora(getUrlParameter('fecha-egreso'));
+  // Formatear y aplicar solo horas
+  document.getElementById("fecha-ingreso").innerHTML = formatearHora(getUrlParameter('fecha-ingreso'));
+  document.getElementById("fecha-egreso").innerHTML = formatearHora(getUrlParameter('fecha-egreso'));
   
   // Formatear valores numéricos para peso
   document.getElementById("tara").innerHTML = getUrlParameter('tara') + " kg";
   document.getElementById("bruto").innerHTML = getUrlParameter('bruto') + " kg";
   
-  // Calcular y formatear el peso neto si están disponibles tara y bruto
+  // Calcular el neto a partir de tara y bruto si neto no está disponible
   var tara = parseFloat(getUrlParameter('tara')) || 0;
   var bruto = parseFloat(getUrlParameter('bruto')) || 0;
-  if (tara > 0 && bruto > 0) {
+  var netoParam = getUrlParameter('neto');
+  
+  if (netoParam && netoParam !== "") {
+    document.getElementById("neto").innerHTML = netoParam + " kg";
+  } else if (tara > 0 && bruto > 0) {
     var neto = bruto - tara;
     document.getElementById("neto").innerHTML = neto + " kg";
   } else {
-    document.getElementById("neto").innerHTML = getUrlParameter('neto') || "0 kg";
+    document.getElementById("neto").innerHTML = "0 kg";
   }
   
-  // Resto de campos
+  // Corregir los parámetros con formato incorrecto
+  document.getElementById("chofer").innerHTML = getUrlParameter('chofer') || getUrlParameter('=chofer');
+  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer') || getUrlParameter('=dni-chofer');
   document.getElementById("proveedor").innerHTML = getUrlParameter('proveedor');
   document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
   document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
   document.getElementById("producto").innerHTML = getUrlParameter('producto');
-  document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
-  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
   document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
-  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+  document.getElementById("empresa").innerHTML = getUrlParameter('empresa') || getUrlParameter('=empresa');
 </script>
 </body>
 </html>
