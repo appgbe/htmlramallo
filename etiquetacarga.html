@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Etiqueta QL-800 (62x100 mm)</title>
+  <script>
+    window.onload = function() {
+      window.print();
+    };
+  </script>
+<style>
+  @page {
+    size: 100mm 62mm;
+    margin: 0;
+  }
+  html, body {
+    width: 100mm;
+    height: 62mm;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; /* Tamaño aumentado para mejor legibilidad */
+    line-height: 1.2; /* Espaciado más cómodo */
+    box-sizing: border-box;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Asegura que la tabla respete el ancho */
+  }
+  th, td {
+    padding: 2px 3px; /* Padding ligeramente mayor */
+    text-align: left;
+    vertical-align: top;
+    overflow: visible; /* Permite que el texto se muestre completo */
+    word-wrap: break-word; /* Permite que las palabras largas se dividan */
+  }
+  th {
+    font-weight: bold;
+    width: 40%; /* Ancho adecuado para las etiquetas */
+  }
+  .titulo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+  .titulo {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  hr {
+    border: 1px solid #ccc;
+    margin: 2px 0;
+  }
+  .etiqueta-borde {
+    border: 1px solid #000;
+    padding: 3px; /* Padding adecuado */
+    height: 60mm; /* Altura casi completa */
+    max-width: 98mm; /* Ancho casi completo */
+    margin: 1mm auto; /* Centrado con margen mínimo */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  .content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Distribuir el espacio vertical uniformemente */
+  table {
+    flex: 1;
+    display: table;
+  }
+  tbody {
+    display: table-row-group;
+  }
+  tr {
+    height: calc(100% / 8); /* Distribuir las 8 filas uniformemente */
+  }
+</style>
+</head>
+<body>
+<div class="etiqueta-borde">
+  <div class="content-wrapper">
+    <div class="titulo-container">
+      <div class="titulo" id="empresa"></div>
+      <div id="fecha"></div>
+    </div>
+    <hr>
+    <table>
+      <tbody>
+        <tr>
+          <th>REMITO:</th>
+          <td id="remito"></td>
+        </tr>
+        <tr>
+          <th>DESTINO:</th>
+          <td id="destino"></td>
+        </tr>
+        <tr>
+          <th>PRODUCTO:</th>
+          <td id="producto"></td>
+        </tr>
+        <tr>
+          <th>PTE. CHASIS:</th>
+          <td id="chasis"></td>
+        </tr>
+        <tr>
+          <th>PTE. ACOPLADO:</th>
+          <td id="acoplado"></td>
+        </tr>
+        <tr>
+          <th>LOTE:</th>
+          <td id="lote"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  // Función para obtener los parámetros de la URL
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
 
+function formatearFecha(fechaString) {
+    if (!fechaString) return '';
+    
+    try {
+      // Intentar crear un objeto fecha
+      const fecha = new Date(fechaString);
+      
+      // Verificar si la fecha es válida
+      if (isNaN(fecha.getTime())) {
+        // Si no es válida, intentar extraer la fecha mediante regex
+        const match = fechaString.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
+        if (match) {
+          const dia = match[1].padStart(2, '0');
+          let mes;
+          switch (match[2].toLowerCase()) {
+            case 'jan': case 'enero': case 'ene': mes = '01'; break;
+            case 'feb': case 'febrero': mes = '02'; break;
+            case 'mar': case 'marzo': mes = '03'; break;
+            case 'apr': case 'abril': case 'abr': mes = '04'; break;
+            case 'may': case 'mayo': mes = '05'; break;
+            case 'jun': case 'junio': mes = '06'; break;
+            case 'jul': case 'julio': mes = '07'; break;
+            case 'aug': case 'agosto': case 'ago': mes = '08'; break;
+            case 'sep': case 'septiembre': mes = '09'; break;
+            case 'oct': case 'octubre': mes = '10'; break;
+            case 'nov': case 'noviembre': mes = '11'; break;
+            case 'dec': case 'diciembre': case 'dic': mes = '12'; break;
+            default: mes = '01';
+          }
+          const anio = match[3];
+          return `${dia}/${mes}/${anio}`;
+        }
+        return fechaString;
+      }
+      
+      // Formatear la fecha como DD/MM/YYYY
+      const dia = fecha.getDate().toString().padStart(2, '0');
+      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+      const anio = fecha.getFullYear();
+      
+      return `${dia}/${mes}/${anio}`;
+    } catch (e) {
+      console.log("Error al formatear fecha:", e);
+      return fechaString;
+    }
+  }
+
+  
+  // Obtener los valores de los parámetros
+  document.getElementById("remito").innerHTML = getUrlParameter('remito');
+  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+  document.getElementById("descarga").innerHTML = getUrlParameter('descarga');
+  document.getElementById("transp").innerHTML = getUrlParameter('transp');
+  document.getElementById("producto").innerHTML = getUrlParameter('producto');
+  document.getElementById("proveedor").innerHTML = getUrlParameter('proveedor');
+  document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
+  document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
+  
+  // Obtener y formatear la fecha
+  var fechaValor = formatearFecha(getUrlParameter('fecha'));
+  var fechaElementos = document.querySelectorAll("#fecha");
+  fechaElementos.forEach(function(elemento) {
+    elemento.innerHTML = fechaValor;
+  });
+  
+</script>
+</body>
+</html>
