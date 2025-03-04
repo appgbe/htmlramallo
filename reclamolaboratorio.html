@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Calidad de Materias Primas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .document-header-left {
+            text-align: left;
+        }
+        .document-header-right {
+            text-align: right;
+        }
+        .document-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .report-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .report-details div {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+        }
+        .analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, 
+        .analysis-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .analysis-table th {
+            background-color: #f4f4f4;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .signature-box {
+            width: 45%;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            text-align: center;
+        }
+        .measurement-details {
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="document-header">
+        <div class="document-header-left">
+            <strong>REGISTRO</strong><br>
+            Registro N°: <span id="registro-number">118</span><br>
+            Código: <span id="registro-code">RG - 118</span>
+        </div>
+        <div class="document-header-right">
+            Revisión: <span id="revision">00</span><br>
+            Fecha: <span id="date">21/06/2019</span><br>
+            v6
+        </div>
+    </div>
+
+    <div class="document-title">
+        REPORTE DE CALIDAD DE MATERIAS PRIMAS
+    </div>
+
+    <div class="report-details">
+        <div>
+            <strong>Producto:</strong> <span id="product">ACEITE CRUDO</span><br>
+            <strong>N° Análisis:</strong> <span id="analysis-number">2926</span><br>
+            <strong>Fecha:</strong> <span id="analysis-date">26/2/2025 08:37:28</span>
+        </div>
+        <div>
+            <strong>Procedencia:</strong> <span id="origin">COFCO Int. Argentina S.A.</span><br>
+            <strong>N° de Remito:</strong> <span id="receipt-number">11900-00006797</span>
+        </div>
+    </div>
+
+    <div class="report-details">
+        <div>
+            <strong>Transporte:</strong> <span id="transport">MARTIN DARO</span><br>
+            <strong>Chofer:</strong> <span id="driver">MARTIN DARIO</span><br>
+            <strong>DNI:</strong> <span id="driver-dni">14.780.425</span>
+        </div>
+        <div>
+            <strong>Patente (Chasis):</strong> <span id="chassis-plate">AA 253 JQ</span>
+        </div>
+    </div>
+
+    <table class="analysis-table">
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Especificación</th>
+                <th>Unidad</th>
+                <th>Muestra</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span id="method-1">IRAM 5512</span><br>
+                    <span id="method-2">IRAM 5510</span><br>
+                    <span id="method-3">IRAM 5521</span>
+                </td>
+                <td>
+                    <span id="specification-1">&lt; 1</span><br>
+                    <span id="specification-2">&lt; 2000</span><br>
+                    <span id="specification-3">&lt; 0.15</span>
+                </td>
+                <td>
+                    <span id="unit-1">%</span><br>
+                    <span id="unit-2">PPM</span><br>
+                    <span id="unit-3">%</span>
+                </td>
+                <td>
+                    <span id="sample-1">ACIDEZ</span><br>
+                    <span id="sample-2">HUMEDAD</span><br>
+                    <span id="sample-3">SEDIMENTOS</span>
+                </td>
+                <td>
+                    <span id="value-1">0.67</span><br>
+                    <span id="value-2">1,636</span><br>
+                    <span id="value-3">0.10</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="measurement-details">
+        <strong>CIST 1:</strong>
+        <br>
+        Acidez: <span id="cist-1-acidez">0.67</span> %
+        <br>
+        Humedad: <span id="cist-1-humedad">1,636</span> PPM
+        <br>
+        Sedimentos: <span id="cist-1-sedimentos">0.10</span> %
+    </div>
+
+    <div>
+        <strong>Motivo de reclamo:</strong> <span id="claim-reason">Precintos cortados</span>
+    </div>
+
+    <div>
+        <strong>Observaciones:</strong> <span id="observations">El muestreo es realizado según Norma IRAM 5502</span>
+    </div>
+
+    <div class="signatures">
+        <div class="signature-box">
+            <strong>Elaboró:</strong><br>
+            <span id="prepared-by">JEFE DE CALIDAD</span>
+        </div>
+        <div class="signature-box">
+            <strong>Aprobó:</strong><br>
+            <span id="approved-by">GERENTE DE PLANTA</span>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <strong>Página</strong> <span id="page-number">1</span> de <span id="total-pages">1</span>
+    </div>
+
+    <script>
+        // Function to get URL parameter by name
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to update all elements with IDs from URL parameters
+        function updateElementsFromUrlParameters() {
+            // Get all elements with an ID
+            const elementsWithId = document.querySelectorAll('[id]');
+            
+            // Iterate through elements
+            elementsWithId.forEach(element => {
+                // Get the parameter value for this ID
+                const paramValue = getUrlParameter(element.id);
+                
+                // If a parameter exists, update the element's text content
+                if (paramValue) {
+                    element.textContent = paramValue;
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        window.onload = updateElementsFromUrlParameters;
+    </script>
+</body>
+</html>
