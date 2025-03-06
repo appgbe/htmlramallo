@@ -89,9 +89,9 @@
     <div class="main-info">
         <div class="info-grid">
             <div class="registro-item">PRODUCTO <span id="producto"></span></div>
-            <div class="registro-item">N° ANÁLISIS <span id="numAnalisis"></span></div>
+            <div class="registro-item">N° ANÁLISIS <span id="numero"></span></div>
             <div class="registro-item">FECHA <span id="fecha"></span></div>
-            <div class="registro-item">PROCEDENCIA <span id="procedencia"></span></div>
+            <div class="registro-item">PROCEDENCIA <span id="proveedor"></span></div>
             <div class="registro-item">N° DE REMITO <span id="remito"></span></div>
             <div class="registro-item">TRANSPORTE <span id="transporte"></span></div>
             <div class="registro-item">CHOFER <span id="chofer"></span></div>
@@ -186,9 +186,8 @@
         // Función para cargar datos básicos del reporte
         function cargarDatosBasicos() {
             const campos = [
-                'registroNum', 'codigo', 'revision', 'fechaRegistro', 'version',
-                'producto', 'numAnalisis', 'fechaAnalisis', 'procedencia', 'numRemito',
-                'transporte', 'chofer', 'dni', 'patente', 'motivoReclamo',
+                'producto', 'numero', 'fecha', 'proveedor', 'remito',
+                'transporte', 'chofer', 'dni', 'chasis', 'motivo',
                 'observaciones'
             ];
 
@@ -201,19 +200,12 @@
 
             // Cargar métodos, especificaciones y unidades
             for (let i = 1; i <= 10; i++) { // Suponiendo hasta 10 columnas posibles
-                const metodo = getUrlParameter(`metodo${i}`);
-                const especificacion = getUrlParameter(`especificacion${i}`);
-                const unidad = getUrlParameter(`unidad${i}`);
-
-                if (metodo && document.getElementById(`metodo${i}`)) {
-                    document.getElementById(`metodo${i}`).textContent = metodo;
-                }
-                if (especificacion && document.getElementById(`especificacion${i}`)) {
-                    document.getElementById(`especificacion${i}`).textContent = especificacion;
-                }
-                if (unidad && document.getElementById(`unidad${i}`)) {
-                    document.getElementById(`unidad${i}`).textContent = unidad;
-                }
+                const especificacion = 1 //getUrlParameter(`especificacion${i}`);
+                
+                //if (especificacion && document.getElementById(`especificacion${i}`)) {
+                //    document.getElementById(`especificacion${i}`).textContent = especificacion;
+                //}
+                
             }
         }
 
