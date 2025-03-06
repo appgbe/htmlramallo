@@ -209,32 +209,61 @@
             }
         }
 
-        // Función para cargar datos de resultados de muestras
-        function cargarResultados() {
-            // Intentar obtener el parámetro resultados como un array JSON
-            let resultadosParam = getUrlParameter('resultados');
-            let resultados = [];
-            
-            try {
-                if (resultadosParam) {
-                    resultados = JSON.parse(resultadosParam);
-                } else {
-                    // Datos de ejemplo si no hay parámetro
-                    resultados = [
-                        { "MUESTRA": "CIST 1", "ACIDEZ": "1.63", "HUMEDAD": "1,921", "SEDIMENTOS": "0.10" },
-                        { "MUESTRA": "CIST 2", "ACIDEZ": "1.50", "HUMEDAD": "1,856", "SEDIMENTOS": "0.10" }
-                    ];
-                }
-            } catch(e) {
-                console.error("Error al parsear resultados:", e);
-                resultados = [
-                    { "MUESTRA": "CIST 1", "ACIDEZ": "1.63", "HUMEDAD": "1,921", "SEDIMENTOS": "0.10" },
-                    { "MUESTRA": "CIST 2", "ACIDEZ": "1.50", "HUMEDAD": "1,856", "SEDIMENTOS": "0.10" }
-                ];
+        try {
+          var muestra = params.get("muestra")
+            ? params.get("insumosnombre").split(",")
+            : [];
+          var acidez = params.get("acidez")
+            ? params.get("acidez").split(",")
+            : [];
+          var humedad = params.get("humedad")
+            ? params.get("humedad").split(",")
+            : [];
+          var sedimentos = params.get("sedimentos")
+            ? params.get("sedimentos").split(",")
+            : [];
+          
+          var tablaInsumos = document.getElementById("tabla-insumos");
+          if (tablaInsumos) {
+            if (
+              muestra.length === 0 ||
+              (muestra.length === 1 && muestra[0].trim() === "")
+            ) {
+              var fila = document.createElement("tr");
+              fila.innerHTML =
+                '<td colspan="8">No hay muestras registradas</td>';
+              tablaInsumos.appendChild(fila);
+            } else {
+              for (var i = 0; i < muestra.length; i++) {
+                var fila = document.createElement("tr");
+                var tabacidez = decodeURIComponent(
+                  acidez[i] || "Vacio"
+                ).trim();
+                var tabhum = productos[tabhum] || 0;
+                fila.innerHTML = `
+                  <td>${decodeURIComponent(
+                    muestra[i] || "Vacio"
+                  ).trim()}</td>
+                  <td>${productoInsumo}</td>
+                  <td>${decodeURIComponent(
+                    sedimentos[i] || "Vacio"
+                  ).trim()}</td>
+                  <td>${(humedad[i] || "Vacio").trim()}</td>
+                  <td>${(acidez[i] || "Vacio").trim()}</td>
+                  <td>${(sedimentos[i] || "No Item").trim()}</td>
+    
+                `;
+                tablaInsumos.appendChild(fila);
+              }
             }
+          }
+        } catch (error) {
+          console.error("Error al procesar la tabla de insumos:", error);
+        }
 
-            if (!resultados.length) return;
 
+
+        
             // Determinar qué columnas tienen datos
             const todasLasColumnas = new Set();
             resultados.forEach(resultado => {
