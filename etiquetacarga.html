@@ -192,13 +192,14 @@ function formatearFecha(fechaString) {
   document.getElementById("tapa").innerHTML = getUrlParameter('tapa');
   document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
   document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
+  document.getElementById("fecha").innerHTML = getUrlParameter('fecha');
   
   // Obtener y formatear la fecha
-  var fechaValor = formatearFecha(getUrlParameter('fecha'));
-  var fechaElementos = document.querySelectorAll("#fecha");
-  fechaElementos.forEach(function(elemento) {
-    elemento.innerHTML = fechaValor;
-  });
+  //var fechaValor = formatearFecha(getUrlParameter('fecha'));
+  //var fechaElementos = document.querySelectorAll("#fecha");
+  //fechaElementos.forEach(function(elemento) {
+   // elemento.innerHTML = fechaValor;
+  //});
   
 </script>
 </body>
