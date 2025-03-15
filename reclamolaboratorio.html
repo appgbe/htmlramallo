@@ -140,7 +140,6 @@
                     <th>DENSIDAD</th>
                     <th>CONCENTRACIÓN</th>
                     <th>SEDIMENTOS</th>
-                    
                 </tr>
             </thead>
             <tbody id="resultadosBody">
@@ -187,8 +186,8 @@
         function cargarDatosBasicos() {
             const campos = [
                 'producto', 'numero', 'fecha', 'proveedor', 'remito',
-                'transporte', 'chofer', 'dni', 'chasis', 'motivo',
-                'observaciones'
+                'transporte', 'chofer', 'dni', 'chasis', 'motivoReclamo',
+                'precintos', 'observaciones'
             ];
 
             campos.forEach(campo => {
@@ -197,123 +196,104 @@
                     document.getElementById(campo).textContent = valor;
                 }
             });
-
-            // Cargar métodos, especificaciones y unidades
-            for (let i = 1; i <= 10; i++) { // Suponiendo hasta 10 columnas posibles
-                const especificacion = 1 //getUrlParameter(`especificacion${i}`);
-                
-                //if (especificacion && document.getElementById(`especificacion${i}`)) {
-                //    document.getElementById(`especificacion${i}`).textContent = especificacion;
-                //}
-                
-            }
         }
 
-        try {
-          var muestra = params.get("muestra")
-            ? params.get("insumosnombre").split(",")
-            : [];
-          var acidez = params.get("acidez")
-            ? params.get("acidez").split(",")
-            : [];
-          var humedad = params.get("humedad")
-            ? params.get("humedad").split(",")
-            : [];
-          var sedimentos = params.get("sedimentos")
-            ? params.get("sedimentos").split(",")
-            : [];
-          
-          var tablaInsumos = document.getElementById("tabla-insumos");
-          if (tablaInsumos) {
-            if (
-              muestra.length === 0 ||
-              (muestra.length === 1 && muestra[0].trim() === "")
-            ) {
-              var fila = document.createElement("tr");
-              fila.innerHTML =
-                '<td colspan="8">No hay muestras registradas</td>';
-              tablaInsumos.appendChild(fila);
-            } else {
-              for (var i = 0; i < muestra.length; i++) {
-                var fila = document.createElement("tr");
-                var tabacidez = decodeURIComponent(
-                  acidez[i] || "Vacio"
-                ).trim();
-                var tabhum = productos[tabhum] || 0;
-                fila.innerHTML = `
-                  <td>${decodeURIComponent(
-                    muestra[i] || "Vacio"
-                  ).trim()}</td>
-                  <td>${productoInsumo}</td>
-                  <td>${decodeURIComponent(
-                    sedimentos[i] || "Vacio"
-                  ).trim()}</td>
-                  <td>${(humedad[i] || "Vacio").trim()}</td>
-                  <td>${(acidez[i] || "Vacio").trim()}</td>
-                  <td>${(sedimentos[i] || "No Item").trim()}</td>
-    
-                `;
-                tablaInsumos.appendChild(fila);
-              }
-            }
-          }
-        } catch (error) {
-          console.error("Error al procesar la tabla de insumos:", error);
-        }
-
-
-
-        
-            // Determinar qué columnas tienen datos
-            const todasLasColumnas = new Set();
-            resultados.forEach(resultado => {
-                Object.keys(resultado).forEach(columna => {
-                    if (resultado[columna] !== "" && resultado[columna] !== null && resultado[columna] !== undefined) {
-                        todasLasColumnas.add(columna);
-                    }
+        // Función para cargar resultados desde el nuevo formato de URL
+        function cargarResultados() {
+            try {
+                // Obtener el parámetro de muestras de la URL (formato: "codigo1|descripcion1|cantidad1|precioUnitario1|descuento1|precioFinal1, codigo2|...")
+                const muestrasParam = getUrlParameter('muestras');
+                
+                if (!muestrasParam) {
+                    console.log("No hay datos de muestras en la URL");
+                    return;
+                }
+                
+                // Separar las filas (divididas por comas)
+                const filas = muestrasParam.split(',');
+                
+                // Preparar el array de resultados
+                const resultados = [];
+                
+                // Definir los nombres de columnas que queremos usar
+                const columnas = ['MUESTRA', 'ACIDEZ', 'HUMEDAD', 'SEDIMENTOS', 'FÓSFORO', 'GLICEROL', 'CENIZAS', 'MONG', 'DENSIDAD', 'CONCENTRACIÓN'];
+                
+                // Procesar cada fila
+                filas.forEach((fila, index) => {
+                    if (!fila.trim()) return; // Ignorar filas vacías
+                    
+                    // Separar las celdas (divididas por |)
+                    const celdas = fila.split('|');
+                    
+                    // Crear objeto para esta fila
+                    const resultado = {};
+                    
+                    // Asignar valores a las columnas correspondientes
+                    // Solo asignamos valores para las celdas que existen
+                    celdas.forEach((valor, i) => {
+                        if (i < columnas.length) {
+                            resultado[columnas[i]] = valor.trim();
+                        }
+                    });
+                    
+                    // Añadir esta fila al array de resultados
+                    resultados.push(resultado);
                 });
-            });
-
-            // Crear encabezados para las columnas con datos
-            const headerRow = document.getElementById('headerRow');
-            headerRow.innerHTML = ''; // Limpiar encabezados existentes
-
-            // Asegurar que MUESTRA siempre es la primera columna
-            headerRow.appendChild(createTh('MUESTRA'));
-            
-            // Añadir resto de columnas con datos
-            Array.from(todasLasColumnas)
-                .filter(col => col !== 'MUESTRA')
-                .forEach(columna => {
-                    headerRow.appendChild(createTh(columna));
+                
+                // Determinar qué columnas tienen datos
+                const todasLasColumnas = new Set();
+                resultados.forEach(resultado => {
+                    Object.keys(resultado).forEach(columna => {
+                        if (resultado[columna] !== "" && resultado[columna] !== null && resultado[columna] !== undefined) {
+                            todasLasColumnas.add(columna);
+                        }
+                    });
                 });
-            
-            // Generar filas con datos
-            const tbody = document.getElementById('resultadosBody');
-            tbody.innerHTML = ''; // Limpiar contenido existente
-
-            resultados.forEach(resultado => {
-                const row = document.createElement('tr');
+                
+                // Crear encabezados para las columnas con datos
+                const headerRow = document.getElementById('headerRow');
+                headerRow.innerHTML = ''; // Limpiar encabezados existentes
                 
                 // Asegurar que MUESTRA siempre es la primera columna
-                const muestraTd = document.createElement('td');
-                muestraTd.textContent = resultado['MUESTRA'] || '';
-                row.appendChild(muestraTd);
+                headerRow.appendChild(createTh('MUESTRA'));
                 
-                // Añadir datos para el resto de columnas
+                // Añadir resto de columnas con datos
                 Array.from(todasLasColumnas)
                     .filter(col => col !== 'MUESTRA')
                     .forEach(columna => {
-                        const td = document.createElement('td');
-                        td.textContent = resultado[columna] || '';
-                        row.appendChild(td);
+                        headerRow.appendChild(createTh(columna));
                     });
                 
-                tbody.appendChild(row);
-            });
-
-            // Actualizar tabla de métodos para mostrar solo las columnas que tienen datos
-            actualizarTablaMetodos(todasLasColumnas);
+                // Generar filas con datos
+                const tbody = document.getElementById('resultadosBody');
+                tbody.innerHTML = ''; // Limpiar contenido existente
+                
+                resultados.forEach(resultado => {
+                    const row = document.createElement('tr');
+                    
+                    // Asegurar que MUESTRA siempre es la primera columna
+                    const muestraTd = document.createElement('td');
+                    muestraTd.textContent = resultado['MUESTRA'] || '';
+                    row.appendChild(muestraTd);
+                    
+                    // Añadir datos para el resto de columnas
+                    Array.from(todasLasColumnas)
+                        .filter(col => col !== 'MUESTRA')
+                        .forEach(columna => {
+                            const td = document.createElement('td');
+                            td.textContent = resultado[columna] || '';
+                            row.appendChild(td);
+                        });
+                    
+                    tbody.appendChild(row);
+                });
+                
+                // Actualizar tabla de métodos para mostrar solo las columnas que tienen datos
+                actualizarTablaMetodos(todasLasColumnas);
+                
+            } catch (error) {
+                console.error("Error al procesar los datos de muestras:", error);
+            }
         }
 
         // Función para crear elementos th
@@ -330,8 +310,12 @@
                 'ACIDEZ': 1,
                 'HUMEDAD': 2,
                 'SEDIMENTOS': 3,
-                'DENSIDAD': 4,
-                'IMPUREZAS': 5,
+                'FÓSFORO': 4,
+                'GLICEROL': 5,
+                'CENIZAS': 6,
+                'MONG': 7,
+                'DENSIDAD': 8,
+                'CONCENTRACIÓN': 9
                 // Añadir más mapeos según sea necesario
             };
 
