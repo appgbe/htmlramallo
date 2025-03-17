@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acuerdo Comercial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    .row {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .col-label {
+      font-weight: bold;
+      width: 150px;
+      padding-right: 10px;
+    }
+    .col-content {
+      flex: 1;
+    }
+    .party-info {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+    .product-specs {
+      margin-bottom: 20px;
+    }
+    .product-specs ul {
+      margin: 5px 0;
+      padding-left: 20px;
+    }
+    .signatures {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .signature-box {
+      width: 45%;
+      text-align: center;
+    }
+    .signature-line {
+      border-top: 1px solid #333;
+      margin-top: 50px;
+      padding-top: 5px;
+    }
+    @media print {
+      body {
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Agreement n° <span id="agreementNumber">012-2024</span></h2>
+      <p>Date: <span id="agreementDate">25-November-2024</span></p>
+    </div>
+
+    <div class="party-info">
+      <h3>Seller:</h3>
+      <p id="sellerName">Eco Nature S.A.</p>
+      <p id="sellerAddress">Parque Ind. Alvear. Ruta Provincial 21 Km7</p>
+      <p>Tax ID: <span id="sellerTaxId">30-71460260-4</span></p>
+    </div>
+
+    <div class="party-info">
+      <h3>Buyer:</h3>
+      <p id="buyerName">Greentech Trading and Resources LLC</p>
+      <p id="buyerAddress">710w Hallandale Beach Blvd, Ste 103 - Hallandale Beach, FL 33009 - United States</p>
+      <p>VAT ID: <span id="buyerVatId">EIN 93-2245211</span></p>
+    </div>
+
+    <div class="product-specs">
+      <h3>Product:</h3>
+      <p id="productName">Esterified oil complies to annex IX, part A, letter D- EU Directive 1513/2015</p>
+      <ul>
+        <li>FFA: <span id="ffa">Max 0.9%</span></li>
+        <li>Moisture + Impurities: <span id="moisture">Max 1,2%</span></li>
+        <li>Sulfur: <span id="sulfur">Max 20-25 p.p.m.</span></li>
+        <li>Saponificable matters: <span id="saponificable">Min 95%</span></li>
+        <li>Unsaponificable matters: <span id="unsaponificable">Max 1,5%</span></li>
+        <li>Phosphorus: <span id="phosphorus">Max 100 p.p.m.</span></li>
+        <li>Iodine value: <span id="iodine">Min 100</span></li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div class="col-label">Quality:</div>
+      <div class="col-content" id="quality">500 MT +/-5%</div>
+    </div>
+
+    <div class="row">
+      <div class="col-label">Transport:</div>
+      <div class="col-content" id="transport">FCA Ramallo by iso-tank and flexi</div>
+    </div>
+
+    <div class="row">
+      <div class="col-label">Price:</div>
+      <div class="col-content" id="price">USD 315 per MT</div>
+    </div>
+
+    <div class="row">
+      <div class="col-label">Delivery period:</div>
+      <div class="col-content" id="deliveryPeriod">November, 2024</div>
+    </div>
+
+    <div class="row">
+      <div class="col-label">Shipping address:</div>
+      <div class="col-content" id="shippingAddress">Calle 24, N° 425, Sector Pymes II, Parque industrial COMIRSA C.P 2915 - Ramallo - Buenos Aires</div>
+    </div>
+
+    <div class="row">
+      <div class="col-label">Payment terms:</div>
+      <div class="col-content" id="paymentTerms">30 days after BL</div>
+    </div>
+
+    <div class="signatures">
+      <div class="signature-box">
+        <p>Date: <span id="buyerDate"></span></p>
+        <p>Buyer</p>
+        <div class="signature-line">Signed by: <span id="buyerSignatory"></span></div>
+      </div>
+      <div class="signature-box">
+        <p>Date: <span id="sellerDate"></span></p>
+        <p>Seller</p>
+        <div class="signature-line">Signed by: <span id="sellerSignatory"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función para obtener parámetros de la URL
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Lista de IDs que queremos actualizar desde la URL
+    const paramFields = [
+      'agreementNumber', 'agreementDate', 
+      
+      'buyerName', 'buyerAddress', 'buyerVatId',
+      'productName', 'ffa', 'sulfur', 'phosphorus',
+     'price', 'deliveryPeriod',
+  
+    ];
+
+    // Actualizar los campos desde la URL
+    window.onload = function() {
+      paramFields.forEach(function(field) {
+        const value = getUrlParameter(field);
+        if (value && document.getElementById(field)) {
+          document.getElementById(field).textContent = value;
+        }
+      });
+    };
+  </script>
+</body>
+</html>
