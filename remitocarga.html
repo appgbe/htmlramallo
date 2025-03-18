@@ -68,10 +68,6 @@
         <div class="field" style="top: 165mm; left: 45 mm;">
             <span>Operador de balanza:</span>
             <span id="op_balanza"></span>
-            <span>  Contramuestra N&ordm;:</span>
-            <span id="contramuestra"></span>
-            <span>  Precintos muestras:</span>
-            <span id="precintomuestra"></span>
             <span>Muestra rotulada N&ordm;: </span>
             <span id="Nro_muestra"></span>
             <span>Lote:</span>
@@ -180,8 +176,6 @@
         document.getElementById('precintos').innerHTML = precintosFormateados
         
         document.getElementById('op_balanza').innerHTML = getUrlParameter('op_balanza');
-        document.getElementById('contramuestra').innerHTML = getUrlParameter('Nro_contramuestra');
-        document.getElementById('precintomuestra').innerHTML = getUrlParameter('Nro_precinto_muestra');
         document.getElementById('Nro_muestra').innerHTML = getUrlParameter('Nro_muestra');
     </script>
 </body>
