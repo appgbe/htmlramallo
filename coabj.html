@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERTIFICATE OF ANALYSIS (COA)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            font-size: 10pt;
+            line-height: 1.2;
+        }
+        .header {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .coa-usp {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-weight: bold;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
+        .title-container {
+            margin-left: 10px;
+        }
+        .title {
+            font-size: 18pt;
+            font-weight: bold;
+            margin: 0;
+        }
+        .product {
+            font-size: 14pt;
+            font-weight: bold;
+            margin: 5px 0 0 0;
+        }
+        .section-header {
+            background-color: #D3D3D3;
+            padding: 5px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #000;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            border: 1px solid #000;
+            border-top: none;
+        }
+        .info-cell {
+            padding: 5px;
+            border-bottom: 1px solid #000;
+        }
+        .info-cell:nth-child(odd) {
+            border-right: 1px solid #000;
+            font-weight: bold;
+        }
+        .info-grid-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 5px;
+        }
+        .info-label {
+            font-weight: bold;
+        }
+        .info-value {
+            font-weight: normal;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #D3D3D3;
+            font-weight: bold;
+        }
+        .centered {
+            text-align: center;
+        }
+        .observations {
+            margin-top: 20px;
+            border: 1px solid #000;
+        }
+        .status-section {
+            margin-top: 20px;
+        }
+        .status-label {
+            font-weight: bold;
+        }
+        .status-value {
+            font-weight: bold;
+            font-size: 14pt;
+            margin-left: 20px;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            align-items: flex-end;
+        }
+        .signature {
+            text-align: center;
+            width: 200px;
+        }
+        .signature img {
+            max-width: 150px;
+            margin-bottom: 5px;
+        }
+        .kosher {
+            text-align: center;
+            width: 200px;
+        }
+        .kosher-symbol {
+            font-size: 48pt;
+            font-weight: bold;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .kosher-text {
+            font-size: 8pt;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .validated {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .checkmark {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
+            margin-left: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+        .address {
+            margin-top: 40px;
+            border-top: 1px dotted #000;
+            padding-top: 10px;
+            font-size: 8pt;
+        }
+        .code-footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+        }
+        .indent {
+            padding-left: 20px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        .special-cell {
+            padding: 0;
+        }
+        .special-cell-row {
+            display: flex;
+        }
+        .special-cell-label {
+            width: 50%;
+            padding: 5px;
+        }
+        .special-cell-value {
+            width: 50%;
+            padding: 5px;
+            border-left: 1px solid #000;
+        }
+        .appearance-cell {
+            font-style: italic;
+            font-size: 8pt;
+        }
+    </style>
+</head>
+<body>
+    <!-- Primera página -->
+    <div class="header">
+        <div class="coa-usp">COA USP</div>
+        <div class="logo-container">
+            <img id="company-logo" src="" alt="BOJAGRO S.A." class="logo">
+            <div class="title-container">
+                <h1 class="title">CERTIFICATE OF ANALYSIS (COA)</h1>
+                <p class="product">PRODUCT    REFINED GLYCERINE 99,7% USP GRADE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">INFORMATIVE DATA</div>
+    <div class="info-grid">
+        <div class="info-cell">BATCH NUMBER:</div>
+        <div class="info-cell">LGR-00114</div>
+        
+        <div class="info-cell">REPORT NUMBER:</div>
+        <div class="info-cell">F430101/ 144015</div>
+        
+        <div class="info-cell" style="border-bottom: none;"></div>
+        <div class="info-cell" style="border-bottom: none;">
+            <div class="info-grid-right">
+                <div class="info-label">SAMPLING DATE:</div>
+                <div class="info-value">3/11/2025</div>
+                
+                <div class="info-label">DATE OF ANALYSIS</div>
+                <div class="info-value">3/11/2025</div>
+                
+                <div class="info-label">TANK OF ORIGIN</div>
+                <div class="info-value">[ A47A-4J ]</div>
+                
+                <div class="info-label">DATE OF ELABORATION:</div>
+                <div class="info-value">02-06-2025</div>
+                
+                <div class="info-label">EXPIRATION DATE:</div>
+                <div class="info-value">02-06-2027</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 20px;">ANALYTICAL DETAIL</div>
+    <table>
+        <thead>
+            <tr>
+                <th>DETERMINATIONS</th>
+                <th>RESULTS</th>
+                <th>SPEC and UNIT</th>
+                <th>METHOD</th>
+                <th>ADDITIONAL INFORMATION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GLYCERINE ASSAY (ANHYDROUS)</td>
+                <td id="result-glycerine-assay">100,13</td>
+                <td>99,7% min.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>COLOR APHA</td>
+                <td id="result-color-apha">4</td>
+                <td>10 Pt/Co max.</td>
+                <td>ASTM D 1209</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>COLOR FERRIC CHLORIDE</td>
+                <td id="result-color-ferric">Passes test</td>
+                <td>Passes test</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>IDENTIFICATION A - IR</td>
+                <td id="result-identification-a">Passes test</td>
+                <td>Passes test</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2">IDENTIFICATION B</td>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">DIETHYLENGLYCOL</div>
+                        <div class="special-cell-value" id="result-diethylenglycol">&lt;0,1</div>
+                    </div>
+                </td>
+                <td>0,10 % max.</td>
+                <td rowspan="2">USP 42</td>
+                <td rowspan="2">Passes test</td>
+            </tr>
+            <tr>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">ETHYLENGLYCOL</div>
+                        <div class="special-cell-value" id="result-ethylenglycol">&lt;0,1</div>
+                    </div>
+                </td>
+                <td>0,10 % max.</td>
+            </tr>
+            <tr>
+                <td rowspan="2">RELATED COMPOUNDS</td>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">INDIVIDUAL IMPURITIES</div>
+                        <div class="special-cell-value" id="result-individual-impurities">&lt;0,1</div>
+                    </div>
+                </td>
+                <td>0,1 % max.</td>
+                <td rowspan="2">USP 42</td>
+                <td rowspan="2">Passes test</td>
+            </tr>
+            <tr>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">ALL IMPURITIES</div>
+                        <div class="special-cell-value" id="result-all-impurities">&lt;1</div>
+                    </div>
+                </td>
+                <td>1 % max.</td>
+            </tr>
+            <tr>
+                <td>IDENTIFICATION C- CROMATOGRAPHY</td>
+                <td id="result-identification-c">Passes test</td>
+                <td>Passes test</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ESPECIFIC GRAVITY AT 25°</td>
+                <td id="result-specific-gravity">1,2613</td>
+                <td>1,249 min.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>RESIDUE ON IGNITION</td>
+                <td id="result-residue-ignition">&lt;0,01</td>
+                <td>0,01 % max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>WATER CONTENT</td>
+                <td id="result-water-content">0,054</td>
+                <td>0,3 % max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>CHLORIDE</td>
+                <td id="result-chloride">&lt;10</td>
+                <td>10 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>SULFATE</td>
+                <td id="result-sulfate">&lt;20</td>
+                <td>20 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>CHLORINATED COMPOUNDS (as Cl)</td>
+                <td id="result-chlorinated-compounds">&lt;30</td>
+                <td>30 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="5">RESIDUAL SOLVENTS</td>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">CHLOROFORME</div>
+                        <div class="special-cell-value" id="result-chloroforme">&lt;60</div>
+                    </div>
+                </td>
+                <td>60 ppm max.</td>
+                <td>USP 42</td>
+                <td>Passes test</td>
+            </tr>
+            <tr>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">1,4 DIOXANE</div>
+                        <div class="special-cell-value" id="result-dioxane">&lt;30</div>
+                    </div>
+                </td>
+                <td>380 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">METHYLENCHLORIDE</div>
+                        <div class="special-cell-value" id="result-methylenchloride">&lt;600</div>
+                    </div>
+                </td>
+                <td>600 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">TRICHLOROETHYLENE</div>
+                        <div class="special-cell-value" id="result-trichloroethylene">&lt;80</div>
+                    </div>
+                </td>
+                <td>80 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="special-cell">
+                    <div class="special-cell-row">
+                        <div class="special-cell-label">METHANOL</div>
+                        <div class="special-cell-value" id="result-methanol">&lt;500</div>
+                    </div>
+                </td>
+                <td>500 ppm max</td>
+                <td>USP 42</td>
+                <td>No detected</td>
+            </tr>
+            <tr>
+                <td>REFRACTIVE INDEX AT 20 °</td>
+                <td id="result-refractive-index">1,474</td>
+                <td>***</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>FATTY ACID AND ESTERS</td>
+                <td id="result-fatty-acid">0,4835</td>
+                <td>1ml Na OH 0,5N/50 g max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>READILY CARBONIZABLE SUBSTANCES</td>
+                <td id="result-carbonizable">Passes test</td>
+                <td>Passes test</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>APPEARANCE</td>
+                <td id="result-appearance-1" class="appearance-cell">Viscous liquid, clear and colorless</td>
+                <td>***</td>
+                <td>USP (Visual)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>APPEARANCE</td>
+                <td id="result-appearance-2">Passes test</td>
+                <td>Passes test</td>
+                <td>ASTM E 2680</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ODOR</td>
+                <td id="result-odor">Typical odor (Pass)</td>
+                <td>Odorless</td>
+                <td>Internal Procedure of an acredited laboratory</td>
+                <td>Method SGS ME.301</td>
+            </tr>
+            <tr>
+                <td>HEAVY METALS</td>
+                <td id="result-heavy-metals">&lt;5</td>
+                <td>5 ppm max.</td>
+                <td>USP 42</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 10px; font-size: 9pt;">Continued on page 2</div>
+
+    <div class="code-footer">
+        <div>CODE: RG-B-I-21</div>
+        <div>REVISION: 00</div>
+        <div>DATE: 15-09-2022</div>
+    </div>
+
+    <!-- Segunda página -->
+    <div class="page-break"></div>
+
+    <div class="header">
+        <div class="coa-usp">COA USP</div>
+        <div class="logo-container">
+            <img id="company-logo-2" src="" alt="BOJAGRO S.A." class="logo">
+            <div class="title-container">
+                <h1 class="title">CERTIFICATE OF ANALYSIS (COA)</h1>
+                <p class="product">PRODUCT    REFINED GLYCERINE 99,7% USP GRADE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">OBSERVATIONS</div>
+    <div class="observations">
+        <div style="padding: 10px;" id="observations">"""""""This product is of vegetable origin being its inputs of the same origin""""""
+N° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA
+IRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)
+*Date format specification: month/day/year*
+**Calculated as Butyric acid: 0,04 %
+(Limits: <0.1%)</div>
+    </div>
+
+    <div class="status-section">
+        <span class="status-label">STATUS:</span>
+        <span class="status-value" id="status">APPROVED</span>
+    </div>
+
+    <div style="margin-top: 10px;">
+        <div class="status-label">SERIAL NUMBER:</div>
+        <div class="indent" id="serial-number"></div>
+    </div>
+
+    <div style="margin-top: 5px;">
+        <div class="status-label">TANK CONTAINER SERIAL NUMBER:</div>
+        <div class="indent" id="tank-container-number"></div>
+    </div>
+
+    <div style="margin-top: 5px;">
+        <div class="status-label">NET WEIGHT (kg):</div>
+        <div class="indent" id="net-weight"></div>
+    </div>
+
+    <div class="footer">
+        <div class="signature">
+            <img id="signature-img" src="" alt="Signature">
+            <div>Ing.Santiago Tornello</div>
+            <div>QUALITY MANAGER</div>
+        </div>
+        <div class="kosher">
+            <div class="kosher-symbol" id="u-letter">U</div>
+            <div class="kosher-text">THIS PRODUCT<br>COMPLIES WITH THE<br>KOSHER<br>CERTIFICATION</div>
+        </div>
+    </div>
+
+    <div class="validated">
+        <div>This document has been electronically validated</div>
+        <div class="checkmark">✓</div>
+    </div>
+
+    <div class="address">
+        <p>Manufacturing adress: calle 24, N° 545 Comirsa Industrial Park SME sector II-<br>
+        Ramallo - Province of Bs As. Argentina</p>
+    </div>
+
+    <div class="code-footer">
+        <div>CODE: RG-B-I-21</div>
+        <div>REVISION: 00</div>
+        <div>DATE: 15-09-2022</div>
+    </div>
+
+    <script>
+        // Función para obtener parámetros de la URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Función para asignar valores a elementos
+        function assignValueToElement(id, paramName, defaultValue = '') {
+            const element = document.getElementById(id);
+            if (element) {
+                const value = getUrlParameter(paramName);
+                if (value) {
+                    element.textContent = value;
+                } else if (defaultValue) {
+                    element.textContent = defaultValue;
+                }
+            }
+        }
+        
+        // Asignar valores a los campos específicos
+        assignValueToElement('serial-number', 'serial');
+        assignValueToElement('tank-container-number', 'tank');
+        assignValueToElement('net-weight', 'weight');
+        assignValueToElement('status', 'status', 'APPROVED');
+        assignValueToElement('observations', 'observations', '"""""""This product is of vegetable origin being its inputs of the same origin""""""\nN° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA\nIRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)\n*Date format specification: month/day/year*\n**Calculated as Butyric acid: 0,04 %\n(Limits: <0.1%)');
+        
+        // Asignar valores a los resultados
+        assignValueToElement('result-glycerine-assay', 'glycerine', '100,13');
+        assignValueToElement('result-color-apha', 'colorApha', '4');
+        assignValueToElement('result-color-ferric', 'colorFerric', 'Passes test');
+        assignValueToElement('result-identification-a', 'identA', 'Passes test');
+        assignValueToElement('result-diethylenglycol', 'diethylenglycol', '<0,1');
+        assignValueToElement('result-ethylenglycol', 'ethylenglycol', '<0,1');
+        assignValueToElement('result-individual-impurities', 'indImpurities', '<0,1');
+        assignValueToElement('result-all-impurities', 'allImpurities', '<1');
+        assignValueToElement('result-identification-c', 'identC', 'Passes test');
+        assignValueToElement('result-specific-gravity', 'specGravity', '1,2613');
+        assignValueToElement('result-residue-ignition', 'residueIgnition', '<0,01');
+        assignValueToElement('result-water-content', 'waterContent', '0,054');
+        assignValueToElement('result-chloride', 'chloride', '<10');
+        assignValueToElement('result-sulfate', 'sulfate', '<20');
+        assignValueToElement('result-chlorinated-compounds', 'chlorinatedComp', '<30');
+        assignValueToElement('result-chloroforme', 'chloroforme', '<60');
+        assignValueToElement('result-dioxane', 'dioxane', '<30');
+        assignValueToElement('result-methylenchloride', 'methylenchloride', '<600');
+        assignValueToElement('result-trichloroethylene', 'trichloroethylene', '<80');
+        assignValueToElement('result-methanol', 'methanol', '<500');
+        assignValueToElement('result-refractive-index', 'refractiveIndex', '1,474');
+        assignValueToElement('result-fatty-acid', 'fattyAcid', '0,4835');
+        assignValueToElement('result-carbonizable', 'carbonizable', 'Passes test');
+        assignValueToElement('result-appearance-1', 'appearance1', 'Viscous liquid, clear and colorless');
+        assignValueToElement('result-appearance-2', 'appearance2', 'Passes test');
+        assignValueToElement('result-odor', 'odor', 'Typical odor (Pass)');
+        assignValueToElement('result-heavy-metals', 'heavyMetals', '<5');
+        
+        // Asignar imágenes
+        const logoUrl = getUrlParameter('logo');
+        if (logoUrl) {
+            document.getElementById('company-logo').src = logoUrl;
+            document.getElementById('company-logo-2').src = logoUrl;
+        }
+        
+        const signatureUrl = getUrlParameter('signature');
+        if (signatureUrl) {
+            document.getElementById('signature-img').src = signatureUrl;
+        }
+        
+        // Para el símbolo U (usamos texto en lugar de imagen para que coincida mejor con el diseño)
+        const uLetterEl = document.getElementById('u-letter');
+        const uLetterUrl = getUrlParameter('u-letter');
+        if (uLetterUrl) {
+            // Si se proporciona una URL para la imagen de la letra U, reemplazamos el texto por la imagen
+            uLetterEl.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = uLetterUrl;
+            img.alt = 'U';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            uLetterEl.appendChild(img);
+        }
+    </script>
+</body>
+</html>
