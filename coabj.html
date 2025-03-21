@@ -207,7 +207,7 @@
             <img id="company-logo" src="" alt="BOJAGRO S.A." class="logo">
             <div class="title-container">
                 <h1 class="title">CERTIFICATE OF ANALYSIS (COA)</h1>
-                <p class="product">PRODUCT    REFINED GLYCERINE 99,7% USP GRADE</p>
+                <p class="product">PRODUCT REFINED GLYCERINE 99,7% USP GRADE</p>
             </div>
         </div>
     </div>
@@ -215,28 +215,28 @@
     <div class="section-header">INFORMATIVE DATA</div>
     <div class="info-grid">
         <div class="info-cell">BATCH NUMBER:</div>
-        <div class="info-cell">LGR-00114</div>
+        <div class="info-cell" id="lote">LGR-00114</div>
         
         <div class="info-cell">REPORT NUMBER:</div>
-        <div class="info-cell">F430101/ 144015</div>
+        <div class="info-cell" id="reporte">F430101/ 144015</div>
         
         <div class="info-cell" style="border-bottom: none;"></div>
         <div class="info-cell" style="border-bottom: none;">
             <div class="info-grid-right">
                 <div class="info-label">SAMPLING DATE:</div>
-                <div class="info-value">3/11/2025</div>
+                <div class="info-value" id="fecha-muestra">3/11/2025</div>
                 
                 <div class="info-label">DATE OF ANALYSIS</div>
-                <div class="info-value">3/11/2025</div>
+                <div class="info-value" id="fecha-analisis">3/11/2025</div>
                 
                 <div class="info-label">TANK OF ORIGIN</div>
-                <div class="info-value">[ A47A-4J ]</div>
+                <div class="info-value" id="tanque">[ A47A-4J ]</div>
                 
                 <div class="info-label">DATE OF ELABORATION:</div>
-                <div class="info-value">02-06-2025</div>
+                <div class="info-value" id="elaboracion">02-06-2025</div>
                 
                 <div class="info-label">EXPIRATION DATE:</div>
-                <div class="info-value">02-06-2027</div>
+                <div class="info-value" id="vencimiento">02-06-2027</div>
             </div>
         </div>
     </div>
@@ -586,8 +586,9 @@ IRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)
         assignValueToElement('serial-number', 'serial');
         assignValueToElement('tank-container-number', 'tank');
         assignValueToElement('net-weight', 'weight');
-        assignValueToElement('status', 'status', 'APPROVED');
-        assignValueToElement('observations', 'observations', '"""""""This product is of vegetable origin being its inputs of the same origin""""""\nN° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA\nIRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)\n*Date format specification: month/day/year*\n**Calculated as Butyric acid: 0,04 %\n(Limits: <0.1%)');
+        assignValueToElement('observations', 'observations', '"""""This product is of vegetable origin being its inputs of the same origin""""""\nN° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA\nIRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)\n*Date format specification: month/day/year*\n**Calculated as Butyric acid: 0,04 %\n(Limits: <0.1%)');
+        assignValueToElement('lote', 'lote');
+
         
         // Asignar valores a los resultados
         assignValueToElement('result-glycerine-assay', 'glycerine', '100,13');
