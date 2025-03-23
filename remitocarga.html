@@ -54,7 +54,10 @@
         <span id="acoplado" class="field" style="top: 131mm; left: 45mm;"></span>
         
         <span id="observaciones" class="field" style="top: 145mm; left: 45mm;">aa</span>
-        <span id="observaciones_2" class="field" style="top: 155mm; left: 45mm;"></span>
+        <div class="field" style="top: 145mm; left: 90mm;">
+            <span>Últimas 3 cargas:</span>
+            <span id="observaciones_2"></span>
+        </div>
         
         <span id="producto" class="field" style="top: 170mm; left: 45mm;"></span>
         <span class="field" style="top: 170mm; left: 110mm;">TARA: </span>
@@ -76,6 +79,7 @@
         <span id="tk_balanza" class="field" style="top: 248mm; left: 50mm;"></span>
         <span id="dni-chofer-2" class="field" style="top: 280mm; left: 100mm;"></span>
         <span id="chofer-2" class="field" style="top: 280mm; left: 160mm;"></span>
+        <span id="conf" class="field" style="top: 248mm; left: 100mm;"></span>
     </div>
 
     <script>
@@ -158,11 +162,7 @@
         document.getElementById('observaciones_2').innerHTML = getUrlParameter('observaciones_2');
         document.getElementById('producto').innerHTML = getUrlParameter('producto');
         document.getElementById('lote').innerHTML = getUrlParameter('lote'); 
-        
-       // document.getElementById('tara').innerHTML = getUrlParameter('tara');
-       // document.getElementById('bruto').innerHTML = getUrlParameter('bruto');
-       // document.getElementById('neto').innerHTML = getUrlParameter('Neto');
-                // Formatear e insertar Neto con separador de miles
+    
         const neto = getUrlParameter('Neto');
         const bruto = getUrlParameter('bruto');
         const tara = getUrlParameter('tara');
@@ -170,13 +170,13 @@
         document.getElementById('bruto').innerHTML = formatearNumeroConMiles(bruto);
         document.getElementById('tara').innerHTML = formatearNumeroConMiles(tara);
         
-//        document.getElementById('precintos').innerHTML = getUrlParameter('Precintos');
         const precintosOriginal = getUrlParameter('Precintos');
         const precintosFormateados = formatearPrecintos(precintosOriginal);
         document.getElementById('precintos').innerHTML = precintosFormateados
         
         document.getElementById('op_balanza').innerHTML = getUrlParameter('op_balanza');
         document.getElementById('Nro_muestra').innerHTML = getUrlParameter('Nro_muestra');
+        document.getElementById('conf').innerHTML = getUrlParameter('conf');
     </script>
 </body>
 </html>
