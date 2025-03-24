@@ -8,204 +8,95 @@
     <style>
         @page {
             size: A4;
-            margin: 20mm;
+            margin: 15mm;
         }
 
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-size: 10pt;
-            line-height: 1.2;
+            font-size: 9pt; /* Reducido de 10pt a 9pt */
+            line-height: 1.1; /* Ligeramente reducido */
         }
 
         .header {
             position: relative;
-            margin-bottom: 10px;
-        }
-
-        .coa-usp {
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-weight: bold;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
+            margin-bottom: 8px; /* Reducido */
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-        }
-
-        .title-container {
-            margin-left: 10px;
+            width: 70px; /* Ligeramente más pequeño */
+            height: 70px;
         }
 
         .title {
-            font-size: 18pt;
+            font-size: 16pt; /* Reducido */
             font-weight: bold;
             margin: 0;
         }
 
         .product {
-            font-size: 14pt;
+            font-size: 12pt; /* Reducido */
             font-weight: bold;
-            margin: 5px 0 0 0;
-        }
-
-        .section-header {
-            background-color: #D3D3D3;
-            padding: 5px;
-            font-weight: bold;
-            text-align: center;
-            border: 1px solid #000;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            border: 1px solid #000;
-            border-top: none;
-        }
-
-        .info-cell {
-            padding: 5px;
-            border-bottom: 1px solid #000;
-        }
-
-        .info-cell:nth-child(odd) {
-            border-right: 1px solid #000;
-            font-weight: bold;
-        }
-
-        .info-grid-right {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 5px;
-        }
-
-        .info-label {
-            font-weight: bold;
-        }
-
-        .info-value {
-            font-weight: normal;
+            margin: 3px 0 0 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 10px; /* Reducido */
+            font-size: 8pt; /* Reducido */
         }
 
         th,
         td {
             border: 1px solid #000;
-            padding: 5px;
+            padding: 3px; /* Reducido */
             text-align: left;
             vertical-align: top;
         }
 
-        th {
-            background-color: #D3D3D3;
-            font-weight: bold;
-        }
-
-        .page-break {
-            page-break-before: always;
-        }
-
         .code-footer {
-            margin-top: 10px;
+            margin-top: 5px;
             display: flex;
             justify-content: space-between;
-            font-size: 8pt;
+            font-size: 7pt; /* Reducido */
             position: fixed;
-            bottom: 10mm;
+            bottom: 5mm;
             width: 100%;
-            left: 20mm;
-            right: 20mm;
+            left: 15mm;
+            right: 15mm;
         }
 
         .footer-page-first {
             page-break-after: always;
         }
 
-        .observations {
-            margin-top: 20px;
-            border: 1px solid #000;
-            padding: 10px;
-        }
-
-        .status-section {
-            margin-top: 20px;
-        }
-
         .footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            align-items: flex-end;
+            margin-top: 15px; /* Reducido */
         }
 
         .signature {
-            text-align: center;
-            width: 200px;
+            width: 180px; /* Reducido */
         }
 
         .signature img {
-            max-width: 150px;
-            margin-bottom: 5px;
-        }
-
-        .kosher {
-            text-align: center;
-            width: 200px;
+            max-width: 130px; /* Reducido */
         }
 
         .kosher-symbol {
-            font-size: 48pt;
-            font-weight: bold;
-            border: 2px solid #000;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
+            font-size: 40pt; /* Reducido */
+            width: 50px;
+            height: 50px;
         }
 
         .kosher-text {
-            font-size: 8pt;
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        .validated {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .checkmark {
-            width: 15px;
-            height: 15px;
-            border: 1px solid #000;
-            margin-left: 5px;
-            display: inline-block;
-            text-align: center;
+            font-size: 7pt; /* Reducido */
         }
 
         .address {
-            margin-top: 40px;
-            border-top: 1px dotted #000;
-            padding-top: 10px;
-            font-size: 8pt;
+            margin-top: 20px; /* Reducido */
+            font-size: 7pt;
         }
     </style>
 </head>
