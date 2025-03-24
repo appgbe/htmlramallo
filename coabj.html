@@ -347,8 +347,97 @@
     </div>
 
     <script>
-        // The entire script remains the same as in the original document
-        // (Copy the entire <script> section from the original HTML)
+// Función para obtener parámetros de la URL
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            // Función para asignar valores a elementos
+            function assignValueToElement(id, paramName, defaultValue = '') {
+                const element = document.getElementById(id);
+                if (element) {
+                    const value = getUrlParameter(paramName);
+                    if (value) {
+                        element.textContent = value;
+                    } else if (defaultValue) {
+                        element.textContent = defaultValue;
+                    }
+                }
+            }
+
+            // Asignar valores a los campos específicos
+            assignValueToElement('serial-number', 'serial');
+            assignValueToElement('tank-container-number', 'tank');
+            assignValueToElement('net-weight', 'weight');
+            assignValueToElement('observations', 'observations', '"""""This product is of vegetable origin being its inputs of the same origin""""""\nN° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA\nIRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)\n*Date format specification: month/day/year*\n**Calculated as Butyric acid: 0,04 %\n(Limits: <0.1%)');
+            assignValueToElement('lote', 'lote');
+            assignValueToElement('reporte', 'reporte');
+             assignValueToElement('fecha-muestra', 'fecha-muestra');
+        assignValueToElement('fecha-analisis', 'fecha-analisis');
+             assignValueToElement('tanque', 'tanque');
+             assignValueToElement('elaboracion', 'elaboracion');
+             assignValueToElement('vencimiento', 'vencimiento');
+
+
+
+
+            // Asignar valores a los resultados
+            assignValueToElement('result-glycerine-assay', 'glycerine');
+            assignValueToElement('result-color-apha', 'colorApha');
+            assignValueToElement('result-color-ferric', 'colorFerric');
+            assignValueToElement('result-identification-a', 'identA');
+            assignValueToElement('result-diethylenglycol', 'diethylenglycol');
+            assignValueToElement('result-ethylenglycol', 'ethylenglycol');
+            assignValueToElement('result-individual-impurities', 'indImpurities');
+            assignValueToElement('result-all-impurities', 'allImpurities');
+            assignValueToElement('result-identification-c', 'identC');
+            assignValueToElement('result-specific-gravity', 'specGravity');
+            assignValueToElement('result-residue-ignition', 'residueIgnition');
+            assignValueToElement('result-water-content', 'water-content');
+            assignValueToElement('result-chloride', 'chloride');
+            assignValueToElement('result-sulfate', 'sulfate');
+            assignValueToElement('result-chlorinated-compounds', 'chlorinatedComp');
+            assignValueToElement('result-chloroforme', 'chloroforme');
+            assignValueToElement('result-dioxane', 'dioxane');
+            assignValueToElement('result-methylenchloride', 'methylenchloride');
+            assignValueToElement('result-trichloroethylene', 'trichloroethylene');
+            assignValueToElement('result-methanol', 'methanol');
+            assignValueToElement('result-refractive-index', 'refractiveIndex');
+            assignValueToElement('result-fatty-acid', 'fattyAcid');
+            assignValueToElement('result-carbonizable', 'carbonizable');
+            assignValueToElement('result-appearance-1', 'appearance1');
+            assignValueToElement('result-appearance-2', 'appearance2');
+            assignValueToElement('result-odor', 'odor');
+            assignValueToElement('result-heavy-metals','heavymetals');
+
+            // Asignar imágenes
+            const logoUrl = getUrlParameter('logo');
+            if (logoUrl) {
+                document.getElementById('company-logo').src = logoUrl;
+                document.getElementById('company-logo-2').src = logoUrl;
+            }
+
+            const signatureUrl = getUrlParameter('signature');
+            if (signatureUrl) {
+                document.getElementById('signature-img').src = signatureUrl;
+            }
+
+            // Para el símbolo U (usamos texto en lugar de imagen para que coincida mejor con el diseño)
+            const uLetterEl = document.getElementById('u-letter');
+            const uLetterUrl = getUrlParameter('u-letter');
+            if (uLetterUrl) {
+                // Si se proporciona una URL para la imagen de la letra U, reemplazamos el texto por la imagen
+                uLetterEl.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = uLetterUrl;
+                img.alt = 'U';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                uLetterEl.appendChild(img);
+            }
     </script>
 </body>
 </html>
