@@ -8,95 +8,236 @@
     <style>
         @page {
             size: A4;
-            margin: 15mm;
+            margin: 0;
         }
 
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            font-size: 9pt; /* Reducido de 10pt a 9pt */
-            line-height: 1.1; /* Ligeramente reducido */
+            padding: 20px;
+            font-size: 10pt;
+            line-height: 1.2;
         }
 
         .header {
             position: relative;
-            margin-bottom: 8px; /* Reducido */
+            margin-bottom: 10px;
+        }
+
+        .coa-usp {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-weight: bold;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
         }
 
         .logo {
-            width: 70px; /* Ligeramente más pequeño */
-            height: 70px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .title-container {
+            margin-left: 10px;
         }
 
         .title {
-            font-size: 16pt; /* Reducido */
+            font-size: 18pt;
             font-weight: bold;
             margin: 0;
         }
 
         .product {
-            font-size: 12pt; /* Reducido */
+            font-size: 14pt;
             font-weight: bold;
-            margin: 3px 0 0 0;
+            margin: 5px 0 0 0;
+        }
+
+        .section-header {
+            background-color: #D3D3D3;
+            padding: 5px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #000;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            border: 1px solid #000;
+            border-top: none;
+        }
+
+        .info-cell {
+            padding: 5px;
+            border-bottom: 1px solid #000;
+        }
+
+        .info-cell:nth-child(odd) {
+            border-right: 1px solid #000;
+            font-weight: bold;
+        }
+
+        .info-grid-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 5px;
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+        .info-value {
+            font-weight: normal;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px; /* Reducido */
-            font-size: 8pt; /* Reducido */
+            margin-top: 20px;
         }
 
         th,
         td {
             border: 1px solid #000;
-            padding: 3px; /* Reducido */
+            padding: 5px;
             text-align: left;
             vertical-align: top;
         }
 
-        .code-footer {
-            margin-top: 5px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 7pt; /* Reducido */
-            position: fixed;
-            bottom: 5mm;
-            width: 100%;
-            left: 15mm;
-            right: 15mm;
+        th {
+            background-color: #D3D3D3;
+            font-weight: bold;
         }
 
-        .footer-page-first {
-            page-break-after: always;
+        .centered {
+            text-align: center;
+        }
+
+        .observations {
+            margin-top: 20px;
+            border: 1px solid #000;
+        }
+
+        .status-section {
+            margin-top: 20px;
+        }
+
+        .status-label {
+            font-weight: bold;
+        }
+
+        .status-value {
+            font-weight: bold;
+            font-size: 14pt;
+            margin-left: 20px;
         }
 
         .footer {
-            margin-top: 15px; /* Reducido */
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            align-items: flex-end;
         }
 
         .signature {
-            width: 180px; /* Reducido */
+            text-align: center;
+            width: 200px;
         }
 
         .signature img {
-            max-width: 130px; /* Reducido */
+            max-width: 150px;
+            margin-bottom: 5px;
+        }
+
+        .kosher {
+            text-align: center;
+            width: 200px;
         }
 
         .kosher-symbol {
-            font-size: 40pt; /* Reducido */
-            width: 50px;
-            height: 50px;
+            font-size: 48pt;
+            font-weight: bold;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
         }
 
         .kosher-text {
-            font-size: 7pt; /* Reducido */
+            font-size: 8pt;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .validated {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkmark {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
+            margin-left: 5px;
+            display: inline-block;
+            text-align: center;
         }
 
         .address {
-            margin-top: 20px; /* Reducido */
-            font-size: 7pt;
+            margin-top: 40px;
+            border-top: 1px dotted #000;
+            padding-top: 10px;
+            font-size: 8pt;
+        }
+
+        .code-footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+        }
+
+        .indent {
+            padding-left: 20px;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .special-cell {
+            padding: 0;
+        }
+
+        .special-cell-row {
+            display: flex;
+        }
+
+        .special-cell-label {
+            width: 50%;
+            padding: 5px;
+        }
+
+        .special-cell-value {
+            width: 50%;
+            padding: 5px;
+            border-left: 1px solid #000;
+        }
+
+        .appearance-cell {
+            font-style: italic;
+            font-size: 8pt;
         }
     </style>
 </head>
@@ -155,7 +296,7 @@
             </tr>
         </thead>
         <tbody>
-    <tr>
+            <tr>
                 <td colspan=2>GLYCERINE ASSAY (ANHYDROUS)</td>
                 <td id="result-glycerine-assay"></td>
                 <td>99,7% min.</td>
@@ -349,12 +490,12 @@
         </tbody>
     </table>
 
-    <div class="footer-page-first">
-        <div class="code-footer">
-            <div>CODE: RG-B-I-21</div>
-            <div>REVISION: 00</div>
-            <div>DATE: 15-09-2022</div>
-        </div>
+    <div style="margin-top: 10px; font-size: 9pt;">Continued on page 2</div>
+
+    <div class="code-footer">
+        <div>CODE: RG-B-I-21</div>
+        <div>REVISION: 00</div>
+        <div>DATE: 15-09-2022</div>
     </div>
 
     <!-- Segunda página -->
@@ -363,7 +504,7 @@
     <div class="header">
         <div class="coa-usp">COA USP</div>
         <div class="logo-container">
-            <img id="company-logo-2" src="https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/rsge7kjptq3263axdzpn" alt="BOJAGRO S.A." class="logo">
+            <img id="company-logo-2" src="https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/rsge7kjptq3263axdzpn" alt="BOJAGRO S.A." alt="BOJAGRO S.A." class="logo">
             <div class="title-container">
                 <h1 class="title">CERTIFICATE OF ANALYSIS (COA)</h1>
                 <p class="product">PRODUCT REFINED GLYCERINE 99,7% USP GRADE</p>
@@ -373,61 +514,61 @@
 
     <div class="section-header">OBSERVATIONS</div>
     <div class="observations">
-        <div id="observations">"""""""This product is of vegetable origin being its inputs of the same origin""""""
+        <div style="padding: 10px;" id="observations">"""""""This product is of vegetable origin being its inputs of the same origin""""""
             N° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA
             IRON (Fe): < 2,50 ppm (m/m). (USP - NF 233) *Date format specification: month/day/year* **Calculated as Butyric acid: 0,04 % (Limits: <0.1%)</div>
-    </div>
-
-    <div class="status-section">
-        <span class="status-label">STATUS:</span>
-        <span class="status-value" id="status">APPROVED</span>
-    </div>
-
-    <div style="margin-top: 10px;">
-        <div class="status-label">SERIAL NUMBER:</div>
-        <div class="indent" id="serial-number"></div>
-    </div>
-
-    <div style="margin-top: 5px;">
-        <div class="status-label">TANK CONTAINER SERIAL NUMBER:</div>
-        <div class="indent" id="tank-container-number"></div>
-    </div>
-
-    <div style="margin-top: 5px;">
-        <div class="status-label">NET WEIGHT (kg):</div>
-        <div class="indent" id="net-weight"></div>
-    </div>
-
-    <div class="footer">
-        <div class="signature">
-            <img id="signature-img" src="" alt="Signature">
-            <div>Ing.Santiago Tornello</div>
-            <div>QUALITY MANAGER</div>
         </div>
-        <div class="kosher">
-            <div class="kosher-symbol" id="u-letter">U</div>
-            <div class="kosher-text">THIS PRODUCT<br>COMPLIES WITH THE<br>KOSHER<br>CERTIFICATION</div>
+
+        <div class="status-section">
+            <span class="status-label">STATUS:</span>
+            <span class="status-value" id="status">APPROVED</span>
         </div>
-    </div>
 
-    <div class="validated">
-        <div>This document has been electronically validated</div>
-        <div class="checkmark">✓</div>
-    </div>
+        <div style="margin-top: 10px;">
+            <div class="status-label">SERIAL NUMBER:</div>
+            <div class="indent" id="serial-number"></div>
+        </div>
 
-    <div class="address">
-        <p>Manufacturing adress: calle 24, N° 545 Comirsa Industrial Park SME sector II-<br>
-            Ramallo - Province of Bs As. Argentina</p>
-    </div>
+        <div style="margin-top: 5px;">
+            <div class="status-label">TANK CONTAINER SERIAL NUMBER:</div>
+            <div class="indent" id="tank-container-number"></div>
+        </div>
 
-    <div class="code-footer">
-        <div>CODE: RG-B-I-21</div>
-        <div>REVISION: 00</div>
-        <div>DATE: 15-09-2022</div>
-    </div>
+        <div style="margin-top: 5px;">
+            <div class="status-label">NET WEIGHT (kg):</div>
+            <div class="indent" id="net-weight"></div>
+        </div>
 
-    <script>
-// Función para obtener parámetros de la URL
+        <div class="footer">
+            <div class="signature">
+                <img id="signature-img" src="" alt="Signature">
+                <div>Ing.Santiago Tornello</div>
+                <div>QUALITY MANAGER</div>
+            </div>
+            <div class="kosher">
+                <div class="kosher-symbol" id="u-letter">U</div>
+                <div class="kosher-text">THIS PRODUCT<br>COMPLIES WITH THE<br>KOSHER<br>CERTIFICATION</div>
+            </div>
+        </div>
+
+        <div class="validated">
+            <div>This document has been electronically validated</div>
+            <div class="checkmark">✓</div>
+        </div>
+
+        <div class="address">
+            <p>Manufacturing adress: calle 24, N° 545 Comirsa Industrial Park SME sector II-<br>
+                Ramallo - Province of Bs As. Argentina</p>
+        </div>
+
+        <div class="code-footer">
+            <div>CODE: RG-B-I-21</div>
+            <div>REVISION: 00</div>
+            <div>DATE: 15-09-2022</div>
+        </div>
+
+        <script>
+            // Función para obtener parámetros de la URL
             function getUrlParameter(name) {
                 name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
                 var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -456,10 +597,9 @@
             assignValueToElement('lote', 'lote');
             assignValueToElement('reporte', 'reporte');
              assignValueToElement('fecha-muestra', 'fecha-muestra');
-        assignValueToElement('fecha-analisis', 'fecha-analisis');
-             assignValueToElement('tanque', 'tanque');
-             assignValueToElement('elaboracion', 'elaboracion');
-             assignValueToElement('vencimiento', 'vencimiento');
+ assignValueToElement('tanque', 'tanque');
+ assignValueToElement('elaboracion', 'elaboracion');
+ assignValueToElement('vencimiento', 'vencimiento');
 
 
 
@@ -518,6 +658,7 @@
                 img.style.height = '100%';
                 uLetterEl.appendChild(img);
             }
-    </script>
+        </script>
 </body>
+
 </html>
