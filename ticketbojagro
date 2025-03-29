@@ -2,231 +2,338 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Shipping Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Balanza</title>
+    <script>
+    window.onload = function() {
+      window.print();
+    };
+  </script>
     <style>
-        @page {
-            size: A4 portrait;
-            margin: 25mm;
-        }
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-        .ticket-container {
-            width: 100%;
-            max-width: 600px;
-            border: 1px solid #333;
-            padding: 20px;
+            box-sizing: border-box;
+            color: black;
             background-color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transform: scale(0.8);
-            transform-origin: top center;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #333;
+
+        .ticket {
+            border: 2px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .ticket-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
             padding-bottom: 10px;
         }
-        .logo {
-            width: 100px;
-            height: 100px;
-            border: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .ticket-title {
+            font-size: 24px;
             font-weight: bold;
+            margin: 0;
         }
-        .ticket-info {
-            text-align: right;
+
+        .ticket-number {
+            font-size: 18px;
+            margin: 5px 0;
         }
-        .ticket-info div {
+
+        .data-section, .weight-section, .transport-section {
+            margin-bottom: 15px;
+        }
+
+        .data-row {
+            display: flex;
             margin-bottom: 5px;
         }
-        .section {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-        }
-        .section-label {
+
+        .data-label {
             font-weight: bold;
-            color: #555;
-            min-width: 120px;
+            width: 150px;
+            text-align: left;
+            padding-right: 10px;
         }
-        .section-value {
-            text-align: right;
+
+        .data-value {
             flex-grow: 1;
         }
-        .highlighted {
-            background-color: #d4edda;
-            padding: 2px 5px;
-        }
+
         .weight-section {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
-        .two-column {
-            display: flex;
-            justify-content: space-between;
-        }
-        .two-column > div {
+
+        .weight-column {
             width: 48%;
         }
-        .operator-section {
-            display: flex;
-            justify-content: space-between;
+
+        .weight-title {
+            font-weight: bold;
+            text-align: center;
             margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
             padding-bottom: 5px;
         }
-        @media print {
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            .ticket-container {
-                transform: none;
-                box-shadow: none;
-                border: none;
-                width: 100%;
-                max-width: none;
-                margin: 0;
-                padding: 0;
-            }
+
+        .weight-data {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .net-weight {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #f0f0f0;
+            padding: 7px;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-section {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
-    <div class="ticket-container">
-        <div class="header">
-            <div class="logo">LOGO</div>
-            <div class="ticket-info">
-                <div>Ticket: <span id="ticket-number" class="highlighted"></span></div>
-                <div>Ticket Planta: <span id="ticket-planta"></span></div>
-            </div>
+    <div class="ticket">
+        <div class="ticket-header">
+            <h1 class="ticket-title">TICKET BALANZA</h1>
+            <div class="ticket-number">N° <span id="numero"></span></div>
         </div>
-
-        <div class="operator-section">
-            <div>
-                <strong>Operador Entrada:</strong> <span id="operador-entrada"></span>
-            </div>
-            <div>
-                <strong>Operador Salida:</strong> <span id="operador-salida"></span>
-            </div>
-        </div>
-
-        <div class="operator-section">
-            <div>
-                <strong>Ingreso:</strong> <span id="ingreso-date"></span>
-            </div>
-            <div>
-                <strong>Salida:</strong> <span id="salida-date"></span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-label">Cliente:</div>
-            <div class="section-value highlighted" id="cliente"></div>
-        </div>
-
-        <div class="section">
-            <div class="section-label">Destinatario:</div>
-            <div class="section-value" id="destinatario"></div>
-        </div>
-
-        <div class="two-column">
-            <div>
-                <div>Patente: <span id="patente"></span></div>
-                <div>Acoplado: <span id="acoplado"></span></div>
-                <div>Chofer: <span id="chofer"></span></div>
-            </div>
-            <div style="text-align: right;">
-                <div>Transporte: <span id="transporte"></span></div>
-                <div>ATA: <span id="ata"></span></div>
-                <div>DNI Chofer: <span id="dni-chofer"></span></div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-label">Producto:</div>
-            <div class="section-value" id="producto"></div>
-        </div>
-
+        
         <div class="weight-section">
-            <div>Bruto: <span id="bruto"></span> kg</div>
-            <div>Tara: <span id="tara"></span> kg</div>
-            <div>Neto: <span id="neto"></span> kg</div>
-        </div>
-
-        <div class="two-column">
-            <div>
-                <div>ID Contenedor: <span id="id-contenedor"></span></div>
-                <div>Tara Contenedor: <span id="tara-contenedor"></span> kg</div>
-                <div>Imp/Exp: <span id="imp-exp"></span></div>
-                <div>Precinto: <span id="precinto"></span></div>
+            <div class="weight-column">
+                <div class="weight-title">INGRESO</div>
+                <div class="weight-data">
+                    <span class="data-label">Fecha:</span>
+                    <span id="fecha" class="data-value"></span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">Hora:</span>
+                    <span id="fecha-ingreso" class="data-value"></span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">TARA:</span>
+                    <span id="tara" class="data-value"></span>
+                </div>
             </div>
-            <div style="text-align: right;">
-                <div>Destino Aduana: <span id="destino-aduana"></span></div>
-                <div>Aduana: <span id="aduana"></span></div>
-                <div class="highlighted">Origen: <span id="origen"></span></div>
-                <div>Destino: <span id="destino"></span></div>
+            
+            <div class="weight-column">
+                <div class="weight-title">EGRESO</div>
+                <div class="weight-data">
+                    <span class="data-label">Fecha:</span>
+                    <span id="fecha" class="data-value"></span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">Hora:</span>
+                    <span id="fecha-egreso" class="data-value"></span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">BRUTO:</span>
+                    <span id="bruto" class="data-value"></span>
+                </div>
             </div>
         </div>
-
-        <div class="section">
-            <div>LOT: <span id="lot"></span></div>
-            <div>VGM: <span id="vgm" class="highlighted"></span></div>
+        
+        <div class="net-weight">
+            PESO NETO: <span id="neto"></span>
         </div>
-
-        <div class="section">
-            <div class="section-label">Remito:</div>
-            <div class="section-value" id="remito"></div>
+        
+        <div class="data-section">
+            <div class="data-row">
+                <span class="data-label">PRODUCTO:</span>
+                <span id="producto" class="data-value"></span>
+            </div>
         </div>
-
-        <div class="section">
-            <div class="section-label">Observaciones:</div>
-            <div class="section-value" id="observaciones"></div>
+        
+        <div class="data-section">
+            <div class="data-row">
+                <span class="data-label">DESTINO:</span>
+                <span id="destino" class="data-value"></span>
+            </div>
+        </div>
+        
+        <div class="transport-section">
+            <div class="data-row">
+                <span class="data-label">TRANSPORTE:</span>
+                <span id="transporte" class="data-value"></span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">CHOFER:</span>
+                <span id="chofer" class="data-value"></span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">DNI:</span>
+                <span id="dni-chofer" class="data-value"></span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">DOMINIO ACOPLADO:</span>
+                <span id="acoplado" class="data-value"></span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">DOMINIO CHASIS:</span>
+                <span id="chasis" class="data-value"></span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div id="empresa"></div>
+            <div id="direccion">Parque Comirsa, Ramallo, Buenos Aires</div>
         </div>
     </div>
 
+
     <script>
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  // Función para obtener los parámetros de la URL
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  // Función para extraer la fecha como DD/MM/YYYY de cualquier string de fecha
+  function formatearFecha(fechaString) {
+    if (!fechaString) return '';
+    
+    try {
+      // Intentar crear un objeto fecha
+      const fecha = new Date(fechaString);
+      
+      // Verificar si la fecha es válida
+      if (isNaN(fecha.getTime())) {
+        // Si no es válida, intentar extraer la fecha mediante regex
+        const match = fechaString.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
+        if (match) {
+          const dia = match[1].padStart(2, '0');
+          let mes;
+          switch (match[2].toLowerCase()) {
+            case 'jan': case 'enero': case 'ene': mes = '01'; break;
+            case 'feb': case 'febrero': mes = '02'; break;
+            case 'mar': case 'marzo': mes = '03'; break;
+            case 'apr': case 'abril': case 'abr': mes = '04'; break;
+            case 'may': case 'mayo': mes = '05'; break;
+            case 'jun': case 'junio': mes = '06'; break;
+            case 'jul': case 'julio': mes = '07'; break;
+            case 'aug': case 'agosto': case 'ago': mes = '08'; break;
+            case 'sep': case 'septiembre': mes = '09'; break;
+            case 'oct': case 'octubre': mes = '10'; break;
+            case 'nov': case 'noviembre': mes = '11'; break;
+            case 'dec': case 'diciembre': case 'dic': mes = '12'; break;
+            default: mes = '01';
+          }
+          const anio = match[3];
+          return `${dia}/${mes}/${anio}`;
         }
+        return fechaString;
+      }
+      
+      // Formatear la fecha como DD/MM/YYYY
+      const dia = fecha.getDate().toString().padStart(2, '0');
+      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+      const anio = fecha.getFullYear();
+      
+      return `${dia}/${mes}/${anio}`;
+    } catch (e) {
+      console.log("Error al formatear fecha:", e);
+      return fechaString;
+    }
+  }
 
-        function populateTicket() {
-            const fields = [
-                'ticket-number', 'ticket-planta', 'operador-entrada', 'operador-salida',
-                'ingreso-date', 'salida-date', 'cliente', 'destinatario', 
-                'patente', 'acoplado', 'chofer', 'transporte', 
-                'ata', 'dni-chofer', 'producto', 'bruto', 
-                'tara', 'neto', 'id-contenedor', 'tara-contenedor', 
-                'destino-aduana', 'aduana', 'imp-exp', 'precinto', 
-                'origen', 'destino', 'lot', 'vgm', 'remito', 'observaciones'
-            ];
-
-            fields.forEach(field => {
-                const element = document.getElementById(field);
-                if (element) {
-                    element.textContent = getUrlParameter(field.replace(/-/g, '_')) || '';
-                }
-            });
+  // Función para extraer solo la hora (HH:MM) de cualquier string de fecha
+  function formatearHora(fechaHoraString) {
+    if (!fechaHoraString) return '';
+    
+    try {
+      // Intentar crear un objeto fecha
+      const fecha = new Date(fechaHoraString);
+      
+      // Verificar si la fecha es válida
+      if (isNaN(fecha.getTime())) {
+        // Si no es válida, intentar extraer la hora mediante regex
+        const match = fechaHoraString.match(/(\d{1,2}):(\d{1,2})/);
+        if (match) {
+          const horas = match[1].padStart(2, '0');
+          const minutos = match[2].padStart(2, '0');
+          return `${horas}:${minutos}`;
         }
+        return fechaHoraString;
+      }
+      
+      // Formatear solo la hora como HH:MM
+      const horas = fecha.getHours().toString().padStart(2, '0');
+      const minutos = fecha.getMinutes().toString().padStart(2, '0');
+      
+      return `${horas}:${minutos}`;
+    } catch (e) {
+      console.log("Error al formatear hora:", e);
+      return fechaHoraString;
+    }
+  }
 
-        window.onload = populateTicket;
-    </script>
+  // Obtener los valores de los parámetros y aplicar formato
+  document.getElementById("numero").innerHTML = getUrlParameter('numero');
+  
+  // Formatear y aplicar la fecha simple
+  var fechaValor = formatearFecha(getUrlParameter('fecha'));
+  var fechaElementos = document.querySelectorAll("#fecha");
+  fechaElementos.forEach(function(elemento) {
+    elemento.innerHTML = fechaValor;
+  });
+  
+  // Formatear y aplicar solo horas
+  document.getElementById("fecha-ingreso").innerHTML = formatearHora(getUrlParameter('fecha-ingreso'));
+  document.getElementById("fecha-egreso").innerHTML = formatearHora(getUrlParameter('fecha-egreso'));
+  
+  // Formatear valores numéricos para peso
+  document.getElementById("tara").innerHTML = getUrlParameter('tara') + " kg";
+  document.getElementById("bruto").innerHTML = getUrlParameter('bruto') + " kg";
+  
+  // Calcular el neto a partir de tara y bruto si neto no está disponible
+  var tara = parseFloat(getUrlParameter('tara')) || 0;
+  var bruto = parseFloat(getUrlParameter('bruto')) || 0;
+  var netoParam = getUrlParameter('neto');
+  
+  if (netoParam && netoParam !== "") {
+    document.getElementById("neto").innerHTML = netoParam + " kg";
+  } else if (tara > 0 && bruto > 0) {
+    var neto = bruto - tara;
+    document.getElementById("neto").innerHTML = neto + " kg";
+  } else {
+    document.getElementById("neto").innerHTML = "0 kg";
+  }
+  
+  
+  document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
+  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
+  document.getElementById("destino").innerHTML = getUrlParameter('destino');
+  document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
+  document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
+  document.getElementById("producto").innerHTML = getUrlParameter('producto');
+  document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
+  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+</script>
 </body>
 </html>
