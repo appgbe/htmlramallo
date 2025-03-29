@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket Balanza</title>
     <script>
-    window.onload = function() {
-      window.print();
-    };
-  </script>
+        window.onload = function() {
+            window.print();
+        };
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -66,7 +67,10 @@
             margin: 5px 0;
         }
 
-        .data-section, .weight-section, .transport-section, .custom-section {
+        .data-section,
+        .weight-section,
+        .transport-section,
+        .custom-section {
             margin-bottom: 15px;
         }
 
@@ -123,7 +127,8 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .transport-section, .custom-section {
+        .transport-section,
+        .custom-section {
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 5px;
@@ -153,28 +158,39 @@
             padding-top: 10px;
             border-top: 1px solid #ccc;
         }
+
+        .company-info {
+            font-size: 10px;
+        }
     </style>
 </head>
+
 <body>
     <div class="ticket">
         <div class="ticket-header">
             <div class="logo-container">
                 <img id="logo" class="logo" src="" alt="Logo de la empresa">
-            </div>
-            <div class="header-content">
-                <h1 class="ticket-title">TICKET BALANZA</h1>
-                <div class="ticket-number">N° <span id="numero"></span></div>
                 <div class="company-info">
                     Calle 24 nro 545, Parque comirsa, sector pymes II, Ramallo (BA)
                     <br>CUIT 30-71255043-7
                 </div>
             </div>
+
+            <div class="header-content">
+                <h1 class="ticket-title">TICKET BALANZA</h1>
+                <div class="ticket-number">N° <span id="numero"></span></div>
+
+            </div>
         </div>
-        
+
         <div class="custom-section">
-            <div class="section-title">INFORMACIÓN DEL CLIENTE</div>
+
             <div class="two-columns">
                 <div class="column">
+                    <div class="data-row">
+                        <span class="data-label">PRODUCTO:</span>
+                        <span id="producto" class="data-value"></span>
+                    </div>
                     <div class="data-row">
                         <span class="data-label">Cliente:</span>
                         <span id="cliente" class="data-value"></span>
@@ -193,10 +209,13 @@
                         <span class="data-label">Origen:</span>
                         <span id="origen" class="data-value"></span>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
-        
+
         <div class="weight-section">
             <div class="weight-column">
                 <div class="weight-title">INGRESO</div>
@@ -209,11 +228,15 @@
                     <span id="fecha-ingreso" class="data-value"></span>
                 </div>
                 <div class="weight-data">
-                    <span class="data-label">TARA:</span>
+                    <span class="data-label">Op. balanza:</span>
+                    <span id="op-egreso" class="data-value"></span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">Tara:</span>
                     <span id="tara" class="data-value"></span>
                 </div>
             </div>
-            
+
             <div class="weight-column">
                 <div class="weight-title">EGRESO</div>
                 <div class="weight-data">
@@ -225,37 +248,86 @@
                     <span id="fecha-egreso" class="data-value"></span>
                 </div>
                 <div class="weight-data">
-                    <span class="data-label">BRUTO:</span>
+                    <span class="data-label">Op. balanza:</span>
+                    <span id="op-ingreso" class="data-value"></span>
+                </div>
+                <div class="weight-data">
+                    <span class="data-label">Bruto:</span>
                     <span id="bruto" class="data-value"></span>
                 </div>
             </div>
         </div>
-        
+
         <div class="net-weight">
             PESO NETO: <span id="neto"></span>
         </div>
-        
-        <div class="data-section">
-            <div class="data-row">
-                <span class="data-label">PRODUCTO:</span>
-                <span id="producto" class="data-value"></span>
+
+
+
+        <div class="transport-section">
+
+            <div class="section-title">INFORMACIÓN DE TRANSPORTE</div>
+            <div class="two-columns">
+                <div class="column">
+                    <div class="data-row">
+                        <span class="data-label">Transporte:</span>
+                        <span id="transporte" class="data-value"></span>
+                    </div>
+
+                    <div class="data-row">
+                        <span class="data-label">Chofer:</span>
+                        <span id="chofer" class="data-value"></span>
+                    </div>
+
+                    <div class="data-row">
+                        <span class="data-label">Dominio acoplado:</span>
+                        <span id="acoplado" class="data-value"></span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">ATA:</span>
+                        <span id="ata" class="data-value"></span>
+                    </div>
+
+
+                </div>
+                <div class="column">
+
+                    <div class="data-row">
+                        <span class="data-label">CUIT:</span>
+                        <span id="cuit-transporte" class="data-value"></span>
+                    </div>
+
+                    <div class="data-row">
+                        <span class="data-label">DNI:</span>
+                        <span id="dni-chofer" class="data-value"></span>
+                    </div>
+
+                    <div class="data-row">
+                        <span class="data-label">Dominio chasis:</span>
+                        <span id="chasis" class="data-value"></span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">CUIT:</span>
+                        <span id="cuit-ata" class="data-value"></span>
+                    </div>
+                </div>
             </div>
         </div>
-        
+
         <div class="custom-section">
             <div class="section-title">INFORMACIÓN DE ADUANA</div>
             <div class="two-columns">
                 <div class="column">
                     <div class="data-row">
-                        <span class="data-label">Destinación:</span>
+                        <span class="data-label">Destinación aduana:</span>
                         <span id="destinacion-aduana" class="data-value"></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Aduana:</span>
-                        <span id="aduana" class="data-value"></span>
+                        <span class="data-value">059-San Nicolás</span>
                     </div>
                     <div class="data-row">
-                        <span class="data-label">Lote:</span>
+                        <span class="data-label">Lot:</span>
                         <span id="lote" class="data-value"></span>
                     </div>
                 </div>
@@ -275,7 +347,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="custom-section">
             <div class="section-title">INFORMACIÓN DE CONTENEDOR</div>
             <div class="two-columns">
@@ -294,218 +366,224 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="data-row">
-                        <span class="data-label">ATA:</span>
-                        <span id="ata" class="data-value"></span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-label">CUIT de ATA:</span>
-                        <span id="cuit-ata" class="data-value"></span>
-                    </div>
+
                 </div>
             </div>
         </div>
-        
-        <div class="transport-section">
-            <div class="section-title">INFORMACIÓN DE TRANSPORTE</div>
-            <div class="data-row">
-                <span class="data-label">TRANSPORTE:</span>
-                <span id="transporte" class="data-value"></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">CUIT transporte:</span>
-                <span id="cuit-transporte" class="data-value"></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">CHOFER:</span>
-                <span id="chofer" class="data-value"></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">DNI:</span>
-                <span id="dni-chofer" class="data-value"></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">DOMINIO ACOPLADO:</span>
-                <span id="acoplado" class="data-value"></span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">DOMINIO CHASIS:</span>
-                <span id="chasis" class="data-value"></span>
-            </div>
-        </div>
-        
+
+
+
         <div class="custom-section">
             <div class="section-title">OBSERVACIONES</div>
             <div id="observaciones"></div>
         </div>
-        
-        <div class="footer">
-            <div id="empresa"></div>
-            <div id="direccion">Parque Comirsa, Ramallo, Buenos Aires</div>
-        </div>
+
+
     </div>
 
 
     <script>
-  // Función para obtener los parámetros de la URL
-  function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  };
+        // Función para obtener los parámetros de la URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
 
-  // Función para extraer la fecha como DD/MM/YYYY de cualquier string de fecha
-  function formatearFecha(fechaString) {
-    if (!fechaString) return '';
-    
-    try {
-      // Intentar crear un objeto fecha
-      const fecha = new Date(fechaString);
-      
-      // Verificar si la fecha es válida
-      if (isNaN(fecha.getTime())) {
-        // Si no es válida, intentar extraer la fecha mediante regex
-        const match = fechaString.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
-        if (match) {
-          const dia = match[1].padStart(2, '0');
-          let mes;
-          switch (match[2].toLowerCase()) {
-            case 'jan': case 'enero': case 'ene': mes = '01'; break;
-            case 'feb': case 'febrero': mes = '02'; break;
-            case 'mar': case 'marzo': mes = '03'; break;
-            case 'apr': case 'abril': case 'abr': mes = '04'; break;
-            case 'may': case 'mayo': mes = '05'; break;
-            case 'jun': case 'junio': mes = '06'; break;
-            case 'jul': case 'julio': mes = '07'; break;
-            case 'aug': case 'agosto': case 'ago': mes = '08'; break;
-            case 'sep': case 'septiembre': mes = '09'; break;
-            case 'oct': case 'octubre': mes = '10'; break;
-            case 'nov': case 'noviembre': mes = '11'; break;
-            case 'dec': case 'diciembre': case 'dic': mes = '12'; break;
-            default: mes = '01';
-          }
-          const anio = match[3];
-          return `${dia}/${mes}/${anio}`;
+        // Función para extraer la fecha como DD/MM/YYYY de cualquier string de fecha
+        function formatearFecha(fechaString) {
+            if (!fechaString) return '';
+
+            try {
+                // Intentar crear un objeto fecha
+                const fecha = new Date(fechaString);
+
+                // Verificar si la fecha es válida
+                if (isNaN(fecha.getTime())) {
+                    // Si no es válida, intentar extraer la fecha mediante regex
+                    const match = fechaString.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
+                    if (match) {
+                        const dia = match[1].padStart(2, '0');
+                        let mes;
+                        switch (match[2].toLowerCase()) {
+                            case 'jan':
+                            case 'enero':
+                            case 'ene':
+                                mes = '01';
+                                break;
+                            case 'feb':
+                            case 'febrero':
+                                mes = '02';
+                                break;
+                            case 'mar':
+                            case 'marzo':
+                                mes = '03';
+                                break;
+                            case 'apr':
+                            case 'abril':
+                            case 'abr':
+                                mes = '04';
+                                break;
+                            case 'may':
+                            case 'mayo':
+                                mes = '05';
+                                break;
+                            case 'jun':
+                            case 'junio':
+                                mes = '06';
+                                break;
+                            case 'jul':
+                            case 'julio':
+                                mes = '07';
+                                break;
+                            case 'aug':
+                            case 'agosto':
+                            case 'ago':
+                                mes = '08';
+                                break;
+                            case 'sep':
+                            case 'septiembre':
+                                mes = '09';
+                                break;
+                            case 'oct':
+                            case 'octubre':
+                                mes = '10';
+                                break;
+                            case 'nov':
+                            case 'noviembre':
+                                mes = '11';
+                                break;
+                            case 'dec':
+                            case 'diciembre':
+                            case 'dic':
+                                mes = '12';
+                                break;
+                            default:
+                                mes = '01';
+                        }
+                        const anio = match[3];
+                        return `${dia}/${mes}/${anio}`;
+                    }
+                    return fechaString;
+                }
+
+                // Formatear la fecha como DD/MM/YYYY
+                const dia = fecha.getDate().toString().padStart(2, '0');
+                const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+                const anio = fecha.getFullYear();
+
+                return `${dia}/${mes}/${anio}`;
+            } catch (e) {
+                console.log("Error al formatear fecha:", e);
+                return fechaString;
+            }
         }
-        return fechaString;
-      }
-      
-      // Formatear la fecha como DD/MM/YYYY
-      const dia = fecha.getDate().toString().padStart(2, '0');
-      const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
-      const anio = fecha.getFullYear();
-      
-      return `${dia}/${mes}/${anio}`;
-    } catch (e) {
-      console.log("Error al formatear fecha:", e);
-      return fechaString;
-    }
-  }
 
-  // Función para extraer solo la hora (HH:MM) de cualquier string de fecha
-  function formatearHora(fechaHoraString) {
-    if (!fechaHoraString) return '';
-    
-    try {
-      // Intentar crear un objeto fecha
-      const fecha = new Date(fechaHoraString);
-      
-      // Verificar si la fecha es válida
-      if (isNaN(fecha.getTime())) {
-        // Si no es válida, intentar extraer la hora mediante regex
-        const match = fechaHoraString.match(/(\d{1,2}):(\d{1,2})/);
-        if (match) {
-          const horas = match[1].padStart(2, '0');
-          const minutos = match[2].padStart(2, '0');
-          return `${horas}:${minutos}`;
+        // Función para extraer solo la hora (HH:MM) de cualquier string de fecha
+        function formatearHora(fechaHoraString) {
+            if (!fechaHoraString) return '';
+
+            try {
+                // Intentar crear un objeto fecha
+                const fecha = new Date(fechaHoraString);
+
+                // Verificar si la fecha es válida
+                if (isNaN(fecha.getTime())) {
+                    // Si no es válida, intentar extraer la hora mediante regex
+                    const match = fechaHoraString.match(/(\d{1,2}):(\d{1,2})/);
+                    if (match) {
+                        const horas = match[1].padStart(2, '0');
+                        const minutos = match[2].padStart(2, '0');
+                        return `${horas}:${minutos}`;
+                    }
+                    return fechaHoraString;
+                }
+
+                // Formatear solo la hora como HH:MM
+                const horas = fecha.getHours().toString().padStart(2, '0');
+                const minutos = fecha.getMinutes().toString().padStart(2, '0');
+
+                return `${horas}:${minutos}`;
+            } catch (e) {
+                console.log("Error al formatear hora:", e);
+                return fechaHoraString;
+            }
         }
-        return fechaHoraString;
-      }
-      
-      // Formatear solo la hora como HH:MM
-      const horas = fecha.getHours().toString().padStart(2, '0');
-      const minutos = fecha.getMinutes().toString().padStart(2, '0');
-      
-      return `${horas}:${minutos}`;
-    } catch (e) {
-      console.log("Error al formatear hora:", e);
-      return fechaHoraString;
-    }
-  }
 
-  // Obtener los valores de los parámetros y aplicar formato
-  document.getElementById("numero").innerHTML = getUrlParameter('numero');
-  
-  // Establecer la URL del logo
-  document.getElementById("logo").src = getUrlParameter('logo-url') || '';
-  
-  // Formatear y aplicar la fecha simple
-  var fechaValor = formatearFecha(getUrlParameter('fecha'));
-  var fechaElementos = document.querySelectorAll("#fecha");
-  fechaElementos.forEach(function(elemento) {
-    elemento.innerHTML = fechaValor;
-  });
-  
-  // Formatear y aplicar solo horas
-  document.getElementById("fecha-ingreso").innerHTML = formatearHora(getUrlParameter('fecha-ingreso'));
-  document.getElementById("fecha-egreso").innerHTML = formatearHora(getUrlParameter('fecha-egreso'));
-  
-  // Formatear valores numéricos para peso
-  document.getElementById("tara").innerHTML = getUrlParameter('tara') + " kg";
-  document.getElementById("bruto").innerHTML = getUrlParameter('bruto') + " kg";
-  
-  // Calcular el neto a partir de tara y bruto si neto no está disponible
-  var tara = parseFloat(getUrlParameter('tara')) || 0;
-  var bruto = parseFloat(getUrlParameter('bruto')) || 0;
-  var netoParam = getUrlParameter('neto');
-  
-  if (netoParam && netoParam !== "") {
-    document.getElementById("neto").innerHTML = netoParam + " kg";
-  } else if (tara > 0 && bruto > 0) {
-    var neto = bruto - tara;
-    document.getElementById("neto").innerHTML = neto + " kg";
-  } else {
-    document.getElementById("neto").innerHTML = "0 kg";
-  }
-  
-  // Información de transporte
-  document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
-  document.getElementById("cuit-transporte").innerHTML = getUrlParameter('cuit-transporte');
-  document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
-  document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
-  document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
-  document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
-  
-  // Información del cliente
-  document.getElementById("cliente").innerHTML = getUrlParameter('cliente');
-  document.getElementById("cuit-cliente").innerHTML = getUrlParameter('cuit-cliente');
-  document.getElementById("remito").innerHTML = getUrlParameter('remito');
-  document.getElementById("origen").innerHTML = getUrlParameter('origen');
-  
-  // Información de producto
-  document.getElementById("producto").innerHTML = getUrlParameter('producto');
-  
-  // Información de aduana
-  document.getElementById("destinacion-aduana").innerHTML = getUrlParameter('destinacion-aduana');
-  document.getElementById("aduana").innerHTML = getUrlParameter('aduana');
-  document.getElementById("impo-expo").innerHTML = getUrlParameter('impo-expo');
-  document.getElementById("precintos").innerHTML = getUrlParameter('precintos');
-  document.getElementById("lote").innerHTML = getUrlParameter('lote');
-  document.getElementById("destino").innerHTML = getUrlParameter('destino');
-  
-  // Información de contenedor
-  document.getElementById("id-contenedor").innerHTML = getUrlParameter('id-contenedor');
-  document.getElementById("tara-contenedor").innerHTML = getUrlParameter('tara-contenedor');
-  document.getElementById("vgm").innerHTML = getUrlParameter('vgm');
-  document.getElementById("ata").innerHTML = getUrlParameter('ata');
-  document.getElementById("cuit-ata").innerHTML = getUrlParameter('cuit-ata');
-  
-  // Observaciones
-  document.getElementById("observaciones").innerHTML = getUrlParameter('observaciones');
-  
-  // Información de empresa
-  document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
-</script>
+        // Obtener los valores de los parámetros y aplicar formato
+        document.getElementById("numero").innerHTML = getUrlParameter('numero');
+
+        // Establecer la URL del logo
+        document.getElementById("logo").src = getUrlParameter('logo-url') || '';
+
+        // Formatear y aplicar la fecha simple
+        var fechaValor = formatearFecha(getUrlParameter('fecha'));
+        var fechaElementos = document.querySelectorAll("#fecha");
+        fechaElementos.forEach(function(elemento) {
+            elemento.innerHTML = fechaValor;
+        });
+
+        // Formatear y aplicar solo horas
+        document.getElementById("fecha-ingreso").innerHTML = formatearHora(getUrlParameter('fecha-ingreso'));
+        document.getElementById("fecha-egreso").innerHTML = formatearHora(getUrlParameter('fecha-egreso'));
+
+        // Formatear valores numéricos para peso
+        document.getElementById("tara").innerHTML = getUrlParameter('tara') + " kg";
+        document.getElementById("bruto").innerHTML = getUrlParameter('bruto') + " kg";
+
+        // Calcular el neto a partir de tara y bruto si neto no está disponible
+        var tara = parseFloat(getUrlParameter('tara')) || 0;
+        var bruto = parseFloat(getUrlParameter('bruto')) || 0;
+        var netoParam = getUrlParameter('neto');
+
+        if (netoParam && netoParam !== "") {
+            document.getElementById("neto").innerHTML = netoParam + " kg";
+        } else if (tara > 0 && bruto > 0) {
+            var neto = bruto - tara;
+            document.getElementById("neto").innerHTML = neto + " kg";
+        } else {
+            document.getElementById("neto").innerHTML = "0 kg";
+        }
+
+        // Información de transporte
+        document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
+        document.getElementById("cuit-transporte").innerHTML = getUrlParameter('cuit-transporte');
+        document.getElementById("chofer").innerHTML = getUrlParameter('chofer');
+        document.getElementById("dni-chofer").innerHTML = getUrlParameter('dni-chofer');
+        document.getElementById("chasis").innerHTML = getUrlParameter('chasis');
+        document.getElementById("acoplado").innerHTML = getUrlParameter('acoplado');
+
+        // Información del cliente
+        document.getElementById("cliente").innerHTML = getUrlParameter('cliente');
+        document.getElementById("cuit-cliente").innerHTML = getUrlParameter('cuit-cliente');
+        document.getElementById("remito").innerHTML = getUrlParameter('remito');
+        document.getElementById("origen").innerHTML = getUrlParameter('origen');
+
+        // Información de producto
+        document.getElementById("producto").innerHTML = getUrlParameter('producto');
+
+        // Información de aduana
+        document.getElementById("destinacion-aduana").innerHTML = getUrlParameter('destinacion-aduana');
+        document.getElementById("aduana").innerHTML = getUrlParameter('aduana');
+        document.getElementById("impo-expo").innerHTML = getUrlParameter('impo-expo');
+        document.getElementById("precintos").innerHTML = getUrlParameter('precintos');
+        document.getElementById("lote").innerHTML = getUrlParameter('lote');
+        document.getElementById("destino").innerHTML = getUrlParameter('destino');
+
+        // Información de contenedor
+        document.getElementById("id-contenedor").innerHTML = getUrlParameter('id-contenedor');
+        document.getElementById("tara-contenedor").innerHTML = getUrlParameter('tara-contenedor');
+        document.getElementById("vgm").innerHTML = getUrlParameter('vgm');
+        document.getElementById("ata").innerHTML = getUrlParameter('ata');
+        document.getElementById("cuit-ata").innerHTML = getUrlParameter('cuit-ata');
+
+        // Observaciones
+        document.getElementById("observaciones").innerHTML = getUrlParameter('observaciones');
+
+        // Información de empresa
+        document.getElementById("empresa").innerHTML = getUrlParameter('empresa');
+    </script>
 </body>
+
 </html>
