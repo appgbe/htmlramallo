@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documento de remito</title>
     <script>
-    window.onload = function() {
-      window.print();
-    };
-  </script>
+        window.onload = function() {
+            window.print();
+        };
+    </script>
     <style>
         body {
-            font-family: 'Calibri', Arial, sans-serif; /* Fuente Calibri con respaldo */
-            font-size: 14px; /* Tamaño de fuente 11 */
+            font-family: 'Calibri', Arial, sans-serif;
+            font-size: 14px;
             margin: 0;
             padding: 0;
         }
 
         .document-container {
             position: relative;
-            width: 210mm; /* Tamaño A4 */
+            width: 210mm;
             height: 297mm;
             margin: 0 auto;
-            border: 1px solid white; /* Solo para visualización */
+            border: 1px solid white;
             box-sizing: border-box;
         }
 
         .field {
             position: absolute;
-            font-size: 14px; /* Tamaño de fuente 11 */
+            font-size: 14px;
             white-space: nowrap;
-            border: 1px solid white; /* Solo para depuración */
+            border: 1px solid white;
         }
-        
     </style>
 </head>
-<body class="c48 doc-content">
+
+<body>
     <div class="document-container">
         <span id="remito" class="field" style="top: 12mm; left: 175mm;"></span>
         <span id="fecha" class="field" style="top: 46mm; left: 170mm;"></span>
         <span id="destino" class="field" style="top: 65mm; left: 35mm;"></span>
         <span id="CUIT_destino" class="field" style="top: 65mm; left: 135mm;"></span>
         <span id="direccion" class="field" style="top: 71mm; left: 35mm;"></span>
-        <span class="field" style="top: 77mm; left: 35mm">TERMINAL:</span>
-        <span id="terminal" class="field" style="top: 77mm; left: 55mm;"></span>
-        <span id="dir_term" class="field" style="top: 83mm; left: 35mm;"></span>
-        
-        <span id="transporte" class="field" style="top: 105mm; left: 45mm;"></span>
-        <span id="transporte_cuit" class="field" style="top: 112mm; left: 45mm;"></span>
-        <span id="chofer" class="field" style="top: 118mm; left: 45mm;"></span>
-        <span id="dni-chofer" class="field" style="top: 118mm; left: 130mm;"></span>
-        <span id="chasis" class="field" style="top: 125mm; left: 130mm;"></span>
-        <span id="acoplado" class="field" style="top: 131mm; left: 45mm;"></span>
-        
+
+        <div class="field" style="top: 105mm; left: 45mm;">
+            <span>Transporte:</span>
+            <span id="transporte"></span>
+            <br><span>CUIT:</span>
+            <span id="transporte_cuit"></span>
+            <br><br><span>Chofer:</span>
+            <span id="chofer"></span>
+            <br><span>DNI:</span>
+            <span id="dni-chofer"></span>
+            <br><br><span>Chasis:</span>
+            <span id="chasis"></span>
+            <br><span>Acoplado:</span>
+            <span id="acoplado"></span>
+            <br><span>PE N°:</span>
+            <br><span>ISO/FLEXI:</span>
+            <br><span>Destino:</span>
+
+            <br><span>Lote:</span>
+            <span id="lote"></span>
+
+            <br><br><span>Operador de balanza:</span>
+            <span id="op_balanza"></span>
+
+            <br><span>Operador de carga:</span>
+
+            <br><br><span>Precintos:</span>
+            <span id="precintos" style="position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
+        </div>
+
+        <div class="field" style="top: 105mm; left: 200mm;">
+            <span>TARA: </span>
+            <span id="tara"></span>
+            <br><span>BRUTO: </span>
+            <span id="bruto"></span>
+            <br><span><b>NETO: </b></span>
+            <span id="neto" style="font-weight: bold;"><b></b></span>
+        </div>
+
         <span id="observaciones" class="field" style="top: 145mm; left: 45mm;"></span>
-        <span id="observaciones_2" class="field" style="top: 155mm; left: 45mm;"></span>
-        
         <span id="producto" class="field" style="top: 170mm; left: 45mm;"></span>
-        <span class="field" style="top: 170mm; left: 110mm;">TARA: </span>
-        <span id="tara" class="field" style="top: 170mm; left: 125mm;"></span>
-        <span class="field" style="top: 177mm; left: 110mm;">BRUTO: </span>
-        <span id="bruto" class="field" style="top:  177mm; left: 125mm;"></span>
-        <span class="field" style="top:  184mm; left: 110mm;"><b>NETO: </b></span>
-        
-        <span id="neto" class="field" style="top: 184mm; left: 125mm; font-weight: bold;"></span><b></b></span>
-        <span id="precintos" style="top: 205mm; left: 20mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
-        <span class="field" style="top: 200mm; left: 160mm;">Operador de balanza:</span>
-        <span id="op_balanza" class="field" style="top: 205mm; left: 160mm;"></span>
-        <span class="field" style="top: 210mm; left: 160mm;">Contramuestra N&ordm;:</span>
-        <span id="contramuestra" class="field" style="top: 215mm; left: 160mm;"></span>
-        <span class="field" style="top: 220mm; left: 160mm;">Precintos muestras:</span>
-        <span id="precintomuestra" class="field" style="top: 225mm; left: 160mm;"></span>
-        <span class="field" style="top: 230mm; left: 160mm;">Muestra rotulada N&ordm;: </span>
-        <span id="Nro_muestra" class="field" style="top: 235mm; left: 160mm;"></span>
-        <span class="field" style="top: 240mm; left: 160mm;">Lote:</span>
-        <span id="lote" class="field" style="top: 240mm; left: 170mm;"></span>
-        <span id="tk_balanza" class="field" style="top: 248mm; left: 50mm;"></span>
-        <span id="dni-chofer-2" class="field" style="top: 280mm; left: 100mm;"></span>
-        <span id="chofer-2" class="field" style="top: 280mm; left: 160mm;"></span>
     </div>
 
     <script>
@@ -88,8 +94,10 @@
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
+        
         // Función para formatear el campo Precintos
         function formatearPrecintos(precintosString) {
+            if (!precintosString) return '';
             const precintosArray = precintosString.split(',');
             const precintosFormateados = precintosArray.map(precinto => {
                 const trimmedPrecinto = precinto.trim();
@@ -100,8 +108,9 @@
                 }
             });
             return precintosFormateados.join(', ');
-         }
-        // Función para formatear fechahora (si es necesario)
+        }
+        
+        // Función para formatear fechahora
         function formatearFechaHora(fechaHoraString) {
             if (!fechaHoraString) return '';
 
@@ -116,71 +125,53 @@
                 console.log("Error al formatear fechahora:", e);
                 return fechaHoraString;
             }
+        } 
         
-        }    // Función para agregar separador de miles
+        // Función para agregar separador de miles
         function formatearNumeroConMiles(numero) {
+            if (!numero) return '';
             const numeroFloat = parseFloat(numero);
             if (!isNaN(numeroFloat)) {
                 return numeroFloat.toLocaleString('es-AR'); // Utiliza el formato argentino
             }
             return numero; // Devuelve el valor original si no es un número válido
         }
-     
-        
-        
 
         // Asignar valores a los campos
         document.getElementById('remito').innerHTML = getUrlParameter('Remito');
         document.getElementById('fecha').innerHTML = formatearFechaHora(getUrlParameter('Fecha'));
         document.getElementById('destino').innerHTML = getUrlParameter('Destino');
         document.getElementById('CUIT_destino').innerHTML = getUrlParameter('CUIT_destino');
-        
         document.getElementById('direccion').innerHTML = getUrlParameter('Direccion');
-        document.getElementById('dir_term').innerHTML = getUrlParameter('dir_term');
-        document.getElementById('terminal').innerHTML = getUrlParameter('Terminal');
         document.getElementById('transporte').innerHTML = getUrlParameter('transporte');
         document.getElementById('transporte_cuit').innerHTML = getUrlParameter('transporte_cuit');
-        document.getElementById('tk_balanza').innerHTML = getUrlParameter('numero');
         document.getElementById('chofer').innerHTML = getUrlParameter('chofer');
-        document.getElementById('chofer-2').innerHTML = getUrlParameter('chofer');
-
-
-       const dniChofer = getUrlParameter('dni_chofer');
+        
+        // Formatear e insertar DNI con separador de miles
+        const dniChofer = getUrlParameter('dni_chofer');
         document.getElementById('dni-chofer').innerHTML = formatearNumeroConMiles(dniChofer);
-        document.getElementById('dni-chofer-2').innerHTML = formatearNumeroConMiles(dniChofer);
- 
-       // document.getElementById('dni-chofer').innerHTML = getUrlParameter('dni_chofer');
-       // document.getElementById('dni-chofer-2').innerHTML = getUrlParameter('dni_chofer');
-        
-        
         
         document.getElementById('chasis').innerHTML = getUrlParameter('chasis');
         document.getElementById('acoplado').innerHTML = getUrlParameter('acoplado');
         document.getElementById('observaciones').innerHTML = getUrlParameter('observaciones_1');
-        document.getElementById('observaciones_2').innerHTML = getUrlParameter('observaciones_2');
         document.getElementById('producto').innerHTML = getUrlParameter('producto');
-        document.getElementById('lote').innerHTML = getUrlParameter('lote'); 
-        
-       // document.getElementById('tara').innerHTML = getUrlParameter('tara');
-       // document.getElementById('bruto').innerHTML = getUrlParameter('bruto');
-       // document.getElementById('neto').innerHTML = getUrlParameter('Neto');
-                // Formatear e insertar Neto con separador de miles
+        document.getElementById('lote').innerHTML = getUrlParameter('lote');
+
+        // Formatear e insertar pesos con separador de miles
         const neto = getUrlParameter('Neto');
         const bruto = getUrlParameter('bruto');
         const tara = getUrlParameter('tara');
         document.getElementById('neto').innerHTML = formatearNumeroConMiles(neto);
         document.getElementById('bruto').innerHTML = formatearNumeroConMiles(bruto);
         document.getElementById('tara').innerHTML = formatearNumeroConMiles(tara);
-        
-//        document.getElementById('precintos').innerHTML = getUrlParameter('Precintos');
+
+        // Formatear e insertar precintos
         const precintosOriginal = getUrlParameter('Precintos');
         const precintosFormateados = formatearPrecintos(precintosOriginal);
-        document.getElementById('precintos').innerHTML = precintosFormateados
+        document.getElementById('precintos').innerHTML = precintosFormateados;
         
         document.getElementById('op_balanza').innerHTML = getUrlParameter('op_balanza');
-        document.getElementById('contramuestra').innerHTML = getUrlParameter('Nro_contramuestra');
-        document.getElementById('precintomuestra').innerHTML = getUrlParameter('Nro_precinto_muestra');
-        document.getElementById('Nro_muestra').innerHTML = getUrlParameter('Nro_muestra');
     </script>
 </body>
+
 </html>
