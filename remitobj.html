@@ -63,6 +63,7 @@
             <span id="acoplado"></span>
             <br><span class="label">PE N°:</span>
             <br><span class="label">ISO/FLEXI:</span>
+            <span id="contenedor"></span>
             <br><span class="label">Destino:</span>
             <br><span class="label">Lote:</span>
             <span id="lote"></span>
@@ -146,7 +147,7 @@
         document.getElementById('transporte').innerHTML = getUrlParameter('transporte');
         document.getElementById('transporte_cuit').innerHTML = getUrlParameter('transporte_cuit');
         document.getElementById('chofer').innerHTML = getUrlParameter('chofer');
-        
+                document.getElementById('contenedor').innerHTML = getUrlParameter('contenedor');
         // Formatear e insertar DNI con separador de miles
         const dniChofer = getUrlParameter('dni_chofer');
         document.getElementById('dni-chofer').innerHTML = formatearNumeroConMiles(dniChofer);
