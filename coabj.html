@@ -6,214 +6,249 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CERTIFICATE OF ANALYSIS (COA)</title>
     <style>
-        @page {
-            size: A4;
-            margin: 10mm;
-        }
+       @page {
+    size: A4;
+    margin: 10mm;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            font-size: 8.5pt;
-            line-height: 1.1;
-        }
-        .header {
-            position: relative;
-            margin-bottom: 8px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.05;
+}
 
-        .coa-usp {
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-weight: bold;
-        }
+.header {
+    position: relative;
+    margin-bottom: 8px;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
+.coa-usp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+}
 
-        .logo {
-            width: 80px;
-            height: 80px;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
-        .title-container {
-            margin-left: 10px;
-        }
+.logo {
+    width: 80px;
+    height: 80px;
+}
 
-        .title {
-            font-size: 16pt;
-            font-weight: bold;
-            margin: 0;
-        }
+.title-container {
+    margin-left: 10px;
+}
 
-        .product {
-            font-size: 12pt;
-            font-weight: bold;
-            margin: 5px 0 0 0;
-        }
+.title {
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 0;
+}
 
-        .section-header {
-            background-color: grey;
-            padding: 5px;
-            font-weight: bold;
-            text-align: center;
-            border: 1px solid #000;
-        }
+.product {
+    font-size: 10pt;
+    font-weight: bold;
+    margin: 3px 0 0 0;
+}
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            border: 1px solid #000;
-            border-top: none;
-        }
+.section-header {
+    background-color: grey;
+    padding: 4px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #000;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .info-cell {
-            padding: 5px;
-            border-bottom: 1px solid #000;
-        }
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 1px solid #000;
+    border-top: none;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .info-cell:nth-child(odd) {
-            border-right: 1px solid #000;
-            font-weight: bold;
-        }
+.info-cell {
+    padding: 4px;
+    border-bottom: 1px solid #000;
+    font-size: 8pt;
+}
 
-        .info-grid-right {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 5px;
-        }
+.info-cell:nth-child(odd) {
+    border-right: 1px solid #000;
+    font-weight: bold;
+}
 
-        .info-label {
-            font-weight: bold;
-        }
+.info-grid-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3px;
+}
 
-        .info-value {
-            font-weight: normal;
-        }
+.info-label {
+    font-weight: bold;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+.info-value {
+    font-weight: normal;
+}
 
-        th,
-        td {
-            border: 1px solid #000;
-            padding: 5px;
-            text-align: left;
-            vertical-align: top;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        th {
-            background-color: #D3D3D3;
-            font-weight: bold;
-        }
+th,
+td {
+    border: 1px solid #000;
+    padding: 3px 4px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 8pt;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
 
-        .centered {
-            text-align: center;
-        }
+th {
+    background-color: #D3D3D3;
+    font-weight: bold;
+}
 
-        .observations {
-            margin-top: 20px;
-            border: 1px solid #000;
-        }
+.centered {
+    text-align: center;
+}
 
-        .status-section {
-            margin-top: 20px;
-        }
+.observations {
+    margin-top: 10px;
+    border: 1px solid #000;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .status-label {
-            font-weight: bold;
-        }
+.status-section {
+    margin-top: 10px;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .status-value {
-            font-weight: bold;
-            font-size: 12pt;
-            margin-left: 20px;
-        }
+.status-label {
+    font-weight: bold;
+}
 
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            align-items: flex-end;
-        }
+.status-value {
+    font-weight: bold;
+    font-size: 10pt;
+    margin-left: 10px;
+}
 
-        .signature {
-            text-align: center;
-            width: 200px;
-        }
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: flex-end;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .signature img {
-            max-width: 150px;
-            margin-bottom: 5px;
-        }
+.signature {
+    text-align: center;
+    width: 200px;
+}
 
-        .kosher {
-            text-align: center;
-            width: 200px;
-        }
+.signature img {
+    max-width: 150px;
+    margin-bottom: 5px;
+}
 
-        .kosher-symbol {
-            font-size: 48pt;
-            font-weight: bold;
-            border: 2px solid #000;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
+.kosher {
+    text-align: center;
+    width: 200px;
+}
 
-        .kosher-text {
-            font-size: 8pt;
-            margin-top: 5px;
-            text-align: center;
-        }
+.kosher-symbol {
+    font-size: 38pt;
+    font-weight: bold;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
 
-        .validated {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-        }
+.kosher-text {
+    font-size: 7pt;
+    margin-top: 5px;
+    text-align: center;
+}
 
-        .checkmark {
-            width: 15px;
-            height: 15px;
-            border: 1px solid #000;
-            margin-left: 5px;
-            display: inline-block;
-            text-align: center;
-        }
+.validated {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .address {
-            margin-top: 40px;
-            border-top: 1px dotted #000;
-            padding-top: 10px;
-            font-size: 8pt;
-        }
+.checkmark {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #000;
+    margin-left: 5px;
+    display: inline-block;
+    text-align: center;
+}
 
-        .code-footer {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 8pt;
-        }
+.address {
+    margin-top: 20px;
+    border-top: 1px dotted #000;
+    padding-top: 8px;
+    font-size: 7pt;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .indent {
-            padding-left: 20px;
-        }
+.code-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7pt;
+    max-width: 180mm;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .page-break {
-            page-break-before: always;
-        }
+.indent {
+    padding-left: 15px;
+}
+
+.page-break {
+    page-break-before: always;
+}
 
     
     </style>
@@ -467,7 +502,8 @@
         </tbody>
     </table>
 
-    <div style="margin-top: 10px; font-size: 9pt;">Continued on page 2</div>
+  <div style="margin-top: 8px; font-size: 8pt;">Continued on page 2</div>
+<div class="page-break"></div>
 
     <div class="footer-break">
         <div class="code-footer">
