@@ -548,6 +548,9 @@
             document.getElementById("neto").innerHTML = "0 kg";
         }
 
+document.getElementById("op-ingreso").innerHTML = getUrlParameter('opbalanza');
+        document.getElementById("op-egreso").innerHTML = getUrlParameter('opbalanza');
+       
         // Información de transporte
         document.getElementById("transporte").innerHTML = getUrlParameter('transporte');
         document.getElementById("cuit-transporte").innerHTML = getUrlParameter('cuit-transporte');
