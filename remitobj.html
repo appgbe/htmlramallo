@@ -37,10 +37,45 @@
             font-weight:bold;
             font-size:16px;
         }
+
+        @page {
+    size: portrait; /* Sugerencia para orientación vertical */
+    margin: 10mm;
+}
+
+@media print {
+    body {
+        font-size: 13px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .document-container {
+        width: 200mm; /* un poco más chico que carta */
+        height: auto;
+        page-break-inside: avoid;
+    }
+
+    .field {
+        font-size: 13px;
+        line-height: 1.2;
+        white-space: normal;
+        max-width: 170mm;
+        overflow-wrap: break-word;
+    }
+
+    #print-warning {
+        display: none;
+    }
+}
     </style>
 </head>
 
 <body>
+
+    <div id="print-warning" style="text-align: center; font-size: 12px; padding: 5px; color: darkred;">
+    ⚠️ Sugerencia: Usá configuración de impresión en <strong>vertical</strong> y tamaño <strong>Carta</strong>.
+</div>
     <div class="document-container">
         <span id="remito" class="field" style="top: 12mm; left: 175mm;"></span>
         <span id="fecha" class="field" style="top: 46mm; left: 170mm;"></span>
