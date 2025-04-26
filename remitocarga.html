@@ -58,6 +58,13 @@
         white-space: normal; /* permite salto de línea si hace falta */
         overflow-wrap: break-word;
     }
+     .remito {
+        font-size: 8px;
+        line-height: 1.2;
+        max-width: 160mm; /* previene que se corte el contenido */
+        white-space: normal; /* permite salto de línea si hace falta */
+        overflow-wrap: break-word;
+    }
 }
 
         
@@ -65,38 +72,38 @@
 </head>
 <body class="c48 doc-content">
     <div class="document-container">
-        <span id="remito" class="field" style="top: 12mm; left: 175mm;"></span>
-        <span id="fecha" class="field" style="top: 46mm; left: 170mm;"></span>
-        <span id="destino" class="field" style="top: 65mm; left: 35mm;"></span>
-        <span id="CUIT_destino" class="field" style="top: 65mm; left: 135mm;"></span>
-        <span id="direccion" class="field" style="top: 71mm; left: 35mm;"></span>
-        <span class="field" style="top: 77mm; left: 35mm">TERMINAL:</span>
-        <span id="terminal" class="field" style="top: 77mm; left: 55mm;"></span>
-        <span id="dir_term" class="field" style="top: 83mm; left: 35mm;"></span>
+        <span id="remito" class="remito" style="top: 12mm; left: 175mm;"></span>
+        <span id="fecha" class="field" style="top: 30mm; left: 150mm;"></span>
+        <span id="destino" class="field" style="top: 50mm; left: 35mm;"></span>
+        <span id="CUIT_destino" class="field" style="top: 50mm; left: 135mm;"></span>
+        <span id="direccion" class="field" style="top: 56mm; left: 35mm;"></span>
+        <span class="field" style="top: 62mm; left: 35mm">TERMINAL:</span>
+        <span id="terminal" class="field" style="top: 62mm; left: 55mm;"></span>
+        <span id="dir_term" class="field" style="top: 68mm; left: 35mm;"></span>
         
-        <span id="transporte" class="field" style="top: 105mm; left: 45mm;"></span>
-        <span id="transporte_cuit" class="field" style="top: 112mm; left: 45mm;"></span>
-        <span id="chofer" class="field" style="top: 118mm; left: 45mm;"></span>
-        <span id="dni-chofer" class="field" style="top: 118mm; left: 130mm;"></span>
-        <span id="chasis" class="field" style="top: 125mm; left: 130mm;"></span>
-        <span id="acoplado" class="field" style="top: 131mm; left: 45mm;"></span>
+        <span id="transporte" class="field" style="top: 88mm; left: 35mm;"></span>
+        <span id="transporte_cuit" class="field" style="top: 95mm; left: 35mm;"></span>
+        <span id="chofer" class="field" style="top: 101mm; left: 35mm;"></span>
+        <span id="dni-chofer" class="field" style="top: 101mm; left: 130mm;"></span>
+        <span id="chasis" class="field" style="top: 108mm; left: 130mm;"></span>
+        <span id="acoplado" class="field" style="top: 114mm; left: 35mm;"></span>
         
-        <span id="observaciones" class="field" style="top: 145mm; left: 45mm;">aa</span>
-        <div class="field" style="top: 145mm; left: 90mm;">
+        <span id="observaciones" class="field" style="top: 125mm; left: 45mm;">aa</span>
+        <div class="field" style="top: 125mm; left: 90mm;">
             <span>Últimas 3 cargas:</span>
             <span id="observaciones_2"></span>
         </div>
         
-        <span id="producto" class="field" style="top: 170mm; left: 45mm;"></span>
-        <span class="field" style="top: 170mm; left: 110mm;">TARA: </span>
-        <span id="tara" class="field" style="top: 170mm; left: 125mm;"></span>
-        <span class="field" style="top: 177mm; left: 110mm;">BRUTO: </span>
-        <span id="bruto" class="field" style="top:  177mm; left: 125mm;"></span>
-        <span class="field" style="top:  184mm; left: 110mm;"><b>NETO: </b></span>
+        <span id="producto" class="field" style="top: 147mm; left: 35mm;"></span>
+        <span class="field" style="top: 147mm; left: 110mm;">TARA: </span>
+        <span id="tara" class="field" style="top: 147mm; left: 125mm;"></span>
+        <span class="field" style="top: 154mm; left: 110mm;">BRUTO: </span>
+        <span id="bruto" class="field" style="top:  154mm; left: 125mm;"></span>
+        <span class="field" style="top:  161mm; left: 110mm;"><b>NETO: </b></span>
         
-        <span id="neto" class="field" style="top: 184mm; left: 125mm; font-weight: bold;"></span><b></b></span>
-        <span id="precintos" style="top: 205mm; left: 20mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
-        <div class="field" style="top: 165mm; left: 45 mm;">
+        <span id="neto" class="field" style="top: 161mm; left: 125mm; font-weight: bold;"></span><b></b></span>
+        <span id="precintos" style="top: 182mm; left: 20mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
+        <div class="field" style="top: 140mm; left: 35mm;">
             <span>Operador de balanza:</span>
             <span id="op_balanza"></span>
             <span>Muestra rotulada N&ordm;: </span>
@@ -104,10 +111,10 @@
             <span>Lote:</span>
             <span id="lote"></span>
         </div>
-        <span id="tk_balanza" class="field" style="top: 248mm; left: 50mm;"></span>
-        <span id="dni-chofer-2" class="field" style="top: 260mm; left: 100mm;"></span>
-        <span id="chofer-2" class="field" style="top: 260mm; left: 160mm;"></span>
-        <span id="conf" class="field" style="top: 248mm; left: 100mm;"></span>
+        <span id="tk_balanza" class="field" style="top: 222mm; left: 40mm;"></span>
+        <span id="dni-chofer-2" class="field" style="top: 250mm; left: 90mm;"></span>
+        <span id="chofer-2" class="field" style="top: 250mm; left: 150mm;"></span>
+        <span id="conf" class="field" style="top: 182mm; left: 135mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
     </div>
 
     <script>
