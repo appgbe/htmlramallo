@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CERTIFICADO DE ANÁLISIS - BIODIESEL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      font-size: 14px;
+    }
+    h1 {
+      text-align: center;
+      text-decoration: underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 4px;
+      text-align: center;
+    }
+    .no-border td {
+      border: none;
+      text-align: left;
+    }
+    .seccion {
+      font-weight: bold;
+      margin-top: 20px;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CERTIFICADO DE ANÁLISIS</h1>
+
+  <table class="no-border">
+    <tr><td>PRODUCTO:</td><td id="producto"></td></tr>
+    <tr><td>LOTE Nº:</td><td id="lote"></td></tr>
+    <tr><td>PROCEDENCIA DE CARGA [TK]:</td><td id="procedencia"></td></tr>
+    <tr><td>FECHA DE ANÁLISIS:</td><td id="fecha_analisis"></td></tr>
+    <tr><td>ESTADO DEL PROTOCOLO:</td><td id="estado_protocolo"></td></tr>
+  </table>
+
+  <div class="seccion">RESULTADOS GRUPO I (Análisis críticos)</div>
+
+  <table>
+    <tr>
+      <th>Parámetro</th><th>Método</th><th>Unidades</th><th>Mínimo</th><th>Máximo</th><th>Resultado</th>
+    </tr>
+    <tr><td>Contenido de éster</td><td>EN 14103</td><td>% m/m</td><td>96.5</td><td>98.9</td><td id="ester"></td></tr>
+    <tr><td>Metil éster linolénico</td><td>EN 14103</td><td>% m/m</td><td></td><td>7.1</td><td id="linolenico"></td></tr>
+    <tr><td>Densidad a 15°C</td><td>ASTM D1296</td><td>g/cm³</td><td>0.8600</td><td>0.9000</td><td id="densidad"></td></tr>
+    <tr><td>Punto de Inflamación</td><td>ASTM D93 - 16a</td><td>°C</td><td>120</td><td>170</td><td id="inflamacion"></td></tr>
+    <tr><td>Contaminación total</td><td>EN 12662</td><td>mg/kg</td><td></td><td>24</td><td id="contaminacion"></td></tr>
+    <tr><td>Contenido de agua</td><td>ASTM D4928 - 12</td><td>mg/kg</td><td></td><td>500</td><td id="agua"></td></tr>
+    <tr><td>Contenido de Monoglicéridos</td><td>ASTM D6484</td><td>% m/m</td><td></td><td>0.80</td><td id="monogliceridos"></td></tr>
+    <tr><td>Contenido de Diglicéridos</td><td>ASTM D6484</td><td>% m/m</td><td></td><td>0.20</td><td id="digliceridos"></td></tr>
+    <tr><td>Contenido de Triglicéridos</td><td>ASTM D6484</td><td>% m/m</td><td></td><td>0.20</td><td id="trigliceridos"></td></tr>
+    <tr><td>Contenido de Glicerol Libre</td><td>ASTM D6484</td><td>% m/m</td><td></td><td>0.02</td><td id="glicerol_libre"></td></tr>
+    <tr><td>Contenido de Glicerol total</td><td>ASTM D6484</td><td>% m/m</td><td></td><td>0.25</td><td id="glicerol_total"></td></tr>
+    <tr><td>Índice de acidez</td><td>ASTM D664 - 11a</td><td>mg KOH/g</td><td></td><td>0.50</td><td id="indice_acidez"></td></tr>
+    <tr><td>Estabilidad oxidativa</td><td>EN 14112</td><td>Horas</td><td>6</td><td></td><td id="oxidativa"></td></tr>
+    <tr><td>Viscosidad cinemática a 40°C</td><td>ASTM D445 - 15a</td><td>CST</td><td>3.5</td><td>5.00</td><td id="viscosidad"></td></tr>
+    <tr><td>Cold soak filterability (CSFT)</td><td>ASTM D7501 - 12a</td><td>Segundos</td><td></td><td>Informar</td><td id="csft"></td></tr>
+    <tr><td>Punto de enturbiamiento</td><td>ASTM D2500 - 16b</td><td>°C</td><td></td><td>Informar</td><td id="enturbiamiento"></td></tr>
+  </table>
+
+  <div class="seccion">RESULTADOS GRUPO II (Análisis estadísticos)</div>
+
+  <table>
+    <tr>
+      <th>Parámetro</th><th>Método</th><th>Unidades</th><th>Mínimo</th><th>Máximo</th><th>Resultado</th>
+    </tr>
+    <tr><td>Índice de Iodo</td><td>EN 14111</td><td>g I2/100g</td><td></td><td>Informar</td><td id="iodo"></td></tr>
+    <tr><td>Fósforo</td><td>ASTM D-4951/ICP</td><td>mg/kg</td><td></td><td>10</td><td id="fosforo"></td></tr>
+    <tr><td>Corrosión lámina cobre</td><td>ASTM D 130</td><td>kg/m3</td><td></td><td>1</td><td id="corrosion"></td></tr>
+    <tr><td>N° de cetano, IQT</td><td>ASTM D 613</td><td>N/A</td><td>45</td><td></td><td id="cetano"></td></tr>
+    <tr><td>Azufre</td><td>ASTM D 5453</td><td>mg/kg</td><td></td><td>10</td><td id="azufre"></td></tr>
+    <tr><td>Cenizas sulfatadas</td><td>ISO 3987</td><td>% m/m</td><td></td><td>0.02</td><td id="cenizas"></td></tr>
+    <tr><td>Metales Grupo I (Na + K)</td><td>EN 14538</td><td>mg/kg</td><td></td><td>5</td><td id="metales_I"></td></tr>
+    <tr><td>Metales Grupo II (Ca + Mg)</td><td>EN 14538</td><td>mg/kg</td><td></td><td>5</td><td id="metales_II"></td></tr>
+    <tr><td>Residuo carbonoso</td><td>ASTM 4530</td><td>% m/m</td><td></td><td>0.05</td><td id="carbonoso"></td></tr>
+  </table>
+
+  <p><strong>OBSERVACIONES:</strong> <span id="observaciones"></span></p>
+  <p>Este documento ha sido validado electrónicamente</p>
+  <p>ID Protocolo: <span id="protocolo_id"></span></p>
+  <p><strong>Nota:</strong> Este protocolo cumple con la Resolución 689/22 Anexo II del Ministerio de Energía y Minería.</p>
+  <p><strong>Ing. Santiago Tornello</strong><br>JEFE DE CALIDAD</p>
+
+  <script>
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    const ids = ["producto","lote","procedencia","fecha_analisis","estado_protocolo","ester","linolenico",
+      "densidad","inflamacion","contaminacion","agua","monogliceridos","digliceridos","trigliceridos",
+      "glicerol_libre","glicerol_total","indice_acidez","oxidativa","viscosidad","csft","enturbiamiento",
+      "iodo","fosforo","corrosion","cetano","azufre","cenizas","metales_I","metales_II","carbonoso",
+      "observaciones","protocolo_id"];
+
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = getUrlParameter(id);
+    });
+  </script>
+
+</body>
+</html>
