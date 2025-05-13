@@ -4,14 +4,23 @@
   <meta charset="UTF-8">
   <title>CERTIFICADO DE ANÁLISIS - BIODIESEL</title>
   <style>
+    @page {
+      size: A4;
+      margin: 2cm;
+    }
     body {
-      font-family: Arial, sans-serif;
-      margin: 30px;
-      font-size: 14px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 30px;
+      font-size: 13.5px;
+      color: #222;
     }
     h1 {
       text-align: center;
-      text-decoration: underline;
+      text-transform: uppercase;
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
     }
     table {
       width: 100%;
@@ -20,8 +29,8 @@
       margin-bottom: 20px;
     }
     th, td {
-      border: 1px solid #000;
-      padding: 4px;
+      border: 1px solid #888;
+      padding: 5px;
       text-align: center;
     }
     .no-border td {
@@ -31,15 +40,37 @@
     .seccion {
       font-weight: bold;
       margin-top: 20px;
-      text-decoration: underline;
+      text-transform: uppercase;
+      font-size: 14px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 4px;
+    }
+    #firma {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #firma img {
+      height: 60px;
+    }
+    .footer {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .logo-container {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    #logo {
+      height: 50px;
     }
   </style>
 </head>
 <body>
-    
-    <div style="text-align: right;">
-  <img id="logo" src="" alt="Logo Empresa" style="height: 60px;">
-</div>
+  <div class="logo-container">
+    <img id="logo" src="" alt="Logo Empresa">
+  </div>
 
   <h1>CERTIFICADO DE ANÁLISIS</h1>
 
@@ -94,9 +125,14 @@
 
   <p><strong>OBSERVACIONES:</strong> <span id="observaciones"></span></p>
   <p>Este documento ha sido validado electrónicamente ✅</p>
-  <p>ID Protocolo: <span id="protocolo_id"></span></p>
-  <p><strong>Nota:</strong>Nota:Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II  del Ministerio de Energía y Minería.</p>
-  <p><strong>Ing. Santiago Tornello</strong><br>JEFE DE CALIDAD</p>
+  <p class="footer"><strong>Nota:</strong> Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II del Ministerio de Energía y Minería.</p>
+
+  <div id="firma">
+    <div>
+      <p><strong>Ing. Santiago Tornello</strong><br>JEFE DE CALIDAD</p>
+    </div>
+    <img id="firma_img" src="" alt="Firma">
+  </div>
 
   <script>
     function getUrlParameter(name) {
@@ -116,14 +152,20 @@
       const el = document.getElementById(id);
       if (el) el.textContent = getUrlParameter(id);
     });
-    
-    const logoUrl = getUrlParameter("logo");
-if (logoUrl) {
-  const logoImg = document.getElementById("logo");
-  if (logoImg) logoImg.src = logoUrl;
-}
 
+    const logoUrl = getUrlParameter("logo");
+    if (logoUrl) {
+      const logoImg = document.getElementById("logo");
+      if (logoImg) logoImg.src = logoUrl;
+    }
+
+    const firmaUrl = getUrlParameter("firma");
+    if (firmaUrl) {
+      const firmaImg = document.getElementById("firma_img");
+      if (firmaImg) firmaImg.src = firmaUrl;
+    }
   </script>
 
 </body>
 </html>
+
