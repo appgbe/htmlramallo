@@ -75,7 +75,7 @@
   <h1>CERTIFICADO DE ANÁLISIS</h1>
 
   <table class="no-border">
-    <tr><td>PRODUCTO:</td><td id="producto"></td></tr>
+    <tr><td>PRODUCTO:</td><td id="producto">BIODIESEL (FAME)</td></tr>
     <tr><td>LOTE Nº:</td><td id="lote"></td></tr>
     <tr><td>PROCEDENCIA DE CARGA [TK]:</td><td id="procedencia"></td></tr>
     <tr><td>FECHA DE ANÁLISIS:</td><td id="fecha_analisis"></td></tr>
@@ -142,7 +142,7 @@
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
-    const ids = ["producto","lote","procedencia","fecha_analisis","estado_protocolo","ester","linolenico",
+    const ids = ["lote","procedencia","fecha_analisis","estado_protocolo","ester","linolenico",
       "densidad","inflamacion","contaminacion","agua","monogliceridos","digliceridos","trigliceridos",
       "glicerol_libre","glicerol_total","indice_acidez","oxidativa","viscosidad","csft","enturbiamiento",
       "iodo","fosforo","corrosion","cetano","azufre","cenizas","metales_I","metales_II","carbonoso",
