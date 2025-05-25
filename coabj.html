@@ -6,258 +6,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CERTIFICATE OF ANALYSIS (COA)</title>
     <style>
-       @page {
-    size: A4;
-    margin: 10mm;
-}
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    font-size: 8pt;
-    line-height: 1.05;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 8pt;
+            line-height: 1.25;
+            color: #333;
+        }
 
-.header {
-    position: relative;
-    margin-bottom: 8px;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .header {
+            display: flex;
+            flex-direction: column;
+            margin: 10px auto 20px auto;
+            max-width: 180mm;
+        }
 
-.coa-usp {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-weight: bold;
-}
+        .coa-usp {
+            align-self: flex-end;
+            font-weight: bold;
+            font-size: 9pt;
+            margin-bottom: 5px;
+        }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-}
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
 
-.logo {
-    width: 80px;
-    height: 80px;
-}
+        .logo {
+            width: 70px;
+            height: auto;
+        }
 
-.title-container {
-    margin-left: 10px;
-}
+        .title-container {
+            margin-left: 15px;
+        }
 
-.title {
-    font-size: 14pt;
-    font-weight: bold;
-    margin: 0;
-}
+        .title {
+            font-size: 14pt;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
 
-.product {
-    font-size: 10pt;
-    font-weight: bold;
-    margin: 3px 0 0 0;
-}
+        .product {
+            font-size: 9pt;
+            font-weight: bold;
+            margin-top: 3px;
+            color: #555;
+        }
 
-.section-header {
-    background-color: grey;
-    padding: 4px;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid #000;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .section-header {
+            font-size: 10pt;
+            font-weight: bold;
+            background-color: #f0f0f0;
+            color: #444;
+            padding: 8px 12px;
+            border-left: 4px solid #888;
+            margin: 25px auto 10px auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            max-width: 180mm;
+        }
 
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    border: 1px solid #000;
-    border-top: none;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr 1.8fr 1.5fr;
+            gap: 6px 14px;
+            background-color: #fafafa;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-width: 180mm;
+            margin: auto;
+        }
 
-.info-cell {
-    padding: 4px;
-    border-bottom: 1px solid #000;
-    font-size: 8pt;
-}
+        .info-cell {
+            font-size: 8.2pt;
+            padding: 2px 0;
+        }
 
-.info-cell:nth-child(odd) {
-    border-right: 1px solid #000;
-    font-weight: bold;
-}
+        .info-cell:nth-child(4n+1),
+        .info-cell:nth-child(4n+3) {
+            font-weight: bold;
+            color: #555;
+            text-transform: uppercase;
+        }
 
-.info-grid-right {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 3px;
-}
+        .info-grid-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 12px;
+            margin-top: 8px;
+        }
 
-.info-label {
-    font-weight: bold;
-}
+        .info-label {
+            font-weight: bold;
+            font-size: 8pt;
+            color: #666;
+            text-transform: uppercase;
+        }
 
-.info-value {
-    font-weight: normal;
-}
+        .info-value {
+            font-size: 8.5pt;
+            color: #333;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 8pt;
+        }
 
-th,
-td {
-    border: 1px solid #000;
-    padding: 3px 4px;
-    text-align: left;
-    vertical-align: top;
-    font-size: 8pt;
-    overflow-wrap: break-word;
-    word-break: break-word;
-}
+        th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            padding: 6px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+            font-size: 8pt;
+        }
 
-th {
-    background-color: #D3D3D3;
-    font-weight: bold;
-}
+        td {
+            padding: 4px 6px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
 
-.centered {
-    text-align: center;
-}
+        tr:last-child td {
+            border-bottom: none;
+        }
 
-.observations {
-    margin-top: 10px;
-    border: 1px solid #000;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .centered {
+            text-align: center;
+        }
 
-.status-section {
-    margin-top: 10px;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .observations {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #fafafa;
+            padding: 10px;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 8pt;
+            line-height: 1.3;
+        }
 
-.status-label {
-    font-weight: bold;
-}
+        .status-section {
+            margin-top: 10px;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 9pt;
+            font-weight: bold;
+        }
 
-.status-value {
-    font-weight: bold;
-    font-size: 10pt;
-    margin-left: 10px;
-}
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            align-items: flex-end;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    align-items: flex-end;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .signature,
+        .kosher {
+            width: 200px;
+            text-align: center;
+        }
 
-.signature {
-    text-align: center;
-    width: 200px;
-}
+        .signature img {
+            max-width: 120px;
+            margin-bottom: 5px;
+        }
 
-.signature img {
-    max-width: 150px;
-    margin-bottom: 5px;
-}
+        .kosher-symbol {
+            font-size: 28pt;
+            font-weight: bold;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
 
-.kosher {
-    text-align: center;
-    width: 200px;
-}
+        .kosher-text {
+            font-size: 7pt;
+            margin-top: 5px;
+            text-align: center;
+        }
 
-.kosher-symbol {
-    font-size: 38pt;
-    font-weight: bold;
-    border: 2px solid #000;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
+        .validated {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 8pt;
+            gap: 5px;
+        }
 
-.kosher-text {
-    font-size: 7pt;
-    margin-top: 5px;
-    text-align: center;
-}
+        .checkmark {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #000;
+            display: inline-block;
+            text-align: center;
+            line-height: 12px;
+            font-weight: bold;
+            font-size: 10pt;
+        }
 
-.validated {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
+        .address {
+            margin-top: 20px;
+            border-top: 1px dotted #aaa;
+            padding-top: 8px;
+            font-size: 7pt;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.checkmark {
-    width: 12px;
-    height: 12px;
-    border: 1px solid #000;
-    margin-left: 5px;
-    display: inline-block;
-    text-align: center;
-}
+        .code-footer {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7pt;
+            max-width: 180mm;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.address {
-    margin-top: 20px;
-    border-top: 1px dotted #000;
-    padding-top: 8px;
-    font-size: 7pt;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.code-footer {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 7pt;
-    max-width: 180mm;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.indent {
-    padding-left: 15px;
-}
-
-.page-break {
-    page-break-before: always;
-}
-
-    
+        .page-break {
+            page-break-before: always;
+        }
     </style>
 </head>
 
 <body>
     <!-- Primera página -->
     <div class="header">
-        <div class="coa-usp">COA USP</div>
         <div class="logo-container">
             <img id="company-logo" src="https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/rsge7kjptq3263axdzpn" alt="BOJAGRO S.A." class="logo">
             <div class="title-container">
@@ -275,28 +281,21 @@ th {
         <div class="info-cell">REPORT NUMBER:</div>
         <div class="info-cell" id="reporte"></div>
 
-        <div class="info-cell">REPORT NUMBER:</div>
-        <div class="info-cell" id="reporte"></div>
-
-        <div class="info-cell">SAMPLIG DATE:</div>
+        <div class="info-cell">SAMPLING DATE:</div>
         <div class="info-cell" id="fecha-muestra"></div>
 
-        <div class="info-cell" style="border-bottom: none;"></div>
-        <div class="info-cell" style="border-bottom: none;">
-            <div class="info-grid-right">
-                <div class="info-label">DATE OF ANALYSIS</div>
-                <div class="info-value" id="fecha-analisis"></div>
+        <div class="info-cell">DATE OF ANALYSIS:</div>
+        <div class="info-cell" id="fecha-analisis"></div>
 
-                <div class="info-label">TANK OF ORIGIN</div>
-                <div class="info-value" id="tanque"></div>
+        <div class="info-cell">TANK OF ORIGIN:</div>
+        <div class="info-cell" id="tanque"></div>
 
-                <div class="info-label">DATE OF ELABORATION:</div>
-                <div class="info-value" id="elaboracion">02-06-2025</div>
+        <div class="info-cell">DATE OF ELABORATION:</div>
+        <div class="info-cell" id="elaboracion"></div>
 
-                <div class="info-label">EXPIRATION DATE:</div>
-                <div class="info-value" id="vencimiento">02-06-2027</div>
-            </div>
-        </div>
+        <div class="info-cell">EXPIRATION DATE:</div>
+        <div class="info-cell" id="vencimiento"></div>
+
     </div>
 
     <div class="section-header" style="margin-top: 20px;">ANALYTICAL DETAIL</div>
@@ -440,14 +439,14 @@ th {
             </tr>
             <tr>
                 <td>TRICHLOROETHYLENE</td>
-                        <td id="result-trichloroethylene"></td>
+                <td id="result-trichloroethylene"></td>
                 <td>80 ppm max.</td>
                 <td>USP 42</td>
                 <td></td>
             </tr>
             <tr>
                 <td>METHANOL</td>
-                       <td id="result-methanol"></td>
+                <td id="result-methanol"></td>
 
                 <td>500 ppm max</td>
                 <td>USP 42</td>
@@ -505,7 +504,7 @@ th {
         </tbody>
     </table>
 
-  <div class="validated" style="margin-top: 8px; font-size: 8pt;">Continued on page 2</div>
+    <div class="validated" style="margin-top: 8px; font-size: 8pt;">Continued on page 2</div>
 
 
     <div class="footer-break">
@@ -520,7 +519,6 @@ th {
     <!-- Segunda página -->
 
     <div class="header">
-        <div class="coa-usp">COA USP</div>
         <div class="logo-container">
             <img id="company-logo-2" src="https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/rsge7kjptq3263axdzpn" alt="BOJAGRO S.A." alt="BOJAGRO S.A." class="logo">
             <div class="title-container">
@@ -537,26 +535,23 @@ th {
             IRON (Fe): < 2,50 ppm (m/m). (USP - NF 233) *Date format specification: month/day/year* **Calculated as Butyric acid: 0,04 % (Limits: <0.1%)</div>
         </div>
 
-       <div class="status-section">
-    <span class="status-label">STATUS:</span>
-    <span class="status-value" id="status">APPROVED</span>
-</div>
+        <div class="status-section">
+            <span class="status-label">STATUS:</span>
+            <span class="status-value" id="status">APPROVED</span>
 
-<!-- 👇 Nuevo contenedor para alinear correctamente -->
-<div class="info-grid" style="margin-top: 10px;">
-    <div class="info-cell">SERIAL NUMBER:</div>
-    <div class="info-cell" id="serial-number"></div>
+            <div class="info-cell">SERIAL NUMBER:</div>
+            <div class="info-cell" id="serial-number"></div>
 
-    <div class="info-cell">TANK CONTAINER SERIAL NUMBER:</div>
-    <div class="info-cell" id="tank-container-number"></div>
+            <div class="info-cell">TANK CONTAINER SERIAL NUMBER:</div>
+            <div class="info-cell" id="tank-container-number"></div>
 
-    <div class="info-cell">NET WEIGHT (kg):</div>
-    <div class="info-cell" id="net-weight"></div>
-</div>
+            <div class="info-cell">NET WEIGHT (kg):</div>
+            <div class="info-cell" id="net-weight"></div>
+        </div>
 
         <div class="footer">
             <div class="signature">
-               <img id="signature-img" src="data:image/png;base64,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" alt="Signature">
+                <img id="signature-img" src="data:image/png;base64,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" alt="Signature">
 
                 <div>Ing.Santiago Tornello</div>
                 <div>QUALITY MANAGER</div>
@@ -612,11 +607,11 @@ th {
             assignValueToElement('observations', 'observations', '"""""This product is of vegetable origin being its inputs of the same origin""""""\nN° REPORT FOR HEAVY METALS AND IRON F430101/144060 SGS ARGENTINA\nIRON (Fe): < 2,50 ppm (m/m). (USP - NF 233)\n*Date format specification: month/day/year*\n**Calculated as Butyric acid: 0,04 %\n(Limits: <0.1%)');
             assignValueToElement('lote', 'lote');
             assignValueToElement('reporte', 'reporte');
-             assignValueToElement('fecha-analisis', 'fecha-analisis');
+            assignValueToElement('fecha-analisis', 'fecha-analisis');
             assignValueToElement('fecha-muestra', 'fecha-analisis');
- assignValueToElement('tanque', 'tanque');
- assignValueToElement('elaboracion', 'elaboracion');
- assignValueToElement('vencimiento', 'vencimiento');
+            assignValueToElement('tanque', 'tanque');
+            assignValueToElement('elaboracion', 'elaboracion');
+            assignValueToElement('vencimiento', 'vencimiento');
 
 
 
@@ -648,7 +643,7 @@ th {
             assignValueToElement('result-appearance-1', 'appearance1');
             assignValueToElement('result-appearance-2', 'appearance2');
             assignValueToElement('result-odor', 'odor');
-            assignValueToElement('result-heavy-metals','heavymetals');
+            assignValueToElement('result-heavy-metals', 'heavymetals');
 
             // Asignar imágenes
             const logoUrl = getUrlParameter('logo');
