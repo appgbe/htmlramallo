@@ -654,11 +654,6 @@ th {
                 document.getElementById('company-logo-2').src = logoUrl;
             }
 
-            const signatureUrl = getUrlParameter('signature');
-            if (signatureUrl) {
-                document.getElementById('signature-img').src = signatureUrl;
-            }
-
             // Para el símbolo U (usamos texto en lugar de imagen para que coincida mejor con el diseño)
             const uLetterEl = document.getElementById('u-letter');
             const uLetterUrl = getUrlParameter('u-letter');
