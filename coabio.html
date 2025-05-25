@@ -2,87 +2,131 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>CERTIFICADO DE ANÁLISIS - BIODIESEL</title>
+  <title>CERTIFICADO DE ANÁLISIS</title>
   <style>
     @page {
       size: A4;
-      margin: 2cm;
+      margin: 1cm;
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 30px;
-      font-size: 13.5px;
+      padding: 15px;
+      font-size: 11px;
       color: #222;
+      background-color: #fff;
     }
-    h1 {
-      text-align: center;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 4px;
+    }
+    .header img {
+      height: 40px;
+    }
+    .header h1 {
+      text-align: right;
       text-transform: uppercase;
-      font-size: 20px;
+      font-size: 16px;
       letter-spacing: 1px;
-      margin-bottom: 10px;
+      margin: 0;
+      color: #2c3e50;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
-      margin-bottom: 20px;
+      margin-top: 6px;
+
+    }
+    th {
+      background-color: #f4f4f4;
+      font-weight: 600;
+      color: #333;
+      font-size: 10px;
     }
     th, td {
-      border: 1px solid #888;
-      padding: 5px;
+      border: 1px solid #bbb;
+      padding: 4px 6px;
       text-align: center;
+      font-size: 10px;
     }
     .no-border td {
       border: none;
       text-align: left;
+      font-size: 10px;
+    }
+    .two-column-table {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      
+    }
+    .two-column-table .column {
+      width: 48%;
+    }
+    .two-column-table table {
+      width: 100%;
+      border: none;
+    }
+    .two-column-table td {
+      border: none;
+      padding: 4px 3px;
+      font-size: 10px;
+    }
+    .two-column-table td:first-child {
+      font-weight: 600;
+      color: #555;
+      text-align: start;
     }
     .seccion {
       font-weight: bold;
-      margin-top: 20px;
       text-transform: uppercase;
-      font-size: 14px;
-      border-bottom: 1px solid #000;
-      padding-bottom: 4px;
+      font-size: 11px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 2px;
+      color: #2c3e50;
     }
     #firma {
-      margin-top: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      margin-top: 24px;
     }
     #firma img {
-      height: 60px;
+      height: 45px;
+      margin-bottom: -8px;
     }
     .footer {
-      font-size: 12px;
-      margin-top: 10px;
-    }
-    .logo-container {
-      text-align: right;
-      margin-bottom: 10px;
-    }
-    #logo {
-      height: 50px;
+      font-size: 9px;
+      margin-top: 8px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="logo-container">
+  <div class="header">
     <img id="logo" src="" alt="Logo Empresa">
+    <h1>CERTIFICADO DE ANÁLISIS</h1>
   </div>
 
-  <h1>CERTIFICADO DE ANÁLISIS</h1>
+  <div class="two-column-table">
+    <div class="column">
+      <table>
+        <tr><td>PRODUCTO:</td><td id="producto">BIODIESEL (FAME)</td></tr>
+        <tr><td>LOTE Nº:</td><td id="lote"></td></tr>
+        <tr><td>PROCEDENCIA DE CARGA [TK]:</td><td id="procedencia"></td></tr>
+      </table>
+    </div>
+    <div class="column">
+      <table>
+        <tr><td>FECHA DE ANÁLISIS:</td><td id="fecha_analisis"></td></tr>
+        <tr><td>ESTADO DEL PROTOCOLO:</td><td id="estado_protocolo"></td></tr>
+      </table>
+    </div>
+  </div>
 
-  <table class="no-border">
-    <tr><td>PRODUCTO:</td><td id="producto">BIODIESEL (FAME)</td></tr>
-    <tr><td>LOTE Nº:</td><td id="lote"></td></tr>
-    <tr><td>PROCEDENCIA DE CARGA [TK]:</td><td id="procedencia"></td></tr>
-    <tr><td>FECHA DE ANÁLISIS:</td><td id="fecha_analisis"></td></tr>
-    <tr><td>ESTADO DEL PROTOCOLO:</td><td id="estado_protocolo"></td></tr>
-  </table>
-
-  <div class="seccion">RESULTADOS GRUPO I (Análisis críticos)</div>
+    <div class="seccion">RESULTADOS GRUPO I (Análisis críticos)</div>
 
   <table>
     <tr>
@@ -128,16 +172,17 @@
   <p class="footer"><strong>Nota:</strong> Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II del Ministerio de Energía y Minería.</p>
 
   <div id="firma">
-    <div>
+    
+    <img id="firma_img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG8AAABECAYAAACPrmuVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAA6fSURBVHhe7ZyJcxNXnsfnH9yqrd3Z2Zqp3cpMTe2RmtnJ7k4mIalsJmRCIIFwnwZsMAYb4hsb38YHvi9iG1uydVj30ZJat9QtdX+2XssOINtgMCAp8adKBbba3dX9fe/7fu/9fq9/wQEVyy+Kf3FA5XAgXgVzIF4FcyBeBXMgXgVzIF4FcyDentHRdQ1Ny6HrevGXJWFX8fL5fPGvSkopH5imaYQjKY6c7OGPn66ybs8WH/La7Oe+dhXvAIFOOJKktn6F0akAbl+Ki9c9yHG1+MDX5kC8t4CuK1jtEl8fX8Bmk1FzKql0go8POw37LAcqWDzRYsU4JCxeJ5nKEYmqBCUFnz+Ly5PB51cISArpbP6VWngyleXR+Aanz84TlDLCONH1PD0DPh5ORoyfy4GKE0+IkMrmsDuTjM9E6OyJ8KBPonswyKPJOGNTMqOTYQbHQ8wvxpmZjzI8ITM8ESX6UrvTCUdT3Ly9RFv7GunM0+MjUYVbDb5XagRvmzIXT0dHQ9NzJFIqM/MxTl+ycvSMifauIFZHlkRCIZfTjN6naULcpx/jDJs9MxDOUt8cZcOXNM66DT1PJJHi0KeTPF6OPCdSXsvR2uVndS3x3J+Uml+ISKqcWtMWWSWPbSPF9IJMW4+fhjY3o5MRZFk1LEyoUhh7Cvb5cnTUXJ4zV1aMBvEs4hnM/xDgzPkl/EERST49n7jG/GqC1u4A+Xx52OUWZdfzskqOqRmJe00exqdl1i1xolHVeMBvgsZm63ONVdc0Oh5YqGuwEYuli8YzHbMlwdXbQVKp8po6CcpGPDGvdLiSnL5g4tFY+I2JVUxvn+PHnqUoCnX1S9y8493uPrpOSM5SU+97/vdlRBmIp5PJqHQPeGhsdiKFsqI7FB+0b0TjEJ90WjGumdd0GhtNPHgghCu+nk4skeZeawiHS/TG8qQsxBuf8tI36N7sbXsZv14d0bO2eldWUfnmxBIjIwFUdbsdJtJZjp5y4famir8qK0ounqZr3KxbJ5F8WRj/ZojGM1TdMDM+J+ZrRegaiaTC1QYffl9S9NfiI8qKkouX03Ic/27xrVjl8+jEkhmqqs1Mz4d2HOOiCYXqOy6WTIkdrLT8KLl44iF9fXyOdPrNLfbuhOhxhz6bwGJPoGvbrTksp/jyGzPBcAZdzxV/XZaUXjzy9PY5uVO/SiIpgoPtD3a/BIJJrtWs43DuMMnW83h9SWpuu3C7y98qn6Xk4gmy2RzDj3xcvLzO7LyYDL/aWuTu6DhcIY5+9xjzWnTbOcVk3WSNc/aCkw3HVsN5E9d9N5SFeOKBCftU1Cy19U4+PzLP3IIHVRWJz+Jj986GM8r/frREKqk8XS97BpsrwalLbvKamD5UHmUi3jPoIvGZpW8gyJ17dlra7YyMBZh/LGM2RZFCKXK5F1ubpueZmg9QU2fDZ0SNxeSx2aPUt4UJSO8myn0blJ94BgX70jSdVErD481itSWYWwjR2SNR/72HG7fcNLb6mJ2XiEQzxhxR2GIul6Ozx0nTAx+RSGFC/tyZdY2lVZlL1RKhyIsbQblTpuLtgL65gC7+1XIoao51a5reQZlTFz0cv+DiZv0GZ6rMXL9tIxrPkk7njAawJaDIJpjWZa7ecpddmcfrUDnivQAh6po1wsnzVhrvuxkYlWjvDnC/J0hXf5COXg+TMwH6hjzcvuc2ErQ/BSpePGGDq+sSZy9b8PmUHyNKsXYpMgFSWMVqj3PktIU/fGTm8yPLtHRuEJaTxthoTMZFiqkCqWDxdOIJhaERN1erV4lEd57k5/Ia41MhWjvCqIpKIpVjbDbK6XNWTp5fo/W+nVVzBJ8/s5mv2x6VlisVKp5GIBSjtt5Bz4DXCFJ2QoyLbfcl7vcEyGS3965UWsFiT9L/MEBTm5sbt63Y7HLxYWVLxYmna3nG5/z8z8fLON3JbRPvLUT02dEbZGw6grbLMc8iSiVCkQxffm1jbkEq/rosqRjxxNjk9SVo6XBzt8WDIuZ6uyweixKK+31e2rp85HZI+eyKnjfWQM9dXcPtjZe9hVaEeML+uvtdXLxuYcUUR1V3Fk0g7PFes5fRmbBRs/Lq6NgcMb59J5mO/VHW4uU1jUQiy8VrZjq6g9sKh4oRVV5dA15m53fI1b0CssgwHFl+6fVKTZmKpxNPKjwc8lNdZ8O0lt4M6Xe3MVFj2dzppaffv68JuLhO34DTmMy/ieLap2WGhcUCkUURUa0otApISTbccVZMMhMzIUbGJEYmxDgdZHlFRgoX7nvHUsVyFE9k1h8vSpw6v8HjRdmob3kZwh6b2jxMz4b2XJ6nqjudV8frj3O7fh1F2dt5dkMEUqIRyYkMc0sS93s9XLi6yn9/ushHn5s49IWZo2dcnL0RoKFZorM/TO9QhM5eP0PjEfqGg/Q/ctHUEeBGg4v5mZXiS5SLeOJGc/gCSeqbndTWe1EU8XB3bnHPoqoK/SM++kelXSPPvaETCiU5V7WG07170ZG2WcQkx1IEgilcngQ2Z4rFJxI9Ax6u3LDyxQkz//6BmT9+uMYnh81U3XDT0R9h2ZQkFk0bve9FbAmfSWcJR9MMjsr86UNr8WGlF0+MK1I4Q1evn7stDlbMqT1PlhMpxRC7ZzDwmsGJoLBearXL3G1y4DZWaTTyWp5INI3JHGZ4IkRTu5faejc3G1zU1ruoumXh+i2HkcK61+yhsd3Lw7EIy6tJwhEVJZcr2J2xJitSW7nNlRyxxy9vBGG+QIwVc4Sp2QB9A26a211U39rgSq2Va3V2btxxcP2Oi4YWF90DIvp9npKKJ1rY9Kyfb86sY7EmUBVxgy8XTSDmZY0tfh7Nymh7tMqdEEW3dneAjw/PcqVmmW/PrvBfnyzyj+9N88EnTzh92WFcZ2k1QiCYJhROG4veolApk315MXBaUVh84qahaY0j3y3wbx/M8dv/XOD3f1rk8LF1zl110NgeZGwiwJo1aVSsBaSMMd7JsZxRmGXkNXcYf0sinogibRtRbt110tgskUrvNP7sTiar0D3gp7tPMkQsRjSKrJIlEk3h8SVZt8b4YTnK5JzEw1E/91ocXK7e4KPPV/jVb+f586FJLla76X8oM78UI2TUsWw/73Z0w0J9/gTr1ghLKzJTc0HuNa9zvmqFw8dMfPmNhSs3XfQMhTDbUsT3MIbvlXcuXjSRpb7FzZ0mD3bHZhS5B4ssoJPOKIZ9DQyHUZQc6WwWiy3MxEyA9i4fN287OVfl5GyVlSu1TsPOWu77aO8K0N0XZO5xkiercaprhYBeflhObQr17GerlQvj27I+jUxW2KjE4JCHmjoL354xc/KCneu3bLR1uRgYDjI0GjKsXwopxrpqocds3eNe73NvvFPxQokMfzuxytITubBZZI8YPUlVicgZrlSv8f5fFvi/Iyu89/4y//y7Jxw55aetM8rk4yROd9awKk0TlpY3bFFcq1ARVpiCXLvhZWw8ZOQFd3ugxoqOV+bu92t8/uUP/P2vRvnlv87x6d+s3H8Q5MlqikRKJIFz6Hm1kKHY5Vxvi3cinogcx6YDXKq2GL1NIMaKVDqL1x9jdU1mZi7E6FiI/uEQ3X0+2jt81N5xcvmqnQtVdk5c3uDXv1/mfJWdiZkobk+WTGZvm/uFEL5AitHxAC3dHnyBjNErguGkkVEYmwjycDRAZ4+X71vdXKm2cvzcBtdrnAwORzBbkq9s7e+CNyxewWZEKFyYXOaNqK2108OZy3Ye9Lu43ejk5GULR8/Y+O6i3YjWWrsCPBwJ8HhJZmklwbotg8enEgqrpNMa2axCc7uP4fGQsRevENS8WLTC9TVD4LoGO6fOmYyC2ys37Rz+doUvj1u4VOMyzjsyKrGwGGXFlMTjV0kkc5uL2cWf8mJf4imqRiyuEk+oyDEFtz+JzZlkel42goKvTqzxy38Z473/mOXUORfdD6OsrGeIp4WliV4jrEY1HvJucx9RxvBoKkRXX1D8UPz1M4j6Fc3Y3hwKZZmc8nLx8gL/8Jth/u43Zg4ddnC3KcSaJWNEiVtJWHHtPDunlMqdfYinYXfEjY2PfSMSDwYleobCjEzFmHmcYM2W4m6rh5o7PiPUfZ2Wm8up9A4EjV2w2R3yccIy5WiShUWxvdlHywM31246+d37S/zhQwst9/0Eg+l9LZeVM/sQT1DYefNUlqf2IoUy3Grwbgr36ohAY3gkSGd3BNWwyoINisAgIMm0tVs5cmyV4yfX6R+UWbPEqGu0cOxbB7NzEeKJN1W4W77sU7zdebIaY3Qi9JppFZ2lJxKtbQEjUAgGM1isMfr7HZw4Y+L4KZvx8oB4PEMikWZlNcLVaju9/WFj40ql1qS8Km9NvMXlKIPD/tcQT8dklvnrsXXq7zq5872H1g4PD7p9LC7FicWzRo8S49vklGQcMzAUxudP/+jMP/Uet8VbE08sI3311ZIxsX2xgIVSdxG8pNIp7jYt80+/nuTYaTvLT2LGO1FyucL7VgQiep2adXLosxV6Bgt7xX8mWm3jrYknRFlbj/LZJ/P0DjrYcIplpxQROYU/kMTtiWNaizE7F6K9y8Gl6zaOnjDx6RcW4x0rGJPqp299EEtWU7NhbtVv0NgcIh5VX9Iofvq8RfEEumFzwj4bmjeoub3BtdoNaupc3Gt20DfoM6xv1Rw3SvcejngYHYsaKyNbfy8qw3r7PFTXuRgaDRII7nXd8afPWxZvb4h41eWWOXXB92PaRFFVFpYk/vzRGiPjkWcEPWCLshAvLharv/eRTKpI4SRDI0Fu1Fpo6/ATF6+cMgQt/972rh2h9OLpGtPzEtOzEu0dXs5dthv/l6TsS3NlP3dKLp4cTXGuymQkJofGwkY0ecDeKKl4Yi/4X4+audsm9srtrWblgKeUTLxkSuXsJQem9dhLd7oesDMlEy+dzmN3iCx28TcH7JWSiVfgQLn9UGLxSouREangrv+zFq/SORCvgjkQr4I5EK+C2SZeJQ/gz/JTuY8X8f8o2cFkXQVB2wAAAABJRU5ErkJggg==" alt="Firma">
+  </div>
+  <div>
       <p><strong>Ing. Santiago Tornello</strong><br>JEFE DE CALIDAD</p>
     </div>
-    <img id="firma_img" src="" alt="Firma">
-  </div>
 
   <script>
     function getUrlParameter(name) {
-      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      name = name.replace(/[[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "=([^&#]*)");
       var results = regex.exec(location.search);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
@@ -159,13 +204,8 @@
       if (logoImg) logoImg.src = logoUrl;
     }
 
-    const firmaUrl = getUrlParameter("firma");
-    if (firmaUrl) {
-      const firmaImg = document.getElementById("firma_img");
-      if (firmaImg) firmaImg.src = firmaUrl;
-    }
+    
   </script>
 
 </body>
 </html>
-
