@@ -199,10 +199,10 @@
     });
 
     const logoUrl = getUrlParameter("logo");
-    if (logoUrl) {
-      const logoImg = document.getElementById("logo");
-      if (logoImg) logoImg.src = logoUrl;
-    }
+if (logoUrl && logoUrl.trim() !== "") {
+  const logoImg = document.getElementById("logo");
+  if (logoImg) logoImg.src = logoUrl;
+}
 
     
   </script>
