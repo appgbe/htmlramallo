@@ -73,10 +73,7 @@
 
 <body>
 
-    <div id="print-warning" style="text-align: center; font-size: 12px; padding: 5px; color: darkred;">
-    ⚠️ Sugerencia: Usá configuración de impresión en <strong>vertical</strong> y tamaño <strong>Carta</strong>.
-</div>
-    <div class="document-container">
+       <div class="document-container">
         <span id="remito" class="field" style="top: 12mm; left: 175mm;"></span>
         <span id="fecha" class="field" style="top: 46mm; left: 170mm;"></span>
         <span id="destino" class="field" style="top: 65mm; left: 35mm;"></span>
@@ -97,9 +94,11 @@
             <br><span class="label">Acoplado:</span>
             <span id="acoplado"></span>
             <br><span class="label">PE N°:</span>
+            <span id="embarque"></span>
             <br><span class="label">ISO/FLEXI:</span>
             <span id="contenedor"></span>
             <br><span class="label">Destino:</span>
+            <span id="terminal"></span>
             <br><span class="label">Lote:</span>
             <span id="lote"></span>
             <br><br><span class="label">Operador de balanza:</span>
@@ -192,6 +191,8 @@
         document.getElementById('observaciones').innerHTML = getUrlParameter('observaciones_1');
         document.getElementById('producto').innerHTML = getUrlParameter('producto');
         document.getElementById('lote').innerHTML = getUrlParameter('lote');
+         document.getElementById('embarque').innerHTML = getUrlParameter('embarque');
+        document.getElementById('terminal').innerHTML = getUrlParameter('terminal');
 
         // Formatear e insertar pesos con separador de miles
         const neto = getUrlParameter('Neto');
