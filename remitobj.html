@@ -107,7 +107,8 @@
             <br><br><span class="label">Operador de balanza:</span>
             <span id="op_balanza"></span>
             <br><span class="label">Operador de carga:</span>
-            <span class="label">Observaciones:</span>
+            <span id="op_carga"></span>
+            <br><span class="label">Observaciones:</span>
             <span id="observaciones"></span>
             <br><br><span class="label">Precintos:</span>
             <span id="precintos" style="position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
@@ -212,6 +213,7 @@
         document.getElementById('precintos').innerHTML = precintosFormateados;
         
         document.getElementById('op_balanza').innerHTML = getUrlParameter('op_balanza');
+        document.getElementById('op_carga').innerHTML = getUrlParameter('op_balanza');
     </script>
 </body>
 
