@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Autodeclaración ISCC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin: 0;
+      padding: 40px;
+      width: 794px; /* A4 width at 96dpi */
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    td, th {
+      border: 1px solid black;
+      padding: 4px;
+      vertical-align: top;
+    }
+
+    .checkbox {
+      text-align: center;
+    }
+
+    .section-title {
+      font-weight: bold;
+      background-color: #eaeaea;
+    }
+
+    .declaration-box {
+      border: 1px solid black;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .firma {
+      margin-top: 40px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 10px;
+      text-align: center;
+      border-top: 1px solid black;
+      padding-top: 5px;
+    }
+
+    .campo {
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body onload="llenar()">
+
+  <h3 style="text-align:center;">Autodeclaración ISCC para puntos de origen de residuos y productos residuales</h3>
+
+  <table>
+    <tr><th colspan="2" class="section-title">Información sobre el punto de origen:</th></tr>
+    <tr><td>Apellido y nombre</td><td id="nombre" class="campo"></td></tr>
+    <tr><td>Calle, número</td><td id="direccion" class="campo"></td></tr>
+    <tr><td>C.P., localidad</td><td id="localidad" class="campo"></td></tr>
+    <tr><td>País</td><td id="pais" class="campo"></td></tr>
+    <tr><td>Número de teléfono</td><td id="telefono" class="campo"></td></tr>
+  </table>
+
+  <table>
+    <tr><td colspan="2">El material entregado consta de los siguientes residuos o productos residuales:</td></tr>
+    <tr><td colspan="2" id="materiales" class="campo" style="height:30px;"></td></tr>
+    <tr>
+      <td colspan="2">
+        <small>Nota: Enumere todos los residuos o productos residuales entregados. Identifíquelos claramente e indique los códigos de residuos (si procede) según normativa nacional.</small>
+      </td>
+    </tr>
+    <tr>
+      <td>La cantidad de residuos y productos residuales generados por los puntos de origen es de diez (10) o más toneladas al mes.</td>
+      <td class="checkbox"><input type="checkbox" id="mas10ton"></td>
+    </tr>
+    <tr>
+      <td>Destinatario de los residuos / productos residuales (punto de recogida)</td>
+      <td id="destinatario" class="campo"></td>
+    </tr>
+  </table>
+
+  <div class="declaration-box">
+    <p><strong>Mediante la firma de la presente autodeclaración, el firmante confirma lo siguiente:</strong></p>
+    <ol>
+      <li>El material entregado en el marco de la presente autodeclaración se corresponde con la definición de «residuo» o «producto residual».</li>
+      <li>En el caso de productos directos de la agricultura, acuicultura, pesca o silvicultura, cumple con el art. 29 de la Directiva (UE) 2018/2001 (RED II).</li>
+      <li>El material está compuesto únicamente por biomasa de origen biológico.</li>
+      <li>Hay documentación sobre las cantidades entregadas.</li>
+      <li>Se cumple con la legislación nacional sobre residuos.</li>
+      <li>El material es generado exclusivamente por el punto de origen.</li>
+      <li>Los auditores pueden verificar los datos in situ o por contacto con el firmante.</li>
+      <li>Los datos pueden ser transmitidos al organismo certificador y a ISCC. Serán tratados de forma confidencial.</li>
+    </ol>
+  </div>
+
+  <div class="firma">
+    <table>
+      <tr>
+        <td>Lugar, fecha:<br><span id="lugar" class="campo"></span></td>
+        <td>Firma:</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p><em>En caso de conflictos entre la versión en lengua inglesa y la versión traducida del presente documento, se aplicará la versión en lengua inglesa, que será vinculante para las partes implicadas en esta autodeclaración.</em></p>
+    <p><em>© ISCC System GmbH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Versión 2.0 (del 1 de julio de 2021)</em></p>
+  </div>
+
+  <script>
+    function getURLParameter(name) {
+      return decodeURIComponent(
+        (new RegExp('[?|&]' + name + '=([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1]
+        .replace(/\+/g, '%20')) || '';
+    }
+
+    function llenar() {
+      const campos = [
+        "nombre", "direccion", "localidad", "pais", "telefono",
+        "materiales", "destinatario", "lugar"
+      ];
+      campos.forEach(id => {
+        const valor = getURLParameter(id);
+        if (valor) document.getElementById(id).textContent = valor;
+      });
+
+      const fecha = getURLParameter("fecha");
+      if (fecha) document.getElementById("lugar").innerHTML += ` - ${fecha}`;
+
+      const mas10ton = getURLParameter("mas10ton");
+      if (mas10ton === "true") {
+        document.getElementById("mas10ton").checked = true;
+      }
+    }
+  </script>
+
+</body>
+</html>
