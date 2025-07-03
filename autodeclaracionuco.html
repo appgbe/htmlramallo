@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ISCC UCO Self-Declaration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin: 40px;
+      width: 794px;
+      box-sizing: border-box;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .section-title {
+      font-weight: bold;
+      background-color: #eaeaea;
+    }
+
+    .campo {
+      font-weight: normal;
+    }
+
+    .checkbox {
+      text-align: center;
+      width: 40px;
+    }
+
+    ol {
+      padding-left: 18px;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 10px;
+      text-align: center;
+      border-top: 1px solid #000;
+      padding-top: 5px;
+    }
+  </style>
+</head>
+<body onload="llenarUCO()">
+
+  <h3 style="text-align: center;">ISCC Self-Declaration for Points of Origin Generating Used Cooking Oil (UCO)</h3>
+
+  <table>
+    <tr><th colspan="2" class="section-title">Information about the Point of Origin (e.g. restaurant, catering facility, etc.):</th></tr>
+    <tr><td>Name</td><td id="name" class="campo"></td></tr>
+    <tr><td>Street address</td><td id="address" class="campo"></td></tr>
+    <tr><td>Postcode, location</td><td id="location" class="campo"></td></tr>
+    <tr><td>Country</td><td id="country" class="campo"></td></tr>
+    <tr><td>Phone number</td><td id="phone" class="campo"></td></tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>The amount of UCO produced by the Point of Origin is 5 (five) or more metric tons per month*</td>
+      <td class="checkbox"><input type="checkbox" id="checkbox1"></td>
+    </tr>
+    <tr>
+      <td>The UCO produced by the Point of Origin is entirely or partly of animal origin†</td>
+      <td class="checkbox"><input type="checkbox" id="checkbox2"></td>
+    </tr>
+    <tr>
+      <td>Recipient of the UCO (Collecting Point)</td>
+      <td id="recipient" class="campo"></td>
+    </tr>
+  </table>
+
+  <p>By signing this self-declaration, the signatory acknowledges and confirms the following:</p>
+
+  <ol>
+    <li>UCO refers to all fat of vegetable or animal origin which has been used to cook food for human consumption...</li>
+    <li>UCO covered under this self-declaration meets the definition of a waste...</li>
+    <li>Documentation of UCO quantities delivered is available.</li>
+    <li>Applicable national legislation regarding waste prevention and management...</li>
+    <li>Auditors from certification bodies or ISCC... may verify data via contact or onsite visit...</li>
+    <li>This self-declaration and the information contained herein may be forwarded...</li>
+    <li>The UCO is not mixed with other waste oils or substances of non-compliant origin.</li>
+    <li>The Point of Origin shall be liable for false declarations or improper use of this form...</li>
+    <li>This self-declaration is made in line with the information referenced in Statement 8...</li>
+    <li>The Point of Origin confirms that data provided is accurate and can be verified upon request...</li>
+    <li>The Point of Origin may withdraw this declaration in writing at any time.</li>
+    <li>All information in this self-declaration is a fair representation of facts.</li>
+  </ol>
+
+  <div class="footer">
+    Version 2.2 (as of 22 May 2025)<br>
+    © ISCC System GmbH
+  </div>
+
+  <div class="page-break"></div>
+
+  <h3 style="text-align: center;">ISCC Self-Declaration for Points of Origin Generating Used Cooking Oil (UCO) – Page 2</h3>
+
+  <div style="border: 1px solid black; height: 300px; margin-bottom: 10px;"></div>
+
+  <table>
+    <tr>
+      <td>Place, date</td>
+      <td>Full name and function of signatory</td>
+      <td>Signature</td>
+    </tr>
+    <tr>
+      <td id="placeDate" class="campo" style="height: 40px;"></td>
+      <td id="signatory" class="campo"></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <p style="font-size: 10px;">
+    * See points for UCO usage aspects...<br>
+    † UCO which contains animal fats or has been used for frying meat may fall under animal origin category...
+  </p>
+
+  <div class="footer">
+    Version 2.2 (as of 22 May 2025)<br>
+    © ISCC System GmbH
+  </div>
+
+  <script>
+    function getURLParameter(name) {
+      return decodeURIComponent(
+        (new RegExp('[?|&]' + name + '=([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1]
+        .replace(/\+/g, '%20')) || '';
+    }
+
+    function llenarUCO() {
+      const campos = {
+        name: "name",
+        address: "address",
+        location: "location",
+        country: "country",
+        phone: "phone",
+        recipient: "recipient",
+        placeDate: "placeDate",
+        signatory: "signatory"
+      };
+
+      for (let id in campos) {
+        const val = getURLParameter(campos[id]);
+        if (val) document.getElementById(id).textContent = val;
+      }
+
+      if (getURLParameter("checkbox1") === "true") {
+        document.getElementById("checkbox1").checked = true;
+      }
+      if (getURLParameter("checkbox2") === "true") {
+        document.getElementById("checkbox2").checked = true;
+      }
+    }
+  </script>
+
+</body>
+</html>
