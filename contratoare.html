@@ -75,6 +75,9 @@
 </head>
 <body>
   <div class="container">
+    <div class="logo" style="text-align: center; margin-bottom: 20px;">
+  <img id="sellerLogo" src="" alt="Logo del vendedor" style="max-height: 80px;">
+</div>
     <div class="header">
       <h2>Agreement n° <span id="agreementNumber">012-2024</span></h2>
       <p>Date: <span id="agreementDate">25-November-2024</span></p>
@@ -89,20 +92,23 @@
 
     <div class="party-info">
       <h3>Buyer:</h3>
-      <p id="buyerName">Greentech Trading and Resources LLC</p>
-      <p id="buyerAddress">710w Hallandale Beach Blvd, Ste 103 - Hallandale Beach, FL 33009 - United States</p>
-      <p>VAT ID: <span id="buyerVatId">EIN 93-2245211</span></p>
+      <p id="buyerName"></p>
+      <p id="buyerAddress"></p>
+      <p>VAT ID: <span id="buyerVatId"></span></p>
     </div>
 
-    <div class="product-specs">
-      <h3>Product:</h3>
-      <p id="productName">Esterified oil complies to annex IX, part A, letter D- EU Directive 1513/2015</p>
-      <ul>
-        <li>FFA: Max <span id="ffa"></span> %</li> 
-        <li>Sulfur: Max<span id="sulfur"></span>p.p.m.</li>
-        <li>Phosphorus: Max<span id="phosphorus"></span>p.p.m.</li>
-      </ul>
-    </div>
+<div class="product-specs">
+  <h3>Product:</h3>
+  <p id="productName">Esterified oil complies to annex IX, part A, letter D- EU Directive 1513/2015</p>
+  <ul>
+    <li>FFA: <span id="ffa"></span> %</li>
+    <li>Sulfur: <span id="sulfur"></span> p.p.m.</li>
+    <li>Phosphorus: <span id="phosphorus"></span> p.p.m.</li>
+    <li>MIU: <span id="miu"></span> %</li>
+    <li>Iodine Value: <span id="iodine"></span></li>
+    <li>Triglycerides: <span id="triglycerides"></span> %</li>
+  </ul>
+</div>
 
     <div class="row">
       <div class="col-label">Quantity:</div>
@@ -158,14 +164,14 @@
     }
 
     // Lista de IDs que queremos actualizar desde la URL
-    const paramFields = [
-      'agreementNumber', 'agreementDate', 
-      
-      'buyerName', 'buyerAddress', 'buyerVatId',
-      'productName', 'ffa', 'sulfur', 'phosphorus',
-     'price', 'deliveryPeriod',
-  
-    ];
+ const paramFields = [
+  'agreementNumber', 'agreementDate', 
+  'buyerName', 'buyerAddress', 'buyerVatId',
+  'sellerName', 'sellerAddress', 'sellerTaxId',
+  'productName', 'ffa', 'sulfur', 'phosphorus',
+  'miu', 'iodine', 'triglycerides',
+  'price', 'deliveryPeriod'
+];
 
     // Actualizar los campos desde la URL
     window.onload = function() {
@@ -176,6 +182,11 @@
         }
       });
     };
+
+    const logoUrl = getUrlParameter('sellerLogo');
+if (logoUrl) {
+  document.getElementById('sellerLogo').src = logoUrl;
+}
   </script>
 </body>
 </html>
