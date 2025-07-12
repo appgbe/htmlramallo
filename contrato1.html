@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=210mm, initial-scale=1.0">
+  <title>Contrato de Provisión Sustentable</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    @media screen {
+      html, body {
+        width: 210mm;
+        margin: 0 auto;
+        background: #f9f9f9;
+      }
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #2c2c2c;
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 18pt;
+      margin-bottom: 25px;
+      color: #3b5e3f;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #3b5e3f44;
+      padding-bottom: 10px;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .logo-container img {
+      height: 60px;
+    }
+
+    .section {
+      margin-bottom: 12px;
+      display: flex;
+    }
+
+    .label {
+      font-weight: 600;
+      width: 200px;
+      color: #3b5e3f;
+    }
+
+    .value {
+      flex: 1;
+      border-bottom: 1px dashed #ccc;
+      padding-left: 5px;
+    }
+
+    .content {
+      margin-top: 30px;
+      font-size: 10.8pt;
+      color: #444;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .signature-section {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .signature {
+      width: 45%;
+      text-align: center;
+    }
+
+    .signature-line {
+      margin-top: 60px;
+      border-top: 2px solid #3b5e3f;
+      width: 100%;
+    }
+
+    .footer {
+      font-size: 9pt;
+      margin-top: 50px;
+      color: #777;
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-container">
+    <img id="logo" src="" alt="Logo de la empresa">
+  </div>
+
+  <h1>Contrato de Provisión de Material Sustentable</h1>
+
+  <div class="section"><span class="label">N° de contrato:</span> <span class="value" id="nro-contrato"></span></div>
+  <div class="section"><span class="label">Proveedor:</span> <span class="value" id="proveedor"></span></div>
+  <div class="section"><span class="label">Cliente:</span> <span class="value" id="cliente"></span></div>
+  <div class="section"><span class="label">Fecha de contrato:</span> <span class="value" id="fecha-contrato"></span></div>
+  <div class="section"><span class="label">Toneladas:</span> <span class="value" id="toneladas"></span></div>
+  <div class="section"><span class="label">% Tolerancia:</span> <span class="value" id="tolerancia"></span></div>
+  <div class="section"><span class="label">Precio unitario:</span> <span class="value" id="precio-unitario"></span></div>
+  <div class="section"><span class="label">Inicio de entrega:</span> <span class="value" id="inicio-entrega"></span></div>
+  <div class="section"><span class="label">Fin de entrega:</span> <span class="value" id="fin-entrega"></span></div>
+
+  <div class="content">
+    <p>
+      En la fecha <span id="fecha-contrato-2"></span>, se celebra el presente contrato entre <strong><span id="proveedor-3"></span></strong> (en adelante, “el Proveedor”) y <strong><span id="cliente-3"></span></strong> (en adelante, “el Cliente”), con el objetivo de establecer los términos y condiciones para la provisión de material sustentable.
+    </p>
+
+    <p>
+      El Proveedor se compromete a entregar un total de <strong><span id="toneladas-3"></span> toneladas</strong> de material, con una tolerancia del <strong><span id="tolerancia-3"></span>%</strong>, dentro del período comprendido entre el <strong><span id="inicio-entrega-3"></span></strong> y el <strong><span id="fin-entrega-3"></span></strong>. El precio unitario acordado por tonelada es de <strong><span id="precio-unitario-3"></span></strong>, según las condiciones comerciales aceptadas por ambas partes.
+    </p>
+
+    <p>
+      Las entregas deberán realizarse en las fechas pactadas, y se considerará como válida cualquier entrega que se encuentre dentro del margen de tolerancia establecido. El material provisto deberá cumplir con las especificaciones técnicas previamente acordadas por escrito, siendo responsabilidad del Proveedor garantizar que los lotes entregados respeten los estándares de calidad definidos por el Cliente.
+    </p>
+
+    <p>
+      Cualquier desviación en la calidad deberá ser informada de forma inmediata y por escrito. En caso de disconformidad con los parámetros establecidos, el Cliente se reserva el derecho de rechazar total o parcialmente la mercadería entregada, sin que esto implique incumplimiento contractual de su parte.
+    </p>
+
+    <p>
+      Ambas partes declaran haber leído, entendido y aceptado los términos del presente contrato, comprometiéndose a su cumplimiento de buena fe. El presente acuerdo podrá ser modificado únicamente por mutuo consentimiento, debiendo documentarse cualquier modificación por escrito.
+    </p>
+  </div>
+
+  <div class="signature-section">
+    <div class="signature">
+      <div class="signature-line"></div>
+      <div id="proveedor-nombre">Proveedor</div>
+    </div>
+    <div class="signature">
+      <div class="signature-line"></div>
+      <div id="cliente-nombre">Cliente</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Este contrato ha sido generado electrónicamente y no requiere firma manuscrita para su validez.
+  </div>
+
+  <script>
+    function setText(id, param, fallback = '') {
+      const el = document.getElementById(id);
+      const val = new URLSearchParams(window.location.search).get(param) || fallback;
+      if (el) el.textContent = val;
+    }
+
+    // Logo
+    const logoUrl = new URLSearchParams(window.location.search).get('logo');
+    if (logoUrl) {
+      document.getElementById('logo').src = logoUrl;
+    }
+
+    // Datos principales
+    setText('nro-contrato', 'nro');
+    setText('proveedor', 'proveedor');
+    setText('cliente', 'cliente');
+    setText('fecha-contrato', 'fecha');
+    setText('toneladas', 'toneladas');
+    setText('tolerancia', 'tolerancia');
+    setText('precio-unitario', 'precio');
+    setText('inicio-entrega', 'inicio');
+    setText('fin-entrega', 'fin');
+
+    // Repeticiones para contenido
+    setText('proveedor-2', 'proveedor');
+    setText('proveedor-3', 'proveedor');
+    setText('cliente-2', 'cliente');
+    setText('cliente-3', 'cliente');
+    setText('fecha-contrato-2', 'fecha');
+    setText('toneladas-2', 'toneladas');
+    setText('toneladas-3', 'toneladas');
+    setText('precio-unitario-2', 'precio');
+    setText('precio-unitario-3', 'precio');
+    setText('tolerancia-2', 'tolerancia');
+    setText('tolerancia-3', 'tolerancia');
+    setText('inicio-entrega-2', 'inicio');
+    setText('inicio-entrega-3', 'inicio');
+    setText('fin-entrega-2', 'fin');
+    setText('fin-entrega-3', 'fin');
+
+    // Firmas
+    setText('proveedor-nombre', 'proveedor');
+    setText('cliente-nombre', 'cliente');
+  </script>
+</body>
+</html>
