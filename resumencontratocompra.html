@@ -115,7 +115,7 @@
         if (el && id === 'logo') {
           el.src = getUrlParameter(id);
         } else if (el && id === 'remitos_html') {
-          el.innerHTML = getUrlParameter(id);
+          el.innerHTML = decodeURIComponent(getUrlParameter(id));
         } else if (el) {
           el.textContent = getUrlParameter(id);
         }
