@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Contrato</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Open Sans', sans-serif;
+      color: #333;
+      padding: 40px;
+      line-height: 1.6;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      height: 80px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2E7D32;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    table.meta {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    table.meta td {
+      padding: 6px 10px;
+      vertical-align: top;
+    }
+
+    table.meta td:first-child {
+      width: 180px;
+      font-weight: bold;
+    }
+
+    table.meta tr {
+      border-bottom: 1px dotted #aaa;
+    }
+
+    .section-title {
+      color: #2E7D32;
+      font-size: 18px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+
+    table.remitos {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table.remitos th, table.remitos td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    table.remitos th {
+      background-color: #e8f5e9;
+      color: #2E7D32;
+    }
+
+    .totals {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .observaciones {
+      margin-top: 30px;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    window.onload = function () {
+      const params = [
+        'logo', 'nro_contrato', 'proveedor', 'cliente', 'fecha_contrato',
+        'toneladas', 'tolerancia', 'precio_unitario',
+        'inicio_entrega', 'fin_entrega',
+        'remitos_html', 'total_recibido', 'tn_pendientes',
+        'monto_facturar', 'observaciones'
+      ];
+
+      params.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && id === 'logo') {
+          el.src = getUrlParameter(id);
+        } else if (el && id === 'remitos_html') {
+          el.innerHTML = getUrlParameter(id);
+        } else if (el) {
+          el.textContent = getUrlParameter(id);
+        }
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <div class="logo">
+    <img id="logo" src="" alt="Logo Empresa">
+  </div>
+
+  <h1>Reporte de Contrato y Remitos Asociados</h1>
+
+  <table class="meta">
+    <tr><td>N° de contrato:</td><td id="nro_contrato"></td></tr>
+    <tr><td>Proveedor:</td><td id="proveedor"></td></tr>
+    <tr><td>Cliente:</td><td id="cliente"></td></tr>
+    <tr><td>Fecha de contrato:</td><td id="fecha_contrato"></td></tr>
+    <tr><td>Toneladas:</td><td id="toneladas"></td></tr>
+    <tr><td>% Tolerancia:</td><td id="tolerancia"></td></tr>
+    <tr><td>Precio unitario:</td><td id="precio_unitario"></td></tr>
+    <tr><td>Inicio de entrega:</td><td id="inicio_entrega"></td></tr>
+    <tr><td>Fin de entrega:</td><td id="fin_entrega"></td></tr>
+  </table>
+
+  <div class="section-title">Remitos asociados</div>
+  <table class="remitos">
+    <thead>
+      <tr>
+        <th>N° de Remito</th>
+        <th>Fecha</th>
+        <th>Producto</th>
+        <th>Cantidad (kg)</th>
+      </tr>
+    </thead>
+    <tbody id="remitos_html">
+      <!-- Aquí se inserta el contenido HTML con filas desde la URL -->
+    </tbody>
+  </table>
+
+  <div class="totals">
+    Total recibido: <span id="total_recibido"></span> kg<br>
+    Tn pendientes: <span id="tn_pendientes"></span> t<br>
+    Monto a facturar: <span id="monto_facturar"></span> $
+  </div>
+
+  <div class="observaciones">
+    <strong>Observaciones:</strong><br>
+    <span id="observaciones"></span>
+  </div>
+
+  <div class="footer">
+    Este informe fue generado automáticamente.
+  </div>
+</body>
+</html>
