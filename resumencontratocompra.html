@@ -11,6 +11,14 @@
       line-height: 1.6;
     }
 
+    .logo img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 10px;
+}
+
     .header {
       display: flex;
       align-items: center;
@@ -144,11 +152,11 @@ body {
 </head>
 
 <body>
-  <div class="header">
-    <img id="logo" src="" alt="Logo Empresa">
-    <h1>Contrato de provisión de insumos</h1>
-  </div>
-
+ <div class="logo">
+  <img id="logo" src="" alt="Logo Empresa">
+</div>
+<h1>Reporte de Contrato y Remitos Asociados</h1>
+  
   <table class="meta">
     <tr><td>N° de contrato:</td><td id="nro_contrato"></td></tr>
     <tr><td>Proveedor:</td><td id="proveedor"></td></tr>
