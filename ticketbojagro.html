@@ -336,9 +336,9 @@
                 </div>
                 <div class="column">
                     <div class="data-row">
-                        <span class="data-label">Impo/Expo:</span>
-                        <span class="data-value">BOJAGRO SA 30-71255043-7</span>
-                    </div>
+    <span class="data-label">Impo/Expo:</span>
+    <span class="data-value" id="impo-expo">BOJAGRO SA 30-71255043-7</span>
+</div>
                     <div class="data-row">
                         <span class="data-label">Precintos:</span>
                         <span id="precintos" class="data-value"></span>
@@ -586,6 +586,11 @@ document.getElementById("op-ingreso").innerHTML = getUrlParameter('opbalanza');
         document.getElementById("observaciones").innerHTML = getUrlParameter('observaciones');
         document.getElementById("nombre-empresa").innerHTML = getUrlParameter('empresa') || 'BOJAGRO S.A.';
 document.getElementById("cuit-empresa").innerHTML = getUrlParameter('cuit-empresa') || '30-71255043-7';
+
+        // Completa el campo "Impo/Expo" con empresa + CUIT
+var empresaNombre = getUrlParameter('empresa') || 'BOJAGRO SA';
+var empresaCuit = getUrlParameter('cuit-empresa') || '30-71255043-7';
+document.getElementById("impo-expo").innerHTML = empresaNombre + ' ' + empresaCuit;
 
 
     </script>
