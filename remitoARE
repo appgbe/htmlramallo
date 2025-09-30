@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento de remito</title>
+    <script>
+    window.onload = function() {
+      window.print();
+    };
+  </script>
+    <style>
+        body {
+            font-family: 'Calibri', Arial, sans-serif; /* Fuente Calibri con respaldo */
+            font-size: 14px; /* Tamaño de fuente 11 */
+            margin: 0;
+            padding: 0;
+        }
+
+     .document-container {
+    position: relative;
+    width: 190mm;
+    height: auto; /* CAMBIO AQUÍ */
+    margin: 0 auto;
+    border: 1px solid white;
+    box-sizing: border-box;
+}
+        .field {
+            position: absolute;
+            font-size: 14px; /* Tamaño de fuente 11 */
+            white-space: nowrap;
+            border: 1px solid white; /* Solo para depuración */
+        }
+
+        @page {
+            size: Letter;
+            margin: 5mm; /* márgenes seguros imprimibles */
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+    }
+
+    .document-container {
+        width: 190mm;
+        height: auto; /* dejamos que fluya para evitar corte */
+        page-break-inside: avoid;
+        box-sizing: border-box;
+    }
+
+    .field {
+        font-size: 13px;
+        line-height: 1.2;
+        max-width: 160mm; /* previene que se corte el contenido */
+        white-space: normal; /* permite salto de línea si hace falta */
+        overflow-wrap: break-word;
+    }
+     .remito {
+        font-size: 8px;
+        line-height: 1.2;
+        max-width: 160mm; /* previene que se corte el contenido */
+        white-space: normal; /* permite salto de línea si hace falta */
+        overflow-wrap: break-word;
+    }
+}
+
+        
+    </style>
+</head>
+<body class="c48 doc-content">
+    <div class="document-container">
+        <span id="remito" class="remito" style="top: 12mm; left: 175mm;"></span>
+        <span id="fecha" class="field" style="top: 30mm; left: 150mm;"></span>
+        <span id="destino" class="field" style="top: 50mm; left: 35mm;"></span>
+        <span id="CUIT_destino" class="field" style="top: 50mm; left: 135mm;"></span>
+        <span id="direccion" class="field" style="top: 56mm; left: 35mm;"></span>
+        <span class="field" style="top: 62mm; left: 35mm">TERMINAL:</span>
+        <span id="terminal" class="field" style="top: 62mm; left: 55mm;"></span>
+        <span id="dir_term" class="field" style="top: 68mm; left: 35mm;"></span>
+        
+        <span id="transporte" class="field" style="top: 88mm; left: 35mm;"></span>
+        <span id="transporte_cuit" class="field" style="top: 95mm; left: 35mm;"></span>
+        <span id="chofer" class="field" style="top: 101mm; left: 35mm;"></span>
+        <span id="dni-chofer" class="field" style="top: 101mm; left: 130mm;"></span>
+        <span id="chasis" class="field" style="top: 108mm; left: 130mm;"></span>
+        <span id="acoplado" class="field" style="top: 114mm; left: 35mm;"></span>
+        
+        <span id="observaciones" class="field" style="top: 125mm; left: 45mm;"></span>
+        <div class="field" style="top: 125mm; left: 120mm;">
+            <span>Últimas 3 cargas:</span>
+            <span id="observaciones_2"></span>
+        </div>
+        
+                <div class="field" style="top: 135mm; left: 35mm;">
+            <span><strong>Operador de balanza:</strong></span>
+            <span id="op_balanza"></span>
+            <span><strong>Muestra rotulada N&ordm;: </strong></span>
+            <span id="Nro_muestra"></span>
+            <span><strong>Lote:</strong></span>
+            <span id="lote"></span>
+        </div>
+        <span id="fason" class="field" style="top: 140mm; left: 35mm;"></span>
+
+        <span id="producto" class="field" style="top: 154mm; left: 35mm;"></span>
+        <span class="field" style="top: 154mm; left: 110mm;">TARA: </span>
+        <span id="tara" class="field" style="top: 154mm; left: 125mm;"></span>
+        <span class="field" style="top: 161mm; left: 110mm;">BRUTO: </span>
+        <span id="bruto" class="field" style="top:  161mm; left: 125mm;"></span>
+        <span class="field" style="top:  168mm; left: 110mm;"><b>NETO: </b></span>        
+        <span id="neto" class="field" style="top: 168mm; left: 125mm; font-weight: bold;"></span><b></b></span>
+
+        
+        <span id="precintos" style="top: 182mm; left: 20mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 45mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
+        
+        <span id="tk_balanza" class="field" style="top: 222mm; left: 40mm;"></span>
+        <span id="dni-chofer-2" class="field" style="top: 250mm; left: 90mm;"></span>
+        <span id="chofer-2" class="field" style="top: 250mm; left: 140mm;"></span>
+        
+        <span id="conf" class="field" style="top: 182mm; left: 135mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 50mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
+        
+    </div>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        // Función para formatear el campo Precintos
+        function formatearPrecintos(precintosString) {
+            const precintosArray = precintosString.split(',');
+            const precintosFormateados = precintosArray.map(precinto => {
+                const trimmedPrecinto = precinto.trim();
+                if (trimmedPrecinto === '*') {
+                    return ' * ';
+                } else {
+                    return trimmedPrecinto;
+                }
+            });
+            return precintosFormateados.join(', ');
+         }
+        // Función para formatear fechahora (si es necesario)
+        function formatearFechaHora(fechaHoraString) {
+            if (!fechaHoraString) return '';
+
+            try {
+                const fecha = new Date(fechaHoraString);
+                if (isNaN(fecha.getTime())) return fechaHoraString;
+                const dia = fecha.getDate().toString().padStart(2, '0');
+                const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+                const anio = fecha.getFullYear();
+                return `${dia}/${mes}/${anio}`;
+            } catch (e) {
+                console.log("Error al formatear fechahora:", e);
+                return fechaHoraString;
+            }
+        
+        }    // Función para agregar separador de miles
+        function formatearNumeroConMiles(numero) {
+            const numeroFloat = parseFloat(numero);
+            if (!isNaN(numeroFloat)) {
+                return numeroFloat.toLocaleString('es-AR'); // Utiliza el formato argentino
+            }
+            return numero; // Devuelve el valor original si no es un número válido
+        }
+     
+        
+        
+
+        // Asignar valores a los campos
+        document.getElementById('remito').innerHTML = getUrlParameter('Remito');
+        document.getElementById('fecha').innerHTML = formatearFechaHora(getUrlParameter('Fecha'));
+        document.getElementById('destino').innerHTML = getUrlParameter('Destino');
+        document.getElementById('CUIT_destino').innerHTML = getUrlParameter('CUIT_destino');
+        
+        document.getElementById('direccion').innerHTML = getUrlParameter('Direccion');
+        document.getElementById('dir_term').innerHTML = getUrlParameter('dir_term');
+        document.getElementById('terminal').innerHTML = getUrlParameter('Terminal');
+        document.getElementById('transporte').innerHTML = getUrlParameter('transporte');
+        document.getElementById('transporte_cuit').innerHTML = getUrlParameter('transporte_cuit');
+        document.getElementById('tk_balanza').innerHTML = getUrlParameter('numero');
+        document.getElementById('chofer').innerHTML = getUrlParameter('chofer');
+        document.getElementById('chofer-2').innerHTML = getUrlParameter('chofer');
+
+
+       const dniChofer = getUrlParameter('dni_chofer');
+        document.getElementById('dni-chofer').innerHTML = formatearNumeroConMiles(dniChofer);
+        document.getElementById('dni-chofer-2').innerHTML = formatearNumeroConMiles(dniChofer);
+ 
+       // document.getElementById('dni-chofer').innerHTML = getUrlParameter('dni_chofer');
+       // document.getElementById('dni-chofer-2').innerHTML = getUrlParameter('dni_chofer');
+        
+        
+        
+        document.getElementById('chasis').innerHTML = getUrlParameter('chasis');
+        document.getElementById('acoplado').innerHTML = getUrlParameter('acoplado');
+        document.getElementById('observaciones').innerHTML = getUrlParameter('observaciones_1');
+        document.getElementById('observaciones_2').innerHTML = getUrlParameter('observaciones_2');
+        document.getElementById('producto').innerHTML = getUrlParameter('producto');
+        document.getElementById('lote').innerHTML = getUrlParameter('lote'); 
+    
+        const neto = getUrlParameter('Neto');
+        const bruto = getUrlParameter('bruto');
+        const tara = getUrlParameter('tara');
+        document.getElementById('neto').innerHTML = formatearNumeroConMiles(neto);
+        document.getElementById('bruto').innerHTML = formatearNumeroConMiles(bruto);
+        document.getElementById('tara').innerHTML = formatearNumeroConMiles(tara);
+        
+        const precintosOriginal = getUrlParameter('Precintos');
+        const precintosFormateados = formatearPrecintos(precintosOriginal);
+        document.getElementById('precintos').innerHTML = precintosFormateados
+        
+        document.getElementById('op_balanza').innerHTML = getUrlParameter('op_balanza');
+        document.getElementById('Nro_muestra').innerHTML = getUrlParameter('Nro_muestra');
+        document.getElementById('conf').innerHTML = getUrlParameter('conf');
+        document.getElementById('fason').innerHTML = getUrlParameter('fason');
+    </script>
+</body>
+</html>
