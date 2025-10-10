@@ -5,101 +5,38 @@
   <meta name="viewport" content="width=210mm, initial-scale=1.0">
   <title>Contrato de Provisión Sustentable</title>
   <style>
-    @page {
-      size: A4;
-      margin: 20mm;
-    }
+    @page { size: A4; margin: 20mm; }
 
     @media screen {
-      html, body {
-        width: 210mm;
-        margin: 0 auto;
-        background: #f9f9f9;
-      }
+      html, body { width: 210mm; margin: 0 auto; background: #f9f9f9; }
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 11pt;
-      line-height: 1.6;
-      color: #2c2c2c;
-      background-color: white;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 11pt; line-height: 1.6; color: #2c2c2c;
+      background-color: white; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     h1 {
-      text-align: center;
-      font-size: 18pt;
-      margin-bottom: 25px;
-      color: #3b5e3f;
-      letter-spacing: 0.5px;
-      border-bottom: 2px solid #3b5e3f44;
-      padding-bottom: 10px;
+      text-align: center; font-size: 18pt; margin-bottom: 25px; color: #3b5e3f;
+      letter-spacing: 0.5px; border-bottom: 2px solid #3b5e3f44; padding-bottom: 10px;
     }
 
-    .logo-container {
-      text-align: center;
-      margin-bottom: 15px;
-    }
+    .logo-container { text-align: center; margin-bottom: 15px; }
+    .logo-container img { height: 60px; }
 
-    .logo-container img {
-      height: 60px;
-    }
+    .section { margin-bottom: 12px; display: flex; }
+    .label { font-weight: 600; width: 200px; color: #3b5e3f; }
+    .value { flex: 1; border-bottom: 1px dashed #ccc; padding-left: 5px; }
 
-    .section {
-      margin-bottom: 12px;
-      display: flex;
-    }
+    .content { margin-top: 30px; font-size: 10.8pt; color: #444; }
+    .content p { margin-bottom: 15px; text-align: justify; }
 
-    .label {
-      font-weight: 600;
-      width: 200px;
-      color: #3b5e3f;
-    }
+    .signature-section { margin-top: 50px; display: flex; justify-content: space-between; gap: 30px; }
+    .signature { width: 45%; text-align: center; }
+    .signature-line { margin-top: 60px; border-top: 2px solid #3b5e3f; width: 100%; }
 
-    .value {
-      flex: 1;
-      border-bottom: 1px dashed #ccc;
-      padding-left: 5px;
-    }
-
-    .content {
-      margin-top: 30px;
-      font-size: 10.8pt;
-      color: #444;
-    }
-
-    .content p {
-      margin-bottom: 15px;
-      text-align: justify;
-    }
-
-    .signature-section {
-      margin-top: 50px;
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .signature {
-      width: 45%;
-      text-align: center;
-    }
-
-    .signature-line {
-      margin-top: 60px;
-      border-top: 2px solid #3b5e3f;
-      width: 100%;
-    }
-
-    .footer {
-      font-size: 9pt;
-      margin-top: 50px;
-      color: #777;
-      text-align: center;
-      font-style: italic;
-    }
+    .footer { font-size: 9pt; margin-top: 50px; color: #777; text-align: center; font-style: italic; }
   </style>
 </head>
 <body>
@@ -114,6 +51,10 @@
   <div class="section"><span class="label">Proveedor:</span> <span class="value" id="proveedor"></span></div>
   <div class="section"><span class="label">Cliente:</span> <span class="value" id="cliente"></span></div>
   <div class="section"><span class="label">Fecha de contrato:</span> <span class="value" id="fecha-contrato"></span></div>
+
+  <!-- NUEVO: Producto -->
+  <div class="section"><span class="label">Producto:</span> <span class="value" id="producto"></span></div>
+
   <div class="section"><span class="label">Toneladas:</span> <span class="value" id="toneladas"></span></div>
   <div class="section"><span class="label">% Tolerancia:</span> <span class="value" id="tolerancia"></span></div>
   <div class="section"><span class="label">Precio unitario:</span> <span class="value" id="precio-unitario"></span></div>
@@ -122,11 +63,17 @@
 
   <div class="content">
     <p>
-      En la fecha <span id="fecha-contrato-2"></span>, se celebra el presente contrato entre <strong><span id="proveedor-3"></span></strong> (en adelante, “el Proveedor”) y <strong><span id="cliente-3"></span></strong> (en adelante, “el Cliente”), con el objetivo de establecer los términos y condiciones para la provisión de material sustentable.
+      En la fecha <span id="fecha-contrato-2"></span>, se celebra el presente contrato entre
+      <strong><span id="proveedor-3"></span></strong> (en adelante, “el Proveedor”) y
+      <strong><span id="cliente-3"></span></strong> (en adelante, “el Cliente”), con el objetivo de establecer los términos
+      y condiciones para la provisión de material sustentable.
     </p>
 
     <p>
-      El Proveedor se compromete a entregar un total de <strong><span id="toneladas-3"></span> toneladas</strong> de material, con una tolerancia del <strong><span id="tolerancia-3"></span>%</strong>, dentro del período comprendido entre el <strong><span id="inicio-entrega-3"></span></strong> y el <strong><span id="fin-entrega-3"></span></strong>. El precio unitario acordado por tonelada es de <strong><span id="precio-unitario-3"></span></strong>, según las condiciones comerciales aceptadas por ambas partes.
+      El Proveedor se compromete a entregar un total de <strong><span id="toneladas-3"></span> toneladas</strong> de material,
+      con una tolerancia del <strong><span id="tolerancia-3"></span>%</strong>, dentro del período comprendido entre el
+      <strong><span id="inicio-entrega-3"></span></strong> y el <strong><span id="fin-entrega-3"></span></strong>. El precio unitario
+      acordado por tonelada es de <strong><span id="precio-unitario-3"></span></strong>, según las condiciones comerciales aceptadas por ambas partes.
     </p>
 
     <p>
@@ -158,49 +105,76 @@
   </div>
 
   <script>
+    function qp(key) {
+      return new URLSearchParams(window.location.search).get(key);
+    }
+
     function setText(id, param, fallback = '') {
       const el = document.getElementById(id);
-      const val = new URLSearchParams(window.location.search).get(param) || fallback;
-      if (el) el.textContent = val;
+      const val = qp(param) ?? fallback;
+      if (el) el.textContent = val || fallback;
     }
 
     // Logo
-    const logoUrl = new URLSearchParams(window.location.search).get('logo');
-    if (logoUrl) {
-      document.getElementById('logo').src = logoUrl;
-    }
+    const logoUrl = qp('logo');
+    if (logoUrl) document.getElementById('logo').src = logoUrl;
 
     // Datos principales
     setText('nro-contrato', 'nro');
     setText('proveedor', 'proveedor');
     setText('cliente', 'cliente');
     setText('fecha-contrato', 'fecha');
+
+    // NUEVO: Producto
+    setText('producto', 'producto');
+
     setText('toneladas', 'toneladas');
-    setText('tolerancia', 'tolerancia');
     setText('precio-unitario', 'precio');
     setText('inicio-entrega', 'inicio');
     setText('fin-entrega', 'fin');
 
-    // Repeticiones para contenido
-    setText('proveedor-2', 'proveedor');
+    // Repeticiones para contenido (excepto tolerancia que se formatea aparte)
     setText('proveedor-3', 'proveedor');
-    setText('cliente-2', 'cliente');
     setText('cliente-3', 'cliente');
     setText('fecha-contrato-2', 'fecha');
-    setText('toneladas-2', 'toneladas');
     setText('toneladas-3', 'toneladas');
-    setText('precio-unitario-2', 'precio');
     setText('precio-unitario-3', 'precio');
-    setText('tolerancia-2', 'tolerancia');
-    setText('tolerancia-3', 'tolerancia');
-    setText('inicio-entrega-2', 'inicio');
     setText('inicio-entrega-3', 'inicio');
-    setText('fin-entrega-2', 'fin');
     setText('fin-entrega-3', 'fin');
-
-    // Firmas
     setText('proveedor-nombre', 'proveedor');
     setText('cliente-nombre', 'cliente');
+
+    // --- Formateo de Tolerancia en % ---
+    (function formatTolerance(){
+      const raw = (qp('tolerancia') || '').toString().trim();
+      if (!raw) return;
+
+      // Limpieza: reemplazo coma por punto, quito símbolo %
+      const cleaned = raw.replace(',', '.').replace('%', '');
+      let num = Number(cleaned);
+
+      if (!isNaN(num)) {
+        // Si es <= 1, lo interpretamos como fracción (0.05 -> 5 %)
+        if (num <= 1) num = num * 100;
+
+        // Redondeo razonable a 2 decimales máx, sin ceros innecesarios
+        const formatted = (Math.round(num * 100) / 100).toString();
+
+        // En cabecera queremos "5 %"
+        const tolHeader = document.getElementById('tolerancia');
+        if (tolHeader) tolHeader.textContent = formatted + ' %';
+
+        // En el cuerpo ya existe el símbolo % en el texto, así que solo el número
+        const tolBody = document.getElementById('tolerancia-3');
+        if (tolBody) tolBody.textContent = formatted;
+      } else {
+        // Si no es numérico, dejamos el texto tal cual en ambos lados
+        const tolHeader = document.getElementById('tolerancia');
+        if (tolHeader) tolHeader.textContent = raw;
+        const tolBody = document.getElementById('tolerancia-3');
+        if (tolBody) tolBody.textContent = raw.replace('%', '');
+      }
+    })();
   </script>
 </body>
 </html>
