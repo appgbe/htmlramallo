@@ -94,9 +94,9 @@
         </div>
         
                 <div class="field" style="top: 135mm; left: 35mm;">
-            <span><strong>Operador de balanza:</strong></span>
+            
             <span id="op_balanza"></span>
-            <span><strong>Muestra rotulada N&ordm;: </strong></span>
+            
             <span id="Nro_muestra"></span>
             <span><strong>Lote:</strong></span>
             <span id="lote"></span>
