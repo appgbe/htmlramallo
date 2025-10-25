@@ -90,7 +90,6 @@
         
         <span id="observaciones" class="field" style="top: 125mm; left: 45mm;"></span>
         <div class="field" style="top: 125mm; left: 120mm;">
-            <span>Últimas 3 cargas:</span>
             <span id="observaciones_2"></span>
         </div>
         
@@ -105,9 +104,9 @@
         <span id="fason" class="field" style="top: 140mm; left: 35mm;"></span>
 
         <span id="producto" class="field" style="top: 154mm; left: 35mm;"></span>
-        <span class="field" style="top: 154mm; left: 110mm;">TARA: </span>
+        
         <span id="tara" class="field" style="top: 154mm; left: 125mm;"></span>
-        <span class="field" style="top: 161mm; left: 110mm;">BRUTO: </span>
+       
         <span id="bruto" class="field" style="top:  161mm; left: 125mm;"></span>
         <span class="field" style="top:  168mm; left: 110mm;"><b>NETO: </b></span>        
         <span id="neto" class="field" style="top: 168mm; left: 125mm; font-weight: bold;"></span><b></b></span>
