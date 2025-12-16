@@ -115,6 +115,7 @@
         <span id="precintos" style="top: 182mm; left: 20mm; position: absolute; font-size: 14px; white-space: pre-line; border: 1px solid white; width: 45mm; box-sizing: border-box; overflow-wrap: break-word; line-height: 1.2;"></span>
         
         <span id="tk_balanza" class="field" style="top: 222mm; left: 40mm;"></span>
+         <span id="fecha-2" class="field" style="top: 240mm; left: 40mm;"></span>
         <span id="dni-chofer-2" class="field" style="top: 250mm; left: 90mm;"></span>
         <span id="chofer-2" class="field" style="top: 250mm; left: 140mm;"></span>
         
@@ -174,6 +175,7 @@
         // Asignar valores a los campos
         document.getElementById('remito').innerHTML = getUrlParameter('Remito');
         document.getElementById('fecha').innerHTML = formatearFechaHora(getUrlParameter('Fecha'));
+        document.getElementById('fecha-2').innerHTML = formatearFechaHora(getUrlParameter('Fecha'));
         document.getElementById('destino').innerHTML = getUrlParameter('Destino');
         document.getElementById('CUIT_destino').innerHTML = getUrlParameter('CUIT_destino');
         
