@@ -401,7 +401,7 @@
                 element.textContent = value || defaultValue;
             }
         }
-
+window.onload = function() {
         const mappings = [
             ['lote', 'lote'], ['reporte', 'reporte'], ['fecha-analisis', 'fecha-analisis'],
             ['fecha-muestra', 'fecha-analisis'], ['tanque', 'tanque'], ['elaboracion', 'elaboracion'],
@@ -432,6 +432,12 @@
             document.getElementById('company-logo').src = logoUrl;
             document.getElementById('company-logo-2').src = logoUrl;
         }
+
+    // AUTO-IMPRIMIR AL CARGAR
+            setTimeout(() => {
+                window.print();
+            }, 500); // Pequeño delay para asegurar que el navegador renderice todo
+        };
     </script>
 </body>
 </html>
