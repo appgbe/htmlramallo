@@ -92,8 +92,10 @@
             text-transform: uppercase;
         }
 
+        /* AJUSTE CRÍTICO: Table-layout fixed para que respeten los anchos */
         table {
             width: 100%;
+            table-layout: fixed; 
             border-collapse: collapse;
             margin-top: 10px;
             max-width: 180mm;
@@ -101,6 +103,13 @@
             margin-right: auto;
             font-size: 8pt;
         }
+
+        /* Definición de anchos fijos para las columnas */
+        th:nth-child(1) { width: 35%; } /* Determinations (incluye el colspan) */
+        th:nth-child(2) { width: 15%; } /* Results */
+        th:nth-child(3) { width: 18%; } /* Spec and Unit */
+        th:nth-child(4) { width: 15%; } /* Method */
+        th:nth-child(5) { width: 17%; } /* Additional Info */
 
         th {
             background-color: #e0e0e0;
@@ -115,6 +124,7 @@
             padding: 4px 6px;
             border-bottom: 1px solid #eee;
             vertical-align: top;
+            word-wrap: break-word; /* Para que el texto no rompa la tabla fija */
         }
 
         tr:last-child td {
