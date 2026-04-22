@@ -92,7 +92,6 @@
             text-transform: uppercase;
         }
 
-        /* AJUSTE CRÍTICO: Table-layout fixed para que respeten los anchos */
         table {
             width: 100%;
             table-layout: fixed; 
@@ -104,12 +103,12 @@
             font-size: 8pt;
         }
 
-        /* Definición de anchos fijos para las columnas */
-        th:nth-child(1) { width: 35%; } /* Determinations (incluye el colspan) */
-        th:nth-child(2) { width: 15%; } /* Results */
-        th:nth-child(3) { width: 18%; } /* Spec and Unit */
-        th:nth-child(4) { width: 15%; } /* Method */
-        th:nth-child(5) { width: 17%; } /* Additional Info */
+        /* Anchos fijos para alineación entre hojas */
+        th:nth-child(1) { width: 35%; } 
+        th:nth-child(2) { width: 15%; } 
+        th:nth-child(3) { width: 18%; } 
+        th:nth-child(4) { width: 15%; } 
+        th:nth-child(5) { width: 17%; }
 
         th {
             background-color: #e0e0e0;
@@ -124,7 +123,7 @@
             padding: 4px 6px;
             border-bottom: 1px solid #eee;
             vertical-align: top;
-            word-wrap: break-word; /* Para que el texto no rompa la tabla fija */
+            word-wrap: break-word;
         }
 
         tr:last-child td {
@@ -309,9 +308,6 @@
             <tr><td colspan=2>READILY CARBONIZABLE SUBSTANCES</td><td id="result-carbonizable"></td><td>Passes test</td><td>USP 42</td><td></td></tr>
             <tr><td colspan=2>APPEARANCE</td><td id="result-appearance-1"></td><td>***</td><td>USP (Visual)</td><td></td></tr>
             <tr><td colspan=2>APPEARANCE</td><td id="result-appearance-2"></td><td>Passes test</td><td>ASTM E 2680</td><td></td></tr>
-            <tr><td colspan=2>ODOR</td><td id="result-odor"></td><td>Odorless</td><td>Internal Procedure</td><td>Method SGS ME.301</td></tr>
-            <tr><td colspan=2>INORGANIC ARSENIC</td><td id="result-arsenic"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>CADMIUM</td><td id="result-cadmium"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
             
         </tbody>
     </table>
@@ -345,13 +341,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td colspan=2>LEAD</td><td id="result-lead"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>INORGANIC MERCURY</td><td id="result-mercury"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>CHROMIUM</td><td id="result-chromium"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>NICKEL</td><td id="result-nickel"></td><td>ppm (m/m)td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>VANADIUM</td><td id="result-vanadium"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>IRON</td><td id="result-iron"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
-            <tr><td colspan=2>COBALT</td><td id="result-cobalt"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td colspan=2>ODOR</td><td id="result-odor"></td><td>Odorless</td><td>Internal Procedure</td><td>Method SGS ME.301</td></tr>
+            <tr>
+                <td rowspan="9">HEAVY METALS</td>
+                <td>INORGANIC ARSENIC</td>
+                <td id="result-arsenic"></td>
+                <td>ppm (m/m)</td>
+                <td>USP-NF 233</td>
+                <td></td>
+            </tr>
+            <tr><td>CADMIUM</td><td id="result-cadmium"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>LEAD</td><td id="result-lead"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>INORGANIC MERCURY</td><td id="result-mercury"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>CHROMIUM</td><td id="result-chromium"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>NICKEL</td><td id="result-nickel"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>VANADIUM</td><td id="result-vanadium"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>IRON</td><td id="result-iron"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
+            <tr><td>COBALT</td><td id="result-cobalt"></td><td>ppm (m/m)</td><td>USP-NF 233</td><td></td></tr>
         </tbody>
     </table>
 
@@ -370,7 +376,6 @@
     <div class="footer">
         <div class="signature">
             <img id="signature-img" src="https://appgbe.github.io/htmlramallo/firma_santiago_tornello.png" alt="Signature">
-
             <div>Ing.Santiago Tornello</div>
             <div>QUALITY MANAGER</div>
         </div>
@@ -402,42 +407,42 @@
                 element.textContent = value || defaultValue;
             }
         }
-window.onload = function() {
-        const mappings = [
-            ['lote', 'lote'], ['reporte', 'reporte'], ['fecha-analisis', 'fecha-analisis'],
-            ['fecha-muestra', 'fecha-analisis'], ['tanque', 'tanque'], ['elaboracion', 'elaboracion'],
-            ['vencimiento', 'vencimiento'], ['result-glycerine-assay', 'glycerine'], 
-            ['result-color-apha', 'colorApha'], ['result-color-ferric', 'colorFerric'],
-            ['result-identification-a', 'identA'], ['result-diethylenglycol', 'diethylenglycol'],
-            ['result-ethylenglycol', 'ethylenglycol'], ['result-individual-impurities', 'indImpurities'],
-            ['result-all-impurities', 'allImpurities'], ['result-identification-c', 'identC'],
-            ['result-specific-gravity', 'specGravity'], ['result-residue-ignition', 'residueIgnition'],
-            ['result-water-content', 'water-content'], ['result-chloride', 'chloride'],
-            ['result-sulfate', 'sulfate'], ['result-chlorinated-compounds', 'chlorinatedComp'],
-            ['result-chloroforme', 'chloroforme'], ['result-dioxane', 'dioxane'],
-            ['result-methylenchloride', 'methylenchloride'], ['result-trichloroethylene', 'trichloroethylene'],
-            ['result-methanol', 'methanol'], ['result-refractive-index', 'refractiveIndex'],
-            ['result-fatty-acid', 'fattyAcid'], ['result-carbonizable', 'carbonizable'],
-            ['result-appearance-1', 'appearance1'], ['result-appearance-2', 'appearance2'],
-            ['result-odor', 'odor'], ['result-arsenic', 'arsenic'], ['result-cadmium', 'cadmium'],
-            ['result-lead', 'lead'], ['result-mercury', 'mercury'], ['result-chromium', 'chromium'],
-            ['result-nickel', 'nickel'], ['result-vanadium', 'vanadium'], ['result-iron', 'iron'],
-            ['result-cobalt', 'cobalt'], ['serial-number', 'serial'], ['tank-container-number', 'tank'],
-            ['net-weight', 'weight'], ['observations', 'observations']
-        ];
 
-        mappings.forEach(m => assignValueToElement(m[0], m[1]));
+        window.onload = function() {
+            const mappings = [
+                ['lote', 'lote'], ['reporte', 'reporte'], ['fecha-analisis', 'fecha-analisis'],
+                ['fecha-muestra', 'fecha-analisis'], ['tanque', 'tanque'], ['elaboracion', 'elaboracion'],
+                ['vencimiento', 'vencimiento'], ['result-glycerine-assay', 'glycerine'], 
+                ['result-color-apha', 'colorApha'], ['result-color-ferric', 'colorFerric'],
+                ['result-identification-a', 'identA'], ['result-diethylenglycol', 'diethylenglycol'],
+                ['result-ethylenglycol', 'ethylenglycol'], ['result-individual-impurities', 'indImpurities'],
+                ['result-all-impurities', 'allImpurities'], ['result-identification-c', 'identC'],
+                ['result-specific-gravity', 'specGravity'], ['result-residue-ignition', 'residueIgnition'],
+                ['result-water-content', 'water-content'], ['result-chloride', 'chloride'],
+                ['result-sulfate', 'sulfate'], ['result-chlorinated-compounds', 'chlorinatedComp'],
+                ['result-chloroforme', 'chloroforme'], ['result-dioxane', 'dioxane'],
+                ['result-methylenchloride', 'methylenchloride'], ['result-trichloroethylene', 'trichloroethylene'],
+                ['result-methanol', 'methanol'], ['result-refractive-index', 'refractiveIndex'],
+                ['result-fatty-acid', 'fattyAcid'], ['result-carbonizable', 'carbonizable'],
+                ['result-appearance-1', 'appearance1'], ['result-appearance-2', 'appearance2'],
+                ['result-odor', 'odor'], ['result-arsenic', 'arsenic'], ['result-cadmium', 'cadmium'],
+                ['result-lead', 'lead'], ['result-mercury', 'mercury'], ['result-chromium', 'chromium'],
+                ['result-nickel', 'nickel'], ['result-vanadium', 'vanadium'], ['result-iron', 'iron'],
+                ['result-cobalt', 'cobalt'], ['serial-number', 'serial'], ['tank-container-number', 'tank'],
+                ['net-weight', 'weight'], ['observations', 'observations']
+            ];
 
-        const logoUrl = getUrlParameter('logo');
-        if (logoUrl) {
-            document.getElementById('company-logo').src = logoUrl;
-            document.getElementById('company-logo-2').src = logoUrl;
-        }
+            mappings.forEach(m => assignValueToElement(m[0], m[1]));
 
-    // AUTO-IMPRIMIR AL CARGAR
+            const logoUrl = getUrlParameter('logo');
+            if (logoUrl) {
+                document.getElementById('company-logo').src = logoUrl;
+                document.getElementById('company-logo-2').src = logoUrl;
+            }
+
             setTimeout(() => {
                 window.print();
-            }, 500); // Pequeño delay para asegurar que el navegador renderice todo
+            }, 500);
         };
     </script>
 </body>
