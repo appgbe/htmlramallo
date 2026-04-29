@@ -7,7 +7,7 @@
     <style>
         @page { 
             size: A4 portrait; 
-            margin: 15mm; 
+            margin: 10mm; /* Margen de impresión reducido */
         }
         
         @media print {
@@ -21,24 +21,24 @@
             color: #000; 
             max-width: 210mm; 
             margin: 0 auto; 
-            padding: 10mm;
+            padding: 5mm; /* Padding reducido */
             box-sizing: border-box;
         }
         
-        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-        th, td { border: 1px solid black; padding: 4px; text-align: left; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; } /* Espacio entre tablas reducido */
+        th, td { border: 1px solid black; padding: 2px 4px; text-align: left; } /* Padding vertical reducido */
         
         /* Tabla de fechas y lotes sin bordes */
         .no-border-table, .no-border-table td { border: none !important; }
         
-        .logo { width: 110px; display: block; margin: auto; }
-        .signature { width: 120px; display: block; margin: 0; }
-        .title-main { text-align: center; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+        .logo { width: 90px; display: block; margin: auto; } /* Logo achicado para reducir altura del encabezado */
+        .signature { width: 100px; display: block; margin: 0; } /* Firma ligeramente achicada */
+        .title-main { text-align: center; font-weight: bold; font-size: 14px; margin-bottom: 2px; }
         .title-sub { text-align: center; font-size: 12px; font-weight: bold; }
         .bg-gray { background-color: #f2f2f2; font-weight: bold; text-align: center; }
         .val { font-weight: normal; }
         .iso-footer { text-align: center; font-size: 10px; border: 1px solid black; }
-        .iso-footer td { text-align: center; border: 1px solid black; vertical-align: middle; }
+        .iso-footer td { text-align: center; border: 1px solid black; vertical-align: middle; padding: 2px; }
     </style>
 </head>
 <body>
@@ -130,14 +130,14 @@
         <tr><td>N de cetano, IQT</td><td>ASTM D 613</td><td>N/A</td><td>45</td><td></td><td id="res_cetano" class="val"></td></tr>
         <tr><td>Azufre</td><td>ASTM D 5453</td><td>mg/kg</td><td></td><td>10</td><td id="res_azufre" class="val"></td></tr>
         <tr><td>Cenizas sulfatadas</td><td>ISO 3987</td><td>mg/kg</td><td></td><td>0.02</td><td id="res_cenizas" class="val"></td></tr>
-        <tr><td>Metales grupo | (Na+K)</td><td>EN 14538</td><td>% m/m</td><td></td><td>5</td><td id="res_metales_1" class="val"></td></tr>
-        <tr><td>Metales grupo II ( (Ca+Mg)</td><td>EN 14538</td><td>%m/m</td><td></td><td>5</td><td id="res_metales_2" class="val"></td></tr>
+        <tr><td>Metales grupo I (Na+K)</td><td>EN 14538</td><td>% m/m</td><td></td><td>5</td><td id="res_metales_1" class="val"></td></tr>
+        <tr><td>Metales grupo II (Ca+Mg)</td><td>EN 14538</td><td>%m/m</td><td></td><td>5</td><td id="res_metales_2" class="val"></td></tr>
         <tr><td>Residuo carbonoso</td><td>ASTM 4530</td><td>%m/m</td><td></td><td>0,05</td><td id="res_carbonoso" class="val"></td></tr>
     </table>
 
-    <p style="font-size: 9px; margin-top: 10px;"><b>Nota:</b> Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II del Ministerio de Energía y Minería.</p>
+    <p style="font-size: 9px; margin-top: 5px; margin-bottom: 10px;"><b>Nota:</b> Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II del Ministerio de Energía y Minería.</p>
 
-    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-end; text-align: right;">
+    <div style="margin-top: 10px; display: flex; flex-direction: column; align-items: flex-end; text-align: right;">
         <img src="https://appgbe.github.io/htmlramallo/firma_santiago_tornello.png" alt="Firma Tornello" class="signature">
         <p style="margin: 0; font-weight: bold;">Ing. Santiago Tornello - Jefe de Calidad</p>
     </div>
