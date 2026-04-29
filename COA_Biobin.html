@@ -5,17 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificado de Análisis - BioBin</title>
     <style>
-        body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; color: #000; }
+        @page { 
+            size: A4 portrait; 
+            margin: 15mm; 
+        }
+        
+        @media print {
+            body { margin: 0; padding: 0; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            font-size: 11px; 
+            color: #000; 
+            max-width: 210mm; 
+            margin: 0 auto; 
+            padding: 10mm;
+            box-sizing: border-box;
+        }
+        
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
         th, td { border: 1px solid black; padding: 4px; text-align: left; }
-        .logo { width: 140px; display: block; margin: auto; }
+        
+        /* Tabla de fechas y lotes sin bordes */
+        .no-border-table, .no-border-table td { border: none !important; }
+        
+        .logo { width: 110px; display: block; margin: auto; }
         .signature { width: 120px; display: block; margin: 0; }
-        .title-main { text-align: center; font-weight: bold; font-size: 14px; }
-        .title-sub { text-align: center; font-size: 12px; }
+        .title-main { text-align: center; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+        .title-sub { text-align: center; font-size: 12px; font-weight: bold; }
         .bg-gray { background-color: #f2f2f2; font-weight: bold; text-align: center; }
         .val { font-weight: normal; }
         .iso-footer { text-align: center; font-size: 10px; border: 1px solid black; }
-        .iso-footer td { text-align: center; }
+        .iso-footer td { text-align: center; border: 1px solid black; vertical-align: middle; }
     </style>
 </head>
 <body>
@@ -25,7 +48,7 @@
             <td rowspan="4" style="width: 25%; text-align: center; vertical-align: middle;">
                 <img src="https://appgbe.github.io/htmlramallo/biobin.png" alt="BioBin" class="logo">
             </td>
-            <td rowspan="2" style="width: 50%; vertical-align: middle;">
+            <td rowspan="4" style="width: 50%; vertical-align: middle;">
                 <div class="title-main">REGISTRO</div>
                 <div class="title-sub">Certificado de análisis para biodiesel</div>
             </td>
@@ -35,7 +58,6 @@
             <td>Código: RG-19</td>
         </tr>
         <tr>
-            <td rowspan="2" style="vertical-align: top;">Destino: <span id="destino" class="val"></span></td>
             <td>Revisión: 08</td>
         </tr>
         <tr>
@@ -43,31 +65,29 @@
         </tr>
     </table>
 
-    <table>
+    <table class="no-border-table">
         <tr>
-            <td style="width: 25%;"><b>Fecha de despacho:</b></td>
-            <td id="fecha_despacho" style="width: 25%;" class="val"></td>
-            <td style="width: 25%;"><b>Tanque:</b></td>
-            <td id="tanque" style="width: 25%;" class="val"></td>
-        </tr>
-        <tr>
-            <td><b>Fecha de muestreo:</b></td>
-            <td id="fecha_muestreo" class="val"></td>
-            <td><b>Lote:</b></td>
-            <td id="lote_1" class="val"></td>
+            <td style="width: 20%;"><b>Fecha de muestreo:</b></td>
+            <td id="fecha_muestreo" style="width: 30%;" class="val"></td>
+            <td style="width: 20%;"><b>Tanque:</b></td>
+            <td id="tanque" style="width: 30%;" class="val"></td>
         </tr>
         <tr>
             <td><b>Fecha de análisis:</b></td>
             <td id="fecha_analisis" class="val"></td>
+            <td><b>Lote:</b></td>
+            <td id="lote_1" class="val"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
             <td></td>
             <td id="lote_2" class="val"></td>
         </tr>
     </table>
 
     <table>
-        <tr class="bg-gray">
-            <td colspan="6">Grupo I</td>
-        </tr>
+        <tr class="bg-gray"><td colspan="6">Grupo I</td></tr>
         <tr class="bg-gray">
             <td style="width: 35%;">Parámetro</td>
             <td style="width: 15%;">Método</td>
@@ -95,9 +115,7 @@
     </table>
 
     <table>
-        <tr class="bg-gray">
-            <td colspan="6">Grupo II</td>
-        </tr>
+        <tr class="bg-gray"><td colspan="6">Grupo II</td></tr>
         <tr class="bg-gray">
             <td rowspan="2" style="width: 35%;">Parámetro</td>
             <td rowspan="2" style="width: 15%;">Método</td>
@@ -105,10 +123,7 @@
             <td colspan="2">Especificaciones</td>
             <td rowspan="2" style="width: 15%;">Resultado</td>
         </tr>
-        <tr class="bg-gray">
-            <td style="width: 10%;">MIN</td>
-            <td style="width: 10%;">MAX</td>
-        </tr>
+        <tr class="bg-gray"><td>MIN</td><td>MAX</td></tr>
         <tr><td>Indice de lodo</td><td>EN 14111</td><td>%m/m</td><td>Informar</td><td></td><td id="res_lodo" class="val"></td></tr>
         <tr><td>Fósforo</td><td>EN 14107</td><td>mg/kg</td><td></td><td>10</td><td id="res_fosforo" class="val"></td></tr>
         <tr><td>Corrosión a la lámina de cobre, 3 hs. a 50 °C</td><td>ASTM D 130</td><td>kg/m3</td><td></td><td>1</td><td id="res_corrosion" class="val"></td></tr>
@@ -120,29 +135,40 @@
         <tr><td>Residuo carbonoso</td><td>ASTM 4530</td><td>%m/m</td><td></td><td>0,05</td><td id="res_carbonoso" class="val"></td></tr>
     </table>
 
-    <p style="font-size: 9px; margin-top: 10px;"><b>Nota:</b> Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II del Ministerio de Energia y Mineria.</p>
+    <p style="font-size: 9px; margin-top: 10px;"><b>Nota:</b> Este protocolo cumple con los requisitos establecidos por la Resolución 689/22 (RESOL-2022-689-APN-SE#MEC) Anexo II del Ministerio de Energía y Minería.</p>
 
-    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start;">
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-end; text-align: right;">
         <img src="https://appgbe.github.io/htmlramallo/firma_santiago_tornello.png" alt="Firma Tornello" class="signature">
         <p style="margin: 0; font-weight: bold;">Ing. Santiago Tornello - Jefe de Calidad</p>
     </div>
 
-    <table class="iso-footer" style="margin-top: 20px;">
+    <div style="text-align: right; font-size: 8px; margin-bottom: 2px;">v4</div>
+    <table class="iso-footer">
         <tr>
-            <td style="width: 50%;">Elaboró:<br><b>JEFE DE CALIDAD</b></td>
-            <td style="width: 50%;">Aprobó:<br><b>GERENTE DE PLANTA</b></td>
+            <td style="width: 33.33%;">Elaboró:<br><b>JEFE DE CALIDAD</b></td>
+            <td style="width: 33.33%;">Aprobó:<br><b>GERENTE DE PLANTA</b></td>
+            <td style="width: 33.33%;">Página <b>1</b> de <b>1</b></td>
         </tr>
     </table>
-
-    <div style="text-align: right; font-size: 10px; margin-top: 5px;">Página 1 de 1</div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         params.forEach((value, key) => {
             const element = document.getElementById(key);
             if (element) {
-                element.textContent = value;
+                let displayValue = value;
+                if (key.includes('fecha') && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                    const parts = value.split('-');
+                    displayValue = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                }
+                element.textContent = displayValue;
             }
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                window.print();
+            }, 500);
         });
     </script>
 </body>
