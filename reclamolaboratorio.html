@@ -5,16 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certificado de Análisis - Materias Primas</title>
   <style>
-    @page {
-      size: A4 portrait;
-      margin: 15mm 15mm 15mm 15mm;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    @page { size: A4 portrait; margin: 12mm; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: Arial, sans-serif;
@@ -24,197 +16,148 @@
       width: 210mm;
       min-height: 297mm;
       margin: 0 auto;
-      padding: 15mm;
+      padding: 12mm;
     }
 
-    /* ── HEADER ── */
+    /* HEADER */
     .header {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items: stretch;
       border: 1.5px solid #1a1a1a;
-      margin-bottom: 0;
     }
-
     .header-logo {
-      width: 80px;
       padding: 8px 12px;
       border-right: 1.5px solid #1a1a1a;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 80px;
     }
-
     .header-logo img {
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       object-fit: contain;
     }
-
     .header-title {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 8px 20px;
+      padding: 10px 20px;
     }
-
     .header-title h1 {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      line-height: 1.4;
+      letter-spacing: 0.3px;
+      line-height: 1.5;
     }
 
-    /* ── TABLA DATOS GENERALES ── */
+    /* TABLA DATOS GENERALES */
     .tabla-general {
       width: 100%;
       border-collapse: collapse;
       border: 1.5px solid #1a1a1a;
       border-top: none;
-      margin-bottom: 0;
     }
-
-    .tabla-general tr td {
+    .tabla-general td {
       border: 0.5px solid #1a1a1a;
-      padding: 5px 10px;
+      padding: 4px 8px;
     }
-
-    .tabla-general tr td:first-child {
+    .tabla-general td.label {
       font-weight: 700;
-      width: 38%;
-      background: #f5f5f5;
+      width: 36%;
+      background: #f2f2f2;
     }
 
-    /* ── TABLA MÉTODOS Y RESULTADOS ── */
+    /* TABLA ANÁLISIS */
     .tabla-analisis {
       width: 100%;
       border-collapse: collapse;
       border: 1.5px solid #1a1a1a;
       border-top: none;
-      margin-bottom: 0;
     }
-
     .tabla-analisis th,
     .tabla-analisis td {
       border: 0.5px solid #1a1a1a;
-      padding: 5px 8px;
+      padding: 4px 6px;
       text-align: center;
     }
-
     .tabla-analisis th:first-child,
     .tabla-analisis td:first-child {
       text-align: left;
-      background: #f5f5f5;
+      background: #f2f2f2;
       font-weight: 700;
-      width: 110px;
+      width: 105px;
+      white-space: nowrap;
     }
+    .tabla-analisis thead th { background: #f2f2f2; font-weight: 700; }
+    .tabla-analisis tbody td { background: #fff; }
+    .tabla-analisis tbody td:first-child { background: #f2f2f2; }
 
-    .tabla-analisis thead th {
-      background: #f5f5f5;
-      font-weight: 700;
-    }
-
-    .tabla-analisis tbody td {
-      font-weight: 400;
-      background: #fff;
-    }
-
-    .tabla-analisis tbody td:first-child {
-      background: #f5f5f5;
-    }
-
-    /* ── OFF-SPEC ── */
+    /* OFF-SPEC */
     .off-spec {
       background-color: #fff3cd !important;
       font-weight: 700 !important;
       color: #7d4e00;
     }
 
-    /* ── SECCIÓN RECLAMO ── */
+    /* TABLA INFERIOR */
     .tabla-inferior {
       width: 100%;
       border-collapse: collapse;
       border: 1.5px solid #1a1a1a;
       border-top: none;
-      margin-bottom: 0;
     }
-
     .tabla-inferior td {
       border: 0.5px solid #1a1a1a;
-      padding: 7px 10px;
+      padding: 6px 8px;
       vertical-align: top;
     }
-
-    .tabla-inferior td:first-child {
-      width: 130px;
-      font-weight: 400;
-      color: #1a1a1a;
+    .tabla-inferior td.label {
+      width: 120px;
       background: #fff;
     }
 
-    .tabla-inferior td:last-child {
-      background: #fff;
-      min-height: 30px;
-    }
-
-    /* ── NOTA ── */
+    /* NOTA */
     .nota {
       border: 1.5px solid #1a1a1a;
       border-top: none;
-      padding: 7px 10px;
+      padding: 6px 10px;
       font-style: italic;
       text-align: center;
       font-size: 10px;
     }
 
-    /* ── FOOTER FIRMAS ── */
+    /* FIRMAS */
     .footer-firmas {
       display: flex;
       border: 1.5px solid #1a1a1a;
       border-top: none;
     }
-
     .firma {
       flex: 1;
       text-align: center;
-      padding: 18px 10px 8px;
+      padding: 20px 10px 8px;
       font-size: 10px;
       border-right: 0.5px solid #1a1a1a;
     }
-
-    .firma:last-child {
-      border-right: none;
-    }
-
-    .firma-rol {
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
+    .firma:last-child { border-right: none; }
+    .firma-rol { font-weight: 700; margin-top: 3px; }
     .pagina {
-      flex: 0.6;
-      text-align: center;
-      padding: 18px 10px 8px;
+      flex: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 10px;
       font-weight: 700;
     }
 
-    /* ── PRINT ── */
-    @media print {
-      body {
-        padding: 0;
-        width: 100%;
-      }
-
-      .no-print {
-        display: none;
-      }
-    }
-
-    /* ── BOTÓN IMPRIMIR ── */
+    /* BOTÓN */
     .btn-print {
       display: block;
-      margin: 16px auto;
-      padding: 10px 28px;
+      margin: 14px auto;
+      padding: 9px 26px;
       background: #2d5016;
       color: white;
       border: none;
@@ -222,15 +165,12 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      letter-spacing: 0.5px;
     }
-
-    .btn-print:hover {
-      background: #3d6b1e;
-    }
+    .btn-print:hover { background: #3d6b1e; }
 
     @media print {
-      .btn-print { display: none; }
+      body { padding: 0; width: 100%; }
+      .no-print { display: none; }
     }
   </style>
 </head>
@@ -250,86 +190,79 @@
 
   <!-- DATOS GENERALES -->
   <table class="tabla-general">
-    <tr>
-      <td><strong>PRODUCTO</strong></td>
-      <td id="producto"></td>
-    </tr>
-    <tr>
-      <td><strong>N° ANÁLISIS</strong></td>
-      <td id="numero"></td>
-    </tr>
-    <tr>
-      <td><strong>FECHA</strong></td>
-      <td id="fecha"></td>
-    </tr>
-    <tr>
-      <td><strong>PROCEDENCIA</strong></td>
-      <td id="proveedor"></td>
-    </tr>
-    <tr>
-      <td><strong>N° DE REMITO</strong></td>
-      <td id="remito"></td>
-    </tr>
-    <tr>
-      <td><strong>TRANSPORTE</strong></td>
-      <td id="transporte"></td>
-    </tr>
-    <tr>
-      <td><strong>CHOFER</strong></td>
-      <td id="chofer"></td>
-    </tr>
-    <tr>
-      <td><strong>DNI</strong></td>
-      <td id="dni"></td>
-    </tr>
-    <tr>
-      <td><strong>PATENTE (CHASIS)</strong></td>
-      <td id="chasis"></td>
-    </tr>
+    <tr><td class="label">PRODUCTO</td><td id="producto"></td></tr>
+    <tr><td class="label">N° ANÁLISIS</td><td id="numero"></td></tr>
+    <tr><td class="label">FECHA</td><td id="fecha"></td></tr>
+    <tr><td class="label">PROCEDENCIA</td><td id="proveedor"></td></tr>
+    <tr><td class="label">N° DE REMITO</td><td id="remito"></td></tr>
+    <tr><td class="label">TRANSPORTE</td><td id="transporte"></td></tr>
+    <tr><td class="label">CHOFER</td><td id="chofer"></td></tr>
+    <tr><td class="label">DNI</td><td id="dni"></td></tr>
+    <tr><td class="label">PATENTE (CHASIS)</td><td id="chasis"></td></tr>
   </table>
 
-  <!-- TABLA MÉTODOS + RESULTADOS -->
-  <table class="tabla-analisis" id="tablaAnalisis">
-    <thead id="theadAnalisis"></thead>
-    <tbody id="tbodyAnalisis"></tbody>
+  <!-- TABLA ANÁLISIS (generada por JS) -->
+  <table class="tabla-analisis">
+    <thead id="thead"></thead>
+    <tbody id="tbody"></tbody>
   </table>
 
-  <!-- RECLAMO Y OBSERVACIONES -->
+  <!-- RECLAMO -->
   <table class="tabla-inferior">
-    <tr>
-      <td>Motivo de reclamo</td>
-      <td id="motivoReclamo"></td>
-    </tr>
-    <tr>
-      <td>Precintos cortados</td>
-      <td id="precintos"></td>
-    </tr>
-    <tr>
-      <td>Observaciones</td>
-      <td id="observaciones"></td>
-    </tr>
+    <tr><td class="label">Motivo de reclamo</td><td id="motivoReclamo"></td></tr>
+    <tr><td class="label">Precintos cortados</td><td id="precintos"></td></tr>
+    <tr><td class="label">Observaciones</td><td id="observaciones"></td></tr>
   </table>
 
   <!-- NOTA -->
-  <div class="nota">
-    <em>El muestreo es realizado según Norma IRAM 5502</em>
-  </div>
+  <div class="nota"><em>El muestreo es realizado según Norma IRAM 5502</em></div>
 
   <!-- FIRMAS -->
   <div class="footer-firmas">
-    <div class="firma">
-      <div>Elaboró:</div>
-      <div class="firma-rol">JEFE DE CALIDAD</div>
-    </div>
-    <div class="firma">
-      <div>Aprobó:</div>
-      <div class="firma-rol">GERENTE DE PLANTA</div>
-    </div>
+    <div class="firma"><div>Elaboró:</div><div class="firma-rol">JEFE DE CALIDAD</div></div>
+    <div class="firma"><div>Aprobó:</div><div class="firma-rol">GERENTE DE PLANTA</div></div>
     <div class="pagina">Página 1 de 1</div>
   </div>
 
 <script>
-  // ── UTILIDADES ──────────────────────────────────────────────
+  // ── CATÁLOGO COMPLETO DE DETERMINACIONES ──────────────────────────────
+  // Fuente: Listado_determinaciones.csv
+  // Clave debe coincidir EXACTAMENTE con lo que AppSheet pasa en &determinaciones=
+  const CATALOGO = {
+    "Acidez":                        { metodo: "IRAM 5512",              unidad: "g Oleico/100 g" },
+    "Humedad":                       { metodo: "IRAM 5510",              unidad: "%"              },
+    "Sedimentos":                    { metodo: "IRAM 5521",              unidad: "%"              },
+    "Fosforo":                       { metodo: "ISO 10540-1",            unidad: "mg/kg"          },
+    "Densidad":                      { metodo: "ASTM D4052",             unidad: "g/cm3"          },
+    "Concentracion":                 { metodo: "",                       unidad: "%"              },
+    "I. Acidez":                     { metodo: "ASTM D4928-12",         unidad: "mg/kg"          },
+    "Glicerol":                      { metodo: "BS-5711-3 1979",        unidad: "%"              },
+    "MONG":                          { metodo: "BS-5711-9/ISO 2464",    unidad: "%"              },
+    "Cenizas":                       { metodo: "BS-5711 6 1979",        unidad: "%"              },
+    "Azufre":                        { metodo: "ASTM 5453",             unidad: "mg/kg"          },
+    "Metanol":                       { metodo: "EN 14110",              unidad: "%"              },
+    "pH":                            { metodo: "",                       unidad: "N/A"            },
+    "Jabones":                       { metodo: "IRAM 5599",             unidad: "mg/kg"          },
+    "Centrifugado":                  { metodo: "",                       unidad: "%"              },
+    "Indice de Iodo":                { metodo: "",                       unidad: ""               },
+    "Material insaponificable":      { metodo: "",                       unidad: ""               },
+    "MIU":                           { metodo: "",                       unidad: ""               },
+    "Monogliceridos":                { metodo: "EN 14105",              unidad: "mg/kg"          },
+    "Digliceridos":                  { metodo: "EN 14105",              unidad: "mg/kg"          },
+    "Triglicerido":                  { metodo: "EN 14105",              unidad: "mg/kg"          },
+    "Glicerol libre":                { metodo: "EN 14105",              unidad: "mg/kg"          },
+    "Glicerol total":                { metodo: "EN 14105",              unidad: "mg/kg"          },
+    "Estabilidad oxidativa":         { metodo: "EN 14112",              unidad: "Horas"          },
+    "Contenido de ester":            { metodo: "EN 14103",              unidad: "% m/m"          },
+    "Metil ester acido linolenico":  { metodo: "EN 14103",              unidad: "% m/m"          },
+    "CSFT":                          { metodo: "ASTM D7501-12a",        unidad: "Segundos"       },
+    "Punto de enturbiamiento":       { metodo: "ASTM D2500-16b",        unidad: "°C"             },
+    "Viscosidad cinematica 40":      { metodo: "ASTM D445-15a",         unidad: "CST"            },
+    "Contaminacion total":           { metodo: "EN 12662",              unidad: "mg/kg"          },
+    "Materia Grasa":                 { metodo: "IRAM 5503",             unidad: "%"              },
+  };
+
+  // ── UTILIDADES ────────────────────────────────────────────────────────
   function param(name) {
     const r = new RegExp('[?&]' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^&#]*)');
     const m = r.exec(location.search);
@@ -341,8 +274,29 @@
     if (el) el.textContent = val;
   }
 
-  // ── DATOS GENERALES ─────────────────────────────────────────
-  function cargarGeneral() {
+  function mkTh(text) {
+    const el = document.createElement('th');
+    el.textContent = text;
+    return el;
+  }
+
+  // ── DETECTAR OFF-SPEC ─────────────────────────────────────────────────
+  // Soporta: "< 1", "> 99.7", "< 0.15", "1.0 - 1.6"
+  function esOffSpec(valor, espec) {
+    if (isNaN(valor) || !espec) return false;
+    espec = espec.trim();
+    const lt = espec.match(/^<\s*([\d.,]+)/);
+    const gt = espec.match(/^>\s*([\d.,]+)/);
+    const rng = espec.match(/^([\d.,]+)\s*[-–]\s*([\d.,]+)/);
+    if (lt)  return valor >= parseFloat(lt[1].replace(',', '.'));
+    if (gt)  return valor <= parseFloat(gt[1].replace(',', '.'));
+    if (rng) return valor < parseFloat(rng[1].replace(',', '.')) || valor > parseFloat(rng[2].replace(',', '.'));
+    return false;
+  }
+
+  // ── RENDER ────────────────────────────────────────────────────────────
+  function render() {
+    // Datos generales
     set('producto',      param('producto'));
     set('numero',        param('numero'));
     set('fecha',         param('fecha'));
@@ -354,78 +308,60 @@
     set('chasis',        param('chasis'));
     set('motivoReclamo', param('motivoReclamo'));
     set('precintos',     param('precintos'));
-    set('observaciones', param('observaciones') || '');
-  }
+    set('observaciones', param('observaciones'));
 
-  // ── TABLA DE MÉTODOS Y RESULTADOS ───────────────────────────
-  // URL espera:
-  //   determinaciones = "ACIDEZ,HUMEDAD,SEDIMENTOS"
-  //   metodo_ACIDEZ   = "IRAM 5512"
-  //   espec_ACIDEZ    = "< 1"
-  //   unidad_ACIDEZ   = "%"
-  //   muestras        = "1|0.35|747|0.00, 2|0.40|800|0.01"  (pipe=cols, coma=filas)
-
-  function cargarTabla() {
+    // Determinaciones
     const detsRaw = param('determinaciones');
     if (!detsRaw) return;
-
     const dets = detsRaw.split(',').map(d => d.trim()).filter(Boolean);
 
-    const thead = document.getElementById('theadAnalisis');
-    const tbody = document.getElementById('tbodyAnalisis');
+    const thead = document.getElementById('thead');
+    const tbody = document.getElementById('tbody');
 
-    // ── Fila MÉTODO
-    const trMetodo = document.createElement('tr');
-    trMetodo.appendChild(th('MÉTODO'));
-    dets.forEach(d => trMetodo.appendChild(th(param('metodo_' + d) || '')));
-    thead.appendChild(trMetodo);
+    // Filas de cabecera: MÉTODO, ESPECIFICACIÓN, UNIDAD, MUESTRA (nombre det.)
+    const filasMeta = ['MÉTODO', 'ESPECIFICACIÓN', 'UNIDAD'];
+    filasMeta.forEach(label => {
+      const tr = document.createElement('tr');
+      tr.appendChild(mkTh(label));
+      dets.forEach(d => {
+        const cat = CATALOGO[d] || {};
+        let val = '';
+        if (label === 'MÉTODO')         val = cat.metodo || '';
+        if (label === 'ESPECIFICACIÓN') val = param('espec_' + d) || '';
+        if (label === 'UNIDAD')         val = cat.unidad || '';
+        tr.appendChild(mkTh(val));
+      });
+      thead.appendChild(tr);
+    });
 
-    // ── Fila ESPECIFICACIÓN
-    const trEspec = document.createElement('tr');
-    trEspec.appendChild(th('ESPECIFICACIÓN'));
-    dets.forEach(d => trEspec.appendChild(th(param('espec_' + d) || '')));
-    thead.appendChild(trEspec);
-
-    // ── Fila UNIDAD
-    const trUnidad = document.createElement('tr');
-    trUnidad.appendChild(th('UNIDAD'));
-    dets.forEach(d => trUnidad.appendChild(th(param('unidad_' + d) || '')));
-    thead.appendChild(trUnidad);
-
-    // ── Fila MUESTRA (header)
+    // Fila header con nombres de determinaciones
     const trHeader = document.createElement('tr');
-    trHeader.appendChild(th('MUESTRA'));
-    dets.forEach(d => trHeader.appendChild(th(d)));
+    trHeader.appendChild(mkTh('MUESTRA'));
+    dets.forEach(d => trHeader.appendChild(mkTh(d.toUpperCase())));
     thead.appendChild(trHeader);
 
-    // ── Filas de resultados
+    // Filas de resultados
+    // URL: &muestras=CIST1|0.35|747|0.00;CIST2|0.38|820|0.01
+    // Separador de filas: ";" — separador de celdas: "|"
     const muestrasRaw = param('muestras');
     if (!muestrasRaw) return;
 
-    const filas = muestrasRaw.split(',').map(f => f.trim()).filter(Boolean);
-    filas.forEach(fila => {
+    muestrasRaw.split(';').map(f => f.trim()).filter(Boolean).forEach(fila => {
       const celdas = fila.split('|');
       const tr = document.createElement('tr');
 
-      // Primera celda: número de muestra
       const tdMuestra = document.createElement('td');
       tdMuestra.textContent = celdas[0] || '';
       tr.appendChild(tdMuestra);
 
-      // Resto: valores de cada determinación
       dets.forEach((d, i) => {
         const td = document.createElement('td');
-        const valor = celdas[i + 1] !== undefined ? celdas[i + 1].trim() : '';
-        td.textContent = valor;
-
-        // Resaltar off-spec comparando con especificación
+        const val = (celdas[i + 1] || '').trim();
+        td.textContent = val;
         const especRaw = param('espec_' + d);
-        if (especRaw && valor !== '') {
-          if (esOffSpec(parseFloat(valor), especRaw)) {
-            td.classList.add('off-spec');
-          }
+        if (especRaw && val !== '' && esOffSpec(parseFloat(val.replace(',', '.')), especRaw)) {
+          td.classList.add('off-spec');
         }
-
         tr.appendChild(td);
       });
 
@@ -433,33 +369,7 @@
     });
   }
 
-  function th(text) {
-    const el = document.createElement('th');
-    el.textContent = text;
-    return el;
-  }
-
-  // ── DETECTAR OFF-SPEC ────────────────────────────────────────
-  // Soporta: "< 1", "> 99.7", "< 0.15", "1 - 1.6"
-  function esOffSpec(valor, espec) {
-    if (isNaN(valor)) return false;
-    espec = espec.trim();
-
-    const menorQ = espec.match(/^<\s*([\d.,]+)/);
-    const mayorQ = espec.match(/^>\s*([\d.,]+)/);
-    const rango  = espec.match(/^([\d.,]+)\s*[-–]\s*([\d.,]+)/);
-
-    if (menorQ) return valor >= parseFloat(menorQ[1].replace(',', '.'));
-    if (mayorQ) return valor <= parseFloat(mayorQ[1].replace(',', '.'));
-    if (rango)  return valor < parseFloat(rango[1].replace(',', '.')) || valor > parseFloat(rango[2].replace(',', '.'));
-    return false;
-  }
-
-  // ── INIT ────────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    cargarGeneral();
-    cargarTabla();
-  });
+  document.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
 </html>
