@@ -1,355 +1,465 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Calidad de Materias Primas</title>
-    <style>
-        @page {
-            size: A4 portrait;
-            margin: 0;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            font-size: 14px;
-            width: 210mm; /* A4 width */
-            height: 297mm; /* A4 height */
-            box-sizing: border-box;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #000;
-            padding-bottom: 10px;
-        }
-        .registro-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        .registro-item {
-            margin-bottom: 5px;
-        }
-        .main-info {
-            margin-bottom: 20px;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        .data-table th, .data-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: center;
-        }
-        .data-table th {
-            background-color: #f2f2f2;
-        }
-        .footer {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .signature {
-            width: 45%;
-            text-align: center;
-            border-top: 1px solid #000;
-            padding-top: 5px;
-        }
-        .observation-box {
-            border: 1px solid #000;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .page-info {
-            text-align: right;
-            margin-top: 30px;
-            font-size: 12px;
-        }
-        .reclamo {
-            margin: 15px 0;
-        }
-        /* Media query for print */
-        @media print {
-            html, body {
-                width: 210mm;
-                height: 297mm;
-            }
-            .page {
-                margin: 0;
-                border: initial;
-                border-radius: initial;
-                width: initial;
-                min-height: initial;
-                box-shadow: initial;
-                background: initial;
-                page-break-after: always;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificado de Análisis - Materias Primas</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 15mm 15mm 15mm 15mm;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      color: #1a1a1a;
+      background: #fff;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 15mm;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1.5px solid #1a1a1a;
+      margin-bottom: 0;
+    }
+
+    .header-logo {
+      width: 80px;
+      padding: 8px 12px;
+      border-right: 1.5px solid #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .header-title {
+      flex: 1;
+      text-align: center;
+      padding: 8px 20px;
+    }
+
+    .header-title h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+
+    /* ── TABLA DATOS GENERALES ── */
+    .tabla-general {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #1a1a1a;
+      border-top: none;
+      margin-bottom: 0;
+    }
+
+    .tabla-general tr td {
+      border: 0.5px solid #1a1a1a;
+      padding: 5px 10px;
+    }
+
+    .tabla-general tr td:first-child {
+      font-weight: 700;
+      width: 38%;
+      background: #f5f5f5;
+    }
+
+    /* ── TABLA MÉTODOS Y RESULTADOS ── */
+    .tabla-analisis {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #1a1a1a;
+      border-top: none;
+      margin-bottom: 0;
+    }
+
+    .tabla-analisis th,
+    .tabla-analisis td {
+      border: 0.5px solid #1a1a1a;
+      padding: 5px 8px;
+      text-align: center;
+    }
+
+    .tabla-analisis th:first-child,
+    .tabla-analisis td:first-child {
+      text-align: left;
+      background: #f5f5f5;
+      font-weight: 700;
+      width: 110px;
+    }
+
+    .tabla-analisis thead th {
+      background: #f5f5f5;
+      font-weight: 700;
+    }
+
+    .tabla-analisis tbody td {
+      font-weight: 400;
+      background: #fff;
+    }
+
+    .tabla-analisis tbody td:first-child {
+      background: #f5f5f5;
+    }
+
+    /* ── OFF-SPEC ── */
+    .off-spec {
+      background-color: #fff3cd !important;
+      font-weight: 700 !important;
+      color: #7d4e00;
+    }
+
+    /* ── SECCIÓN RECLAMO ── */
+    .tabla-inferior {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #1a1a1a;
+      border-top: none;
+      margin-bottom: 0;
+    }
+
+    .tabla-inferior td {
+      border: 0.5px solid #1a1a1a;
+      padding: 7px 10px;
+      vertical-align: top;
+    }
+
+    .tabla-inferior td:first-child {
+      width: 130px;
+      font-weight: 400;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    .tabla-inferior td:last-child {
+      background: #fff;
+      min-height: 30px;
+    }
+
+    /* ── NOTA ── */
+    .nota {
+      border: 1.5px solid #1a1a1a;
+      border-top: none;
+      padding: 7px 10px;
+      font-style: italic;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    /* ── FOOTER FIRMAS ── */
+    .footer-firmas {
+      display: flex;
+      border: 1.5px solid #1a1a1a;
+      border-top: none;
+    }
+
+    .firma {
+      flex: 1;
+      text-align: center;
+      padding: 18px 10px 8px;
+      font-size: 10px;
+      border-right: 0.5px solid #1a1a1a;
+    }
+
+    .firma:last-child {
+      border-right: none;
+    }
+
+    .firma-rol {
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .pagina {
+      flex: 0.6;
+      text-align: center;
+      padding: 18px 10px 8px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body {
+        padding: 0;
+        width: 100%;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+
+    /* ── BOTÓN IMPRIMIR ── */
+    .btn-print {
+      display: block;
+      margin: 16px auto;
+      padding: 10px 28px;
+      background: #2d5016;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-print:hover {
+      background: #3d6b1e;
+    }
+
+    @media print {
+      .btn-print { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h2>REGISTRO</h2>
-        <div class="registro-info">
-            <div class="registro-item">Registro N°: <span id="registroNum">118</span></div>
-            <div class="registro-item">Código: <span id="codigo">RG - 118</span></div>
-            <div class="registro-item">Reporte de calidad de materias primas</div>
-            <div class="registro-item">Revisión: <span id="revision">00</span></div>
-            <div class="registro-item">Fecha: <span id="fechaRegistro">21/06/2019</span></div>
-            <div class="registro-item">v<span id="version">6</span></div>
-        </div>
+
+  <button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEgKomyV9IoGA/company-logo_200_200/company-logo_200_200/0/1631716602142?e=2147483647&v=beta&t=ZXshAMvNx7akSLYXQVDHM6LgVG8en4IZgVEebaTEZX4" alt="Logo GBE" />
     </div>
-
-    <div class="main-info">
-        <div class="info-grid">
-            <div class="registro-item">PRODUCTO <span id="producto"></span></div>
-            <div class="registro-item">N° ANÁLISIS <span id="numero"></span></div>
-            <div class="registro-item">FECHA <span id="fecha"></span></div>
-            <div class="registro-item">PROCEDENCIA <span id="proveedor"></span></div>
-            <div class="registro-item">N° DE REMITO <span id="remito"></span></div>
-            <div class="registro-item">TRANSPORTE <span id="transporte"></span></div>
-            <div class="registro-item">CHOFER <span id="chofer"></span></div>
-            <div class="registro-item">DNI <span id="dni">2</span></div>
-            <div class="registro-item">PATENTE (CHASIS) <span id="chasis"></span></div>
-        </div>
+    <div class="header-title">
+      <h1>CERTIFICADO DE ANÁLISIS<br>MATERIAS PRIMAS</h1>
     </div>
+  </div>
 
-    <div id="metodoEspecificacionContainer">
-        <table class="data-table" id="metodoTable">
-            <thead>
-                <tr>
-                    <th>MÉTODO</th>
-                    <th id="metodo1">IRAM 5512</th>
-                    <th id="metodo2">IRAM 5510</th>
-                    <th id="metodo3">IRAM 5521</th>
-                </tr>
-                <tr>
-                    <th>ESPECIFICACIÓN</th>
-                    <th id="especificacion1">< 1</th>
-                    <th id="especificacion2">< 2000</th>
-                    <th id="especificacion3">< 0.15</th>
-                </tr>
-                <tr>
-                    <th>UNIDAD</th>
-                    <th id="unidad1">%</th>
-                    <th id="unidad2">PPM</th>
-                    <th id="unidad3">%</th>
-                </tr>
-            </thead>
-        </table>
+  <!-- DATOS GENERALES -->
+  <table class="tabla-general">
+    <tr>
+      <td><strong>PRODUCTO</strong></td>
+      <td id="producto"></td>
+    </tr>
+    <tr>
+      <td><strong>N° ANÁLISIS</strong></td>
+      <td id="numero"></td>
+    </tr>
+    <tr>
+      <td><strong>FECHA</strong></td>
+      <td id="fecha"></td>
+    </tr>
+    <tr>
+      <td><strong>PROCEDENCIA</strong></td>
+      <td id="proveedor"></td>
+    </tr>
+    <tr>
+      <td><strong>N° DE REMITO</strong></td>
+      <td id="remito"></td>
+    </tr>
+    <tr>
+      <td><strong>TRANSPORTE</strong></td>
+      <td id="transporte"></td>
+    </tr>
+    <tr>
+      <td><strong>CHOFER</strong></td>
+      <td id="chofer"></td>
+    </tr>
+    <tr>
+      <td><strong>DNI</strong></td>
+      <td id="dni"></td>
+    </tr>
+    <tr>
+      <td><strong>PATENTE (CHASIS)</strong></td>
+      <td id="chasis"></td>
+    </tr>
+  </table>
+
+  <!-- TABLA MÉTODOS + RESULTADOS -->
+  <table class="tabla-analisis" id="tablaAnalisis">
+    <thead id="theadAnalisis"></thead>
+    <tbody id="tbodyAnalisis"></tbody>
+  </table>
+
+  <!-- RECLAMO Y OBSERVACIONES -->
+  <table class="tabla-inferior">
+    <tr>
+      <td>Motivo de reclamo</td>
+      <td id="motivoReclamo"></td>
+    </tr>
+    <tr>
+      <td>Precintos cortados</td>
+      <td id="precintos"></td>
+    </tr>
+    <tr>
+      <td>Observaciones</td>
+      <td id="observaciones"></td>
+    </tr>
+  </table>
+
+  <!-- NOTA -->
+  <div class="nota">
+    <em>El muestreo es realizado según Norma IRAM 5502</em>
+  </div>
+
+  <!-- FIRMAS -->
+  <div class="footer-firmas">
+    <div class="firma">
+      <div>Elaboró:</div>
+      <div class="firma-rol">JEFE DE CALIDAD</div>
     </div>
-
-    <div id="resultadosContainer">
-        <table class="data-table" id="resultadosTable">
-            <thead>
-                <tr id="headerRow">
-                    <th>MUESTRA</th>
-                    <th>ACIDEZ</th>
-                    <th>HUMEDAD</th>
-                    <th>SEDIMENTOS</th>
-                    <th>FÓSFORO</th>
-                    <th>GLICEROL</th>
-                    <th>CENIZAS</th>
-                    <th>MONG</th>
-                    <th>DENSIDAD</th>
-                    <th>CONCENTRACIÓN</th>
-                    <th>SEDIMENTOS</th>
-                </tr>
-            </thead>
-            <tbody id="resultadosBody">
-                <!-- Las filas se generarán dinámicamente con JavaScript -->
-            </tbody>
-        </table>
+    <div class="firma">
+      <div>Aprobó:</div>
+      <div class="firma-rol">GERENTE DE PLANTA</div>
     </div>
+    <div class="pagina">Página 1 de 1</div>
+  </div>
 
-    <div class="reclamo">
-        <strong>Motivo de reclamo:</strong> <span id="motivoReclamo"></span>
-        <strong>Precintos cortados:</strong> <span id="precintos"></span>
-    </div>
+<script>
+  // ── UTILIDADES ──────────────────────────────────────────────
+  function param(name) {
+    const r = new RegExp('[?&]' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^&#]*)');
+    const m = r.exec(location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+  }
 
-    <div class="observation-box">
-        <strong>Observaciones:</strong>
-        <div id="observaciones">El muestreo es realizado según Norma IRAM 5502</div>
-    </div>
+  function set(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
 
-    <div class="footer">
-        <div class="signature">
-            <div>Elaboró:</div>
-            <div>JEFE DE CALIDAD</div>
-        </div>
-        <div class="signature">
-            <div>Aprobó:</div>
-            <div>GERENTE DE PLANTA</div>
-        </div>
-    </div>
+  // ── DATOS GENERALES ─────────────────────────────────────────
+  function cargarGeneral() {
+    set('producto',      param('producto'));
+    set('numero',        param('numero'));
+    set('fecha',         param('fecha'));
+    set('proveedor',     param('proveedor'));
+    set('remito',        param('remito'));
+    set('transporte',    param('transporte'));
+    set('chofer',        param('chofer'));
+    set('dni',           param('dni'));
+    set('chasis',        param('chasis'));
+    set('motivoReclamo', param('motivoReclamo'));
+    set('precintos',     param('precintos'));
+    set('observaciones', param('observaciones') || '');
+  }
 
-    <div class="page-info">
-        Página <span>1</span> de <span>1</span>
-    </div>
+  // ── TABLA DE MÉTODOS Y RESULTADOS ───────────────────────────
+  // URL espera:
+  //   determinaciones = "ACIDEZ,HUMEDAD,SEDIMENTOS"
+  //   metodo_ACIDEZ   = "IRAM 5512"
+  //   espec_ACIDEZ    = "< 1"
+  //   unidad_ACIDEZ   = "%"
+  //   muestras        = "1|0.35|747|0.00, 2|0.40|800|0.01"  (pipe=cols, coma=filas)
 
-    <script>
-    // Función para obtener parámetros de la URL
-    function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    }
+  function cargarTabla() {
+    const detsRaw = param('determinaciones');
+    if (!detsRaw) return;
 
-    // Función para cargar datos básicos del reporte
-    function cargarDatosBasicos() {
-        const campos = [
-            'producto', 'numero', 'fecha', 'proveedor', 'remito',
-            'transporte', 'chofer', 'dni', 'chasis', 'motivoReclamo',
-            'precintos', 'observaciones'
-        ];
+    const dets = detsRaw.split(',').map(d => d.trim()).filter(Boolean);
 
-        campos.forEach(campo => {
-            const valor = getUrlParameter(campo);
-            if (valor && document.getElementById(campo)) {
-                document.getElementById(campo).textContent = valor;
-            }
-        });
-    }
+    const thead = document.getElementById('theadAnalisis');
+    const tbody = document.getElementById('tbodyAnalisis');
 
-    // Función para cargar resultados desde el nuevo formato de URL
-    function cargarResultados() {
-        try {
-            const muestrasParam = getUrlParameter('muestras');
-            const paramDeterminaciones = getUrlParameter('determinacionesMostrar');
+    // ── Fila MÉTODO
+    const trMetodo = document.createElement('tr');
+    trMetodo.appendChild(th('MÉTODO'));
+    dets.forEach(d => trMetodo.appendChild(th(param('metodo_' + d) || '')));
+    thead.appendChild(trMetodo);
 
-            const columnas = ['MUESTRA', 'ACIDEZ', 'HUMEDAD', 'SEDIMENTOS', 'FÓSFORO', 'DENSIDAD', 'CONCENTRACIÓN', 'I. ACIDEZ', 'GLICEROL', 'MONG', 'CENIZAS', 'AZUFRE', 'METANOL', 'pH'];
+    // ── Fila ESPECIFICACIÓN
+    const trEspec = document.createElement('tr');
+    trEspec.appendChild(th('ESPECIFICACIÓN'));
+    dets.forEach(d => trEspec.appendChild(th(param('espec_' + d) || '')));
+    thead.appendChild(trEspec);
 
-            const columnasPermitidas = paramDeterminaciones
-                ? paramDeterminaciones.split(',').map(e => e.trim().toUpperCase())
-                : [];
+    // ── Fila UNIDAD
+    const trUnidad = document.createElement('tr');
+    trUnidad.appendChild(th('UNIDAD'));
+    dets.forEach(d => trUnidad.appendChild(th(param('unidad_' + d) || '')));
+    thead.appendChild(trUnidad);
 
-            if (!muestrasParam) {
-                console.log("No hay datos de muestras en la URL");
-                return;
-            }
+    // ── Fila MUESTRA (header)
+    const trHeader = document.createElement('tr');
+    trHeader.appendChild(th('MUESTRA'));
+    dets.forEach(d => trHeader.appendChild(th(d)));
+    thead.appendChild(trHeader);
 
-            const filas = muestrasParam.split(',');
-            const resultados = [];
+    // ── Filas de resultados
+    const muestrasRaw = param('muestras');
+    if (!muestrasRaw) return;
 
-            filas.forEach((fila) => {
-                if (!fila.trim()) return;
-                const celdas = fila.split('|');
-                const resultado = {};
-                celdas.forEach((valor, i) => {
-                    if (i < columnas.length) {
-                        resultado[columnas[i]] = valor.trim();
-                    }
-                });
-                resultados.push(resultado);
-            });
+    const filas = muestrasRaw.split(',').map(f => f.trim()).filter(Boolean);
+    filas.forEach(fila => {
+      const celdas = fila.split('|');
+      const tr = document.createElement('tr');
 
-            const headerRow = document.getElementById('headerRow');
-            headerRow.innerHTML = '';
-            headerRow.appendChild(createTh('MUESTRA'));
-            columnasPermitidas.forEach(columna => {
-                if (columnas.includes(columna)) {
-                    headerRow.appendChild(createTh(columna));
-                }
-            });
+      // Primera celda: número de muestra
+      const tdMuestra = document.createElement('td');
+      tdMuestra.textContent = celdas[0] || '';
+      tr.appendChild(tdMuestra);
 
-            const tbody = document.getElementById('resultadosBody');
-            tbody.innerHTML = '';
+      // Resto: valores de cada determinación
+      dets.forEach((d, i) => {
+        const td = document.createElement('td');
+        const valor = celdas[i + 1] !== undefined ? celdas[i + 1].trim() : '';
+        td.textContent = valor;
 
-            resultados.forEach(resultado => {
-                const row = document.createElement('tr');
-                const muestraTd = document.createElement('td');
-                muestraTd.textContent = resultado['MUESTRA'] || '';
-                row.appendChild(muestraTd);
-
-                columnasPermitidas.forEach(columna => {
-                    const td = document.createElement('td');
-                    td.textContent = resultado[columna] || '';
-                    row.appendChild(td);
-                });
-
-                tbody.appendChild(row);
-            });
-
-            const columnasConDatos = new Set(['MUESTRA', ...columnasPermitidas]);
-            actualizarTablaMetodos(columnasConDatos);
-
-        } catch (error) {
-            console.error("Error al procesar los datos de muestras:", error);
+        // Resaltar off-spec comparando con especificación
+        const especRaw = param('espec_' + d);
+        if (especRaw && valor !== '') {
+          if (esOffSpec(parseFloat(valor), especRaw)) {
+            td.classList.add('off-spec');
+          }
         }
-    }
 
-    // Función para crear elementos th
-    function createTh(text) {
-        const th = document.createElement('th');
-        th.textContent = text;
-        return th;
-    }
+        tr.appendChild(td);
+      });
 
-    // Función para actualizar la tabla de métodos según las columnas con datos
-    function actualizarTablaMetodos(columnasConDatos) {
-        const mapeoColumnasMetodos = {
-            'ACIDEZ': 1,
-            'HUMEDAD': 2,
-            'SEDIMENTOS': 3,
-            'FÓSFORO': 4,
-            'GLICEROL': 5,
-            'CENIZAS': 6,
-            'MONG': 7,
-            'DENSIDAD': 8,
-            'CONCENTRACIÓN': 9
-        };
-
-        const metodosTable = document.getElementById('metodoTable');
-        const rows = metodosTable.querySelectorAll('tr');
-
-        rows.forEach(row => {
-            const cells = row.querySelectorAll('th');
-            for (let i = 1; i < cells.length; i++) {
-                row.removeChild(cells[i]);
-            }
-
-            Array.from(columnasConDatos)
-                .filter(col => col !== 'MUESTRA' && mapeoColumnasMetodos[col])
-                .forEach(columna => {
-                    const index = mapeoColumnasMetodos[columna];
-                    const newCell = document.createElement('th');
-
-                    if (row.firstChild.textContent === 'MÉTODO') {
-                        const metodo = getUrlParameter(`metodo${index}`) || `MÉTODO ${index}`;
-                        newCell.textContent = metodo;
-                        newCell.id = `metodo${index}`;
-                    } else if (row.firstChild.textContent === 'ESPECIFICACIÓN') {
-                        const especificacion = getUrlParameter(`especificacion${index}`) || '';
-                        newCell.textContent = especificacion;
-                        newCell.id = `especificacion${index}`;
-                    } else if (row.firstChild.textContent === 'UNIDAD') {
-                        const unidad = getUrlParameter(`unidad${index}`) || '';
-                        newCell.textContent = unidad;
-                        newCell.id = `unidad${index}`;
-                    }
-
-                    row.appendChild(newCell);
-                });
-        });
-    }
-
-    // Inicializar el documento
-    document.addEventListener('DOMContentLoaded', function () {
-        cargarDatosBasicos();
-        cargarResultados();
+      tbody.appendChild(tr);
     });
-</script>
+  }
 
+  function th(text) {
+    const el = document.createElement('th');
+    el.textContent = text;
+    return el;
+  }
+
+  // ── DETECTAR OFF-SPEC ────────────────────────────────────────
+  // Soporta: "< 1", "> 99.7", "< 0.15", "1 - 1.6"
+  function esOffSpec(valor, espec) {
+    if (isNaN(valor)) return false;
+    espec = espec.trim();
+
+    const menorQ = espec.match(/^<\s*([\d.,]+)/);
+    const mayorQ = espec.match(/^>\s*([\d.,]+)/);
+    const rango  = espec.match(/^([\d.,]+)\s*[-–]\s*([\d.,]+)/);
+
+    if (menorQ) return valor >= parseFloat(menorQ[1].replace(',', '.'));
+    if (mayorQ) return valor <= parseFloat(mayorQ[1].replace(',', '.'));
+    if (rango)  return valor < parseFloat(rango[1].replace(',', '.')) || valor > parseFloat(rango[2].replace(',', '.'));
+    return false;
+  }
+
+  // ── INIT ────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    cargarGeneral();
+    cargarTabla();
+  });
+</script>
 </body>
 </html>
