@@ -30,10 +30,7 @@
       justify-content: center;
       min-width: 80px;
     }
-    .header-logo img {
-      width: 58px; height: 58px;
-      object-fit: contain;
-    }
+    .header-logo img { width: 58px; height: 58px; object-fit: contain; }
     .header-title {
       flex: 1;
       display: flex;
@@ -175,7 +172,26 @@
   </div>
 
 <script>
-  // ── CATÁLOGO: método y unidad por determinación ──────────────
+  // ── ORDEN FIJO de columnas en [muestras concat] ───────────────
+  // Posición 0 = Muestra (número), luego en orden:
+  const ORDEN_MUESTRAS = [
+    "Muestra",       // pos 0  — siempre primera
+    "Acidez",        // pos 1
+    "Humedad",       // pos 2
+    "Sedimentos",    // pos 3
+    "Fosforo",       // pos 4
+    "Densidad",      // pos 5
+    "Concentracion", // pos 6
+    "I. Acidez",     // pos 7
+    "Glicerol",      // pos 8
+    "MONG",          // pos 9
+    "Cenizas",       // pos 10
+    "Azufre",        // pos 11
+    "Metanol",       // pos 12
+    "pH"             // pos 13
+  ];
+
+  // ── CATÁLOGO: método y unidad ─────────────────────────────────
   const CATALOGO = {
     "Acidez":                       { metodo: "IRAM 5512",           unidad: "g Oleico/100 g" },
     "Humedad":                      { metodo: "IRAM 5510",           unidad: "%"              },
@@ -210,7 +226,7 @@
     "Materia Grasa":                { metodo: "IRAM 5503",           unidad: "%"              },
   };
 
-  // ── UTILIDADES ───────────────────────────────────────────────
+  // ── UTILIDADES ────────────────────────────────────────────────
   function param(name) {
     const r = new RegExp('[?&]' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^&#]*)');
     const m = r.exec(location.search);
@@ -229,14 +245,18 @@
   }
 
   // ── PARSEAR &especificaciones= ────────────────────────────────
-  // Formato: "Acidez|< 1;Humedad|< 2000;Sedimentos|< 0.15"
+  // Formato: "Acidez|< 1;Humedad|< 2000;Glicerol|> 85"
   function parsearEspecificaciones() {
     const raw = param('especificaciones');
     const mapa = {};
     if (!raw || raw === '-') return mapa;
     raw.split(';').forEach(par => {
-      const [det, espec] = par.split('|');
-      if (det && espec !== undefined) mapa[det.trim()] = espec.trim();
+      const idx = par.indexOf('|');
+      if (idx > -1) {
+        const det  = par.substring(0, idx).trim();
+        const espec = par.substring(idx + 1).trim();
+        mapa[det] = espec;
+      }
     });
     return mapa;
   }
@@ -245,10 +265,10 @@
   function esOffSpec(valor, espec) {
     if (isNaN(valor) || !espec) return false;
     espec = espec.trim();
+    const toF = s => parseFloat(s.replace(',', '.'));
     const lt  = espec.match(/^<\s*([\d.,]+)/);
     const gt  = espec.match(/^>\s*([\d.,]+)/);
     const rng = espec.match(/^([\d.,]+)\s*[-–]\s*([\d.,]+)/);
-    const toF = s => parseFloat(s.replace(',', '.'));
     if (lt)  return valor >= toF(lt[1]);
     if (gt)  return valor <= toF(gt[1]);
     if (rng) return valor < toF(rng[1]) || valor > toF(rng[2]);
@@ -260,7 +280,7 @@
     // Datos generales
     set('producto',      param('producto'));
     set('numero',        param('numero'));
-    set('fecha',         param('fecha'));
+    set('fecha',         formatearFecha(param('fecha')));
     set('proveedor',     param('proveedor'));
     set('remito',        param('remito'));
     set('transporte',    param('transporte'));
@@ -271,26 +291,27 @@
     set('precintos',     param('precintos'));
     set('observaciones', param('observaciones'));
 
-    // Determinaciones y especificaciones
-    const detsRaw = param('determinaciones');
+    // Determinaciones activas (las que aplican al producto)
+    const detsRaw = param('determinaciones') || param('determinacionesamostrar');
     if (!detsRaw || detsRaw === '-') return;
+    const dets = detsRaw.split(',').map(d => d.trim()).filter(Boolean);
 
-    const dets  = detsRaw.split(',').map(d => d.trim()).filter(Boolean);
+    // Especificaciones
     const specs = parsearEspecificaciones();
 
     const thead = document.getElementById('thead');
     const tbody = document.getElementById('tbody');
 
-    // Cabeceras: MÉTODO, ESPECIFICACIÓN, UNIDAD
+    // Cabeceras MÉTODO, ESPECIFICACIÓN, UNIDAD
     ['MÉTODO', 'ESPECIFICACIÓN', 'UNIDAD'].forEach(label => {
       const tr = document.createElement('tr');
       tr.appendChild(mkTh(label));
       dets.forEach(d => {
         const cat = CATALOGO[d] || {};
         let val = '';
-        if (label === 'MÉTODO')         val = cat.metodo  || '';
-        if (label === 'ESPECIFICACIÓN') val = specs[d]    || '';
-        if (label === 'UNIDAD')         val = cat.unidad  || '';
+        if (label === 'MÉTODO')         val = cat.metodo || '';
+        if (label === 'ESPECIFICACIÓN') val = specs[d]   || '';
+        if (label === 'UNIDAD')         val = cat.unidad || '';
         tr.appendChild(mkTh(val));
       });
       thead.appendChild(tr);
@@ -303,21 +324,30 @@
     thead.appendChild(trNames);
 
     // Filas de resultados
-    // Formato muestras: "CIST1|0.35|747|0.00;CIST2|0.38|820|0.01"
+    // muestras concat: orden fijo separado por | entre muestras por ;
     const muestrasRaw = param('muestras');
     if (!muestrasRaw || muestrasRaw === '-') return;
 
-    muestrasRaw.split(';').map(f => f.trim()).filter(Boolean).forEach(fila => {
+    // Separador entre muestras: ";" (nuevo) o "," (viejo fallback)
+    const sepMuestra = muestrasRaw.includes(';') ? ';' : ',';
+
+    muestrasRaw.split(sepMuestra).map(f => f.trim()).filter(Boolean).forEach(fila => {
       const celdas = fila.split('|');
+      // celdas[0] = número muestra, celdas[1..] = valores en ORDEN_MUESTRAS
       const tr = document.createElement('tr');
 
       const tdM = document.createElement('td');
       tdM.textContent = celdas[0] || '';
       tr.appendChild(tdM);
 
-      dets.forEach((d, i) => {
-        const td  = document.createElement('td');
-        const val = (celdas[i + 1] || '').trim();
+      // Para cada determinación activa, buscar su posición en ORDEN_MUESTRAS
+      dets.forEach(d => {
+        const td = document.createElement('td');
+        const posEnOrden = ORDEN_MUESTRAS.indexOf(d); // posición en array fijo
+        // pos 0 = Muestra (ya usada), pos 1+ = celdas[pos]
+        const val = posEnOrden > 0 && celdas[posEnOrden] !== undefined
+          ? celdas[posEnOrden].trim()
+          : '';
         td.textContent = val;
         if (specs[d] && val !== '' && esOffSpec(parseFloat(val.replace(',', '.')), specs[d])) {
           td.classList.add('off-spec');
@@ -329,7 +359,19 @@
     });
   }
 
+  // ── FORMATEAR FECHA ───────────────────────────────────────────
+  // Convierte "Wed Apr 15 2026 00:00:00 GMT-0300..." → "15/04/2026"
+  function formatearFecha(raw) {
+    if (!raw || raw === '-') return raw;
+    const d = new Date(raw);
+    if (isNaN(d.getTime())) return raw; // si no parsea, devuelve tal cual
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${dd}/${mm}/${yyyy}`;
+  }
+
   document.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
-</html>v
+</html>
