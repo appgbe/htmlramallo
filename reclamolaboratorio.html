@@ -6,6 +6,7 @@
   <title>Certificado de Análisis - Materias Primas</title>
   <style>
     @page { size: A4 portrait; margin: 12mm 14mm; }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -13,33 +14,51 @@
       --verde-med:  #4a8c2a;
       --verde-claro:#eaf3de;
       --dorado:     #e09a1a;
-      --gris-claro: #f7f7f5;
-      --gris-borde: #c8c8c4;
+      --gris-claro: #f2f2f0;
+      --gris-borde: #c0c0bc;
       --texto:      #1a1a1a;
       --texto-sec:  #555550;
     }
 
-    body {
+    html, body {
+      width: 210mm;
+      margin: 0 auto;
       font-family: Arial, sans-serif;
       font-size: 10.5px;
       color: var(--texto);
       background: #fff;
-      width: 210mm;
-      margin: 0 auto;
-      padding: 12mm 14mm;
+    }
+
+    /* Forzar colores en impresión */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* Layout principal: flex column ocupa toda la página */
+    .pagina {
+      min-height: 267mm; /* 297mm - 12mm*2 márgenes */
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .contenido {
+      flex: 1;
     }
 
     /* ── ENCABEZADO ── */
     .encabezado {
       display: flex;
       align-items: stretch;
-      border: 1.5px solid var(--verde);
+      border: 1.5px solid var(--gris-borde);
       margin-bottom: 10px;
     }
     .enc-logo {
       background: #fff;
       padding: 10px 14px;
-      border-right: 1.5px solid var(--verde);
+      border-right: 1.5px solid var(--gris-borde);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -60,62 +79,61 @@
       background: #fff;
     }
     .enc-titulo h1 {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       color: #1a1a1a;
       letter-spacing: 1px;
       text-transform: uppercase;
       text-align: center;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    /* ── DATOS DEL CAMIÓN ── */
+    /* ── DATOS DEL INGRESO ── */
     .seccion-camion {
       margin-bottom: 10px;
-      border: 1px solid var(--gris-borde);
-      border-radius: 2px;
+      border: 1.5px solid var(--gris-borde);
       overflow: hidden;
     }
     .seccion-titulo {
       background: var(--verde);
       color: #fff;
-      font-size: 9px;
+      font-size: 9.5px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 5px 12px;
     }
     .datos-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
+      gap: 10px 24px;
       background: var(--gris-claro);
-      padding: 10px 12px;
-      gap: 6px 20px;
+      padding: 12px 14px;
     }
     .dato-item {
       display: flex;
       flex-direction: column;
+      gap: 2px;
     }
     .dato-label {
       font-size: 8px;
       font-weight: 700;
       color: var(--verde);
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 1px;
     }
     .dato-valor {
-      font-size: 10.5px;
+      font-size: 12px;
+      font-weight: 600;
       color: var(--texto);
-      border-bottom: 0.5px solid var(--gris-borde);
-      padding-bottom: 2px;
+      border-bottom: 1px solid var(--gris-borde);
+      padding-bottom: 3px;
     }
 
     /* ── TABLA ANÁLISIS ── */
     .seccion-analisis {
       margin-bottom: 10px;
-      border: 1px solid var(--gris-borde);
+      border: 1.5px solid var(--gris-borde);
       overflow: hidden;
     }
     .tabla-analisis {
@@ -151,8 +169,6 @@
       color: var(--texto-sec);
       font-size: 10px;
     }
-
-    /* Fila de nombres de determinaciones */
     .fila-nombres th {
       background: var(--verde) !important;
       color: #fff !important;
@@ -163,18 +179,23 @@
       background: var(--verde) !important;
       color: #fff !important;
     }
-
-    /* off-spec */
     .off-spec {
       background-color: #fff3cd !important;
       font-weight: 700 !important;
-      color: #7d4e00;
+      color: #7d4e00 !important;
     }
 
-    /* ── SECCIÓN RECLAMO ── */
+    /* ── SEPARADOR ── */
+    .separador {
+      height: 3px;
+      background: var(--dorado);
+      margin: 0 0 10px 0;
+    }
+
+    /* ── RECLAMO ── */
     .seccion-reclamo {
       margin-bottom: 10px;
-      border: 1px solid var(--gris-borde);
+      border: 1.5px solid var(--gris-borde);
       overflow: hidden;
     }
     .tabla-reclamo {
@@ -188,33 +209,25 @@
     }
     .tabla-reclamo td.label {
       width: 130px;
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 700;
       color: var(--verde);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      background: #fff;
+      background: var(--gris-claro);
     }
     .tabla-reclamo td.valor {
       background: #fff;
-      min-height: 24px;
       font-size: 10.5px;
+      min-height: 22px;
     }
 
-    /* ── SEPARADOR DORADO ── */
-    .separador {
-      height: 3px;
-      background: var(--dorado);
-      margin: 0 0 10px 0;
-      border-radius: 1px;
-    }
-
-    /* ── FOOTER FIRMAS ── */
+    /* ── FOOTER — siempre al pie ── */
     .footer-firmas {
       width: 100%;
       border-collapse: collapse;
-      border: 1px solid var(--gris-borde);
-      margin-top: 10px;
+      border: 1.5px solid var(--gris-borde);
+      margin-top: auto;
     }
     .footer-firmas td {
       border: 0.5px solid var(--gris-borde);
@@ -225,10 +238,15 @@
       vertical-align: bottom;
       background: #fff;
     }
-    .footer-firmas td .firma-linea {
-      border-top: 0.5px solid var(--texto);
+    .firma-linea {
+      border-top: 1px solid var(--texto);
       width: 70%;
       margin: 0 auto 6px;
+    }
+    .firma-tipo {
+      font-size: 8.5px;
+      color: var(--texto-sec);
+      margin-bottom: 6px;
     }
     .firma-rol {
       font-weight: 700;
@@ -238,11 +256,6 @@
       color: #1a1a1a;
       margin-top: 3px;
     }
-    .firma-tipo {
-      font-size: 8.5px;
-      color: var(--texto-sec);
-      margin-bottom: 6px;
-    }
     .pagina-text {
       font-weight: 700;
       font-size: 10px;
@@ -250,96 +263,102 @@
     }
 
     @media print {
-      body { padding: 0; width: 100%; }
+      html, body { width: 100%; }
+      .pagina { min-height: 267mm; }
       @page { margin: 12mm 14mm; }
     }
   </style>
 </head>
 <body>
+<div class="pagina">
 
-  <!-- ENCABEZADO -->
-  <div class="encabezado">
-    <div class="enc-logo">
-      <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEgKomyV9IoGA/company-logo_200_200/company-logo_200_200/0/1631716602142?e=2147483647&v=beta&t=ZXshAMvNx7akSLYXQVDHM6LgVG8en4IZgVEebaTEZX4" alt="Logo GBE" />
-    </div>
-    <div class="enc-titulo">
-      <h1>Certificado de Análisis<br>Materias Primas</h1>
-    </div>
-  </div>
+  <div class="contenido">
 
-  <!-- DATOS DEL CAMIÓN -->
-  <div class="seccion-camion">
-    <div class="seccion-titulo">Información del ingreso</div>
-    <div class="datos-grid">
-      <div class="dato-item">
-        <span class="dato-label">Producto</span>
-        <span class="dato-valor" id="producto"></span>
+    <!-- ENCABEZADO -->
+    <div class="encabezado">
+      <div class="enc-logo">
+        <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEgKomyV9IoGA/company-logo_200_200/company-logo_200_200/0/1631716602142?e=2147483647&v=beta&t=ZXshAMvNx7akSLYXQVDHM6LgVG8en4IZgVEebaTEZX4" alt="Logo GBE" />
       </div>
-      <div class="dato-item">
-        <span class="dato-label">N° Análisis</span>
-        <span class="dato-valor" id="numero"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">Fecha</span>
-        <span class="dato-valor" id="fecha"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">Procedencia</span>
-        <span class="dato-valor" id="proveedor"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">N° de Remito</span>
-        <span class="dato-valor" id="remito"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">Transporte</span>
-        <span class="dato-valor" id="transporte"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">Chofer</span>
-        <span class="dato-valor" id="chofer"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">DNI</span>
-        <span class="dato-valor" id="dni"></span>
-      </div>
-      <div class="dato-item">
-        <span class="dato-label">Patente (Chasis)</span>
-        <span class="dato-valor" id="chasis"></span>
+      <div class="enc-titulo">
+        <h1>Certificado de Análisis<br>Materias Primas</h1>
       </div>
     </div>
-  </div>
 
-  <!-- TABLA ANÁLISIS -->
-  <div class="seccion-analisis">
-    <table class="tabla-analisis">
-      <thead id="thead"></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
+    <!-- DATOS DEL INGRESO -->
+    <div class="seccion-camion">
+      <div class="seccion-titulo">Información del ingreso</div>
+      <div class="datos-grid">
+        <div class="dato-item">
+          <span class="dato-label">Producto</span>
+          <span class="dato-valor" id="producto"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">N° Análisis</span>
+          <span class="dato-valor" id="numero"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">Fecha</span>
+          <span class="dato-valor" id="fecha"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">Procedencia</span>
+          <span class="dato-valor" id="proveedor"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">N° de Remito</span>
+          <span class="dato-valor" id="remito"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">Transporte</span>
+          <span class="dato-valor" id="transporte"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">Chofer</span>
+          <span class="dato-valor" id="chofer"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">DNI</span>
+          <span class="dato-valor" id="dni"></span>
+        </div>
+        <div class="dato-item">
+          <span class="dato-label">Patente (Chasis)</span>
+          <span class="dato-valor" id="chasis"></span>
+        </div>
+      </div>
+    </div>
 
-  <!-- SEPARADOR -->
-  <div class="separador"></div>
+    <!-- TABLA ANÁLISIS -->
+    <div class="seccion-analisis">
+      <table class="tabla-analisis">
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
 
-  <!-- RECLAMO -->
-  <div class="seccion-reclamo">
-    <table class="tabla-reclamo">
-      <tr>
-        <td class="label">Motivo de reclamo</td>
-        <td class="valor" id="motivoReclamo"></td>
-      </tr>
-      <tr>
-        <td class="label">Precintos cortados</td>
-        <td class="valor" id="precintos"></td>
-      </tr>
-      <tr>
-        <td class="label">Observaciones</td>
-        <td class="valor" id="observaciones"></td>
-      </tr>
-    </table>
-  </div>
+    <!-- SEPARADOR -->
+    <div class="separador"></div>
 
-  <!-- FIRMAS -->
+    <!-- RECLAMO -->
+    <div class="seccion-reclamo">
+      <table class="tabla-reclamo">
+        <tr>
+          <td class="label">Motivo de reclamo</td>
+          <td class="valor" id="motivoReclamo"></td>
+        </tr>
+        <tr>
+          <td class="label">Precintos cortados</td>
+          <td class="valor" id="precintos"></td>
+        </tr>
+        <tr>
+          <td class="label">Observaciones</td>
+          <td class="valor" id="observaciones"></td>
+        </tr>
+      </table>
+    </div>
+
+  </div><!-- fin .contenido -->
+
+  <!-- FOOTER SIEMPRE AL FINAL -->
   <table class="footer-firmas">
     <tr>
       <td>
@@ -357,6 +376,8 @@
       </td>
     </tr>
   </table>
+
+</div><!-- fin .pagina -->
 
 <script>
   const ORDEN_MUESTRAS = [
@@ -424,8 +445,11 @@
     const m = r.exec(location.search);
     return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
   }
-  function set(id, val) { const el = document.getElementById(id); if (el) el.textContent = (val && val !== '-') ? val : ''; }
-  function mkTh(text, cls) { const el = document.createElement('th'); el.textContent = text; if (cls) el.className = cls; return el; }
+  function set(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = (val && val !== '-') ? val : '';
+  }
+  function mkTh(text) { const el = document.createElement('th'); el.textContent = text; return el; }
   function normalizar(n) { const l = n.trim(); return ALIAS[l] !== undefined ? ALIAS[l] : l; }
 
   function parsearEspecificaciones() {
@@ -491,7 +515,8 @@
         if (label === 'MÉTODO')         val = cat.metodo || '';
         if (label === 'ESPECIFICACIÓN') val = specs[d]   || '';
         if (label === 'UNIDAD')         val = cat.unidad || '';
-        tr.appendChild(mkTh(val));
+        const th = mkTh(val);
+        tr.appendChild(th);
       });
       thead.appendChild(tr);
     });
