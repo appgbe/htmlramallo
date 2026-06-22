@@ -182,6 +182,27 @@
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
+    function formatearFechaDDMMYYYY(valor) {
+      if (!valor) return valor;
+
+      // Caso ISO: yyyy-mm-dd
+      let match = valor.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      if (match) {
+        const [, anio, mes, dia] = match;
+        return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${anio}`;
+      }
+
+      // Caso con separador / : se asume mm/dd/yyyy (formato típico de Date de JS o Sheets en inglés)
+      match = valor.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (match) {
+        const [, mes, dia] = match;
+        return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${match[3]}`;
+      }
+
+      // Si no matchea ningún patrón conocido, se devuelve sin modificar
+      return valor;
+    }
+
     const ids = ["lote","procedencia","fecha_analisis","estado_protocolo","ester","linolenico",
       "densidad","inflamacion","contaminacion","agua","monogliceridos","digliceridos","trigliceridos",
       "glicerol_libre","glicerol_total","indice_acidez","oxidativa","viscosidad","csft","enturbiamiento",
@@ -193,6 +214,12 @@
       const el = document.getElementById(id);
       if (el) el.textContent = getUrlParameter(id);
     });
+
+    // 1.b. Reformateamos la fecha de análisis a dd/mm/yyyy
+    const fechaEl = document.getElementById("fecha_analisis");
+    if (fechaEl) {
+      fechaEl.textContent = formatearFechaDDMMYYYY(fechaEl.textContent);
+    }
 
     // 2. Lógica especial para PROCEDENCIA según la EMPRESA
     const empresa = getUrlParameter("empresa");
