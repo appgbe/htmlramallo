@@ -395,7 +395,12 @@
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
             var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            if (results === null) return '';
+            var raw = results[1].replace(/\+/g, ' ');
+            // Decode only valid %XX sequences to avoid URIError with bare % characters
+            return raw.replace(/%([0-9A-Fa-f]{2})/g, function(_, hex) {
+                return String.fromCharCode(parseInt(hex, 16));
+            });
         }
 
         function assignValueToElement(id, paramName, defaultValue = '') {
