@@ -455,7 +455,7 @@ document.getElementById("ctdg").innerHTML = getUrlParameter('ctdg');
   // Se activa con dj=true (también acepta DJ=, y valores 1 / si / sí / yes / verdadero)
   (function () {
     var djParam = (getUrlParameter('dj') || getUrlParameter('DJ')).trim().toLowerCase();
-    var activa = ['true', '1', 'si', 'sí', 'yes', 'verdadero'].indexOf(djParam) !== -1;
+    var activa = ['y', 'true', '1', 'si', 'sí', 'yes', 'verdadero'].indexOf(djParam) !== -1;
     if (!activa) return;
 
     // Si falta un dato, deja una línea para completar a mano
