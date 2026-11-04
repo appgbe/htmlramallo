@@ -114,6 +114,64 @@
             padding-top: 10px;
             border-top: 1px solid #ccc;
         }
+
+        /* ---------- Declaración jurada kosher (2da página) ---------- */
+        .dj-page {
+            display: none;               /* se muestra solo si dj=true */
+            margin-top: 30px;
+            border: 2px solid #333;
+            padding: 30px;
+            border-radius: 8px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .dj-page.visible {
+            display: block;
+        }
+
+        .dj-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 25px 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .dj-page p {
+            text-align: justify;
+            margin: 0 0 16px 0;
+        }
+
+        .dj-campo {
+            font-weight: bold;
+        }
+
+        .dj-fecha {
+            margin-top: 30px;
+        }
+
+        .dj-firmas {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+        }
+
+        .dj-firma {
+            width: 45%;
+            text-align: center;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+        }
+
+        @media print {
+            .dj-page.visible {
+                page-break-before: always;
+                break-before: page;
+                margin-top: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -221,6 +279,39 @@
         <div class="footer">
             <div id="empresa"></div>
             <div id="direccion"></div>
+        </div>
+    </div>
+
+    <!-- ---------- 2da página: Declaración jurada kosher ---------- -->
+    <div id="dj-page" class="dj-page">
+        <h2 class="dj-title">DECLARACIÓN JURADA DE CARGAS PREVIAS – KOSHER</h2>
+
+        <p>
+            Yo, <span class="dj-campo" id="dj-chofer"></span>, DNI N° <span class="dj-campo" id="dj-dni"></span>,
+            chofer del camión dominio <span class="dj-campo" id="dj-chasis"></span> /
+            acoplado/cisterna dominio <span class="dj-campo" id="dj-acoplado"></span>,
+            perteneciente a la empresa transportista <span class="dj-campo" id="dj-transporte"></span>,
+            declaro bajo juramento que las últimas tres (3) cargas transportadas en esta unidad fueron
+            exclusivamente de productos kosher, y que en ese período no se transportaron productos no kosher.
+        </p>
+
+        <p>
+            A los fines de esta declaración, se considera <strong>producto no kosher</strong> todo producto que
+            no cuente con certificación kosher vigente, incluyendo, entre otros: sebo y grasas de origen animal,
+            aceites usados o de fritura, derivados de cerdo y cualquier producto que contenga ingredientes de
+            origen animal sin certificar.
+        </p>
+
+        <p>Asumo la responsabilidad por la veracidad de lo declarado.</p>
+
+        <p class="dj-fecha">
+            Ticket balanza N° <span class="dj-campo" id="dj-numero"></span><br>
+            Fecha y hora: <span class="dj-campo" id="dj-fecha-hora"></span>
+        </p>
+
+        <div class="dj-firmas">
+            <div class="dj-firma">Firma</div>
+            <div class="dj-firma">Aclaración: <span id="dj-aclaracion"></span></div>
         </div>
     </div>
 
@@ -359,6 +450,41 @@
 document.getElementById("destino").innerHTML = getUrlParameter('destino');
 document.getElementById("cpe").innerHTML = getUrlParameter('cpe');
 document.getElementById("ctdg").innerHTML = getUrlParameter('ctdg');
+
+  // ---------- Declaración jurada kosher ----------
+  // Se activa con dj=true (también acepta DJ=, y valores 1 / si / sí / yes / verdadero)
+  (function () {
+    var djParam = (getUrlParameter('dj') || getUrlParameter('DJ')).trim().toLowerCase();
+    var activa = ['true', '1', 'si', 'sí', 'yes', 'verdadero'].indexOf(djParam) !== -1;
+    if (!activa) return;
+
+    // Si falta un dato, deja una línea para completar a mano
+    function valorOLinea(nombre) {
+      var v = getUrlParameter(nombre).trim();
+      return v !== '' ? v : '____________________';
+    }
+    function setTexto(id, texto) {
+      document.getElementById(id).textContent = texto;
+    }
+
+    setTexto('dj-chofer', valorOLinea('chofer'));
+    setTexto('dj-dni', valorOLinea('dni-chofer'));
+    setTexto('dj-chasis', valorOLinea('chasis'));
+    setTexto('dj-acoplado', valorOLinea('acoplado'));
+    setTexto('dj-transporte', valorOLinea('transporte'));
+    setTexto('dj-numero', valorOLinea('numero'));
+    setTexto('dj-aclaracion', getUrlParameter('chofer'));
+
+    // Fecha y hora actuales (momento de impresión)
+    var ahora = new Date();
+    var dd = String(ahora.getDate()).padStart(2, '0');
+    var mm = String(ahora.getMonth() + 1).padStart(2, '0');
+    var hh = String(ahora.getHours()).padStart(2, '0');
+    var mi = String(ahora.getMinutes()).padStart(2, '0');
+    setTexto('dj-fecha-hora', dd + '/' + mm + '/' + ahora.getFullYear() + ' ' + hh + ':' + mi + ' hs');
+
+    document.getElementById('dj-page').classList.add('visible');
+  })();
 </script>
 </body>
 </html>
