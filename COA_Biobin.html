@@ -152,6 +152,17 @@
     </table>
 
     <script>
+        // Campos que se muestran redondeados a 2 decimales
+        const DOS_DECIMALES = ['res_densidad', 'res_contaminacion'];
+
+        function redondear2(value) {
+            const usaComa = value.includes(',');
+            const num = parseFloat(value.replace(/\./g, usaComa ? '' : '.').replace(',', '.'));
+            if (isNaN(num)) return value; // si no es número, se deja tal cual
+            const txt = num.toFixed(2);
+            return usaComa ? txt.replace('.', ',') : txt;
+        }
+
         const params = new URLSearchParams(window.location.search);
         params.forEach((value, key) => {
             const element = document.getElementById(key);
@@ -160,6 +171,9 @@
                 if (key.includes('fecha') && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
                     const parts = value.split('-');
                     displayValue = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                }
+                if (DOS_DECIMALES.includes(key)) {
+                    displayValue = redondear2(value);
                 }
                 element.textContent = displayValue;
             }
