@@ -142,7 +142,7 @@
         <p style="margin: 0; font-weight: bold;">Ing. Santiago Tornello - Jefe de Calidad</p>
     </div>
 
-    <div style="text-align: right; font-size: 8px; margin-bottom: 2px; margin-top: 20px;">v4</div>
+    <div style="text-align: right; font-size: 8px; margin-bottom: 2px; margin-top: 20px;">v5</div>
     <table class="iso-footer">
         <tr>
             <td style="width: 33.33%;">Elaboró:<br><b>JEFE DE CALIDAD</b></td>
@@ -152,14 +152,25 @@
     </table>
 
     <script>
-        // Campos que se muestran redondeados a 2 decimales
-        const DOS_DECIMALES = ['res_densidad', 'res_contaminacion'];
+        // Resultados: contaminación total se redondea hacia abajo a entero,
+        // densidad se muestra siempre con 2 decimales y el resto con 2 decimales como máximo.
+        const HACIA_ABAJO = ['res_contaminacion'];
+        const DOS_DECIMALES_FIJOS = ['res_densidad'];
 
-        function redondear2(value) {
-            const usaComa = value.includes(',');
-            const num = parseFloat(value.replace(/\./g, usaComa ? '' : '.').replace(',', '.'));
-            if (isNaN(num)) return value; // si no es número, se deja tal cual
-            const txt = num.toFixed(2);
+        function formatearResultado(key, value) {
+            const texto = value.trim();
+            const usaComa = texto.includes(',');
+            const normalizado = usaComa ? texto.replace(/\./g, '').replace(',', '.') : texto;
+            // Si no es un número puro (ej. "1a", "<5", "Informar"), se deja tal cual
+            if (!/^-?\d+(\.\d+)?$/.test(normalizado)) return value;
+            const num = Number(normalizado);
+            let txt;
+            if (HACIA_ABAJO.includes(key)) {
+                txt = String(Math.floor(num));
+            } else {
+                const redondeado = Number(Math.round(num + 'e2') + 'e-2');
+                txt = DOS_DECIMALES_FIJOS.includes(key) ? redondeado.toFixed(2) : String(redondeado);
+            }
             return usaComa ? txt.replace('.', ',') : txt;
         }
 
@@ -172,8 +183,8 @@
                     const parts = value.split('-');
                     displayValue = `${parts[2]}/${parts[1]}/${parts[0]}`;
                 }
-                if (DOS_DECIMALES.includes(key)) {
-                    displayValue = redondear2(value);
+                if (key.startsWith('res_')) {
+                    displayValue = formatearResultado(key, value);
                 }
                 element.textContent = displayValue;
             }
