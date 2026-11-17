@@ -549,7 +549,13 @@
       tbody.appendChild(tr);
     });
 
-    window.print();
+    // Imprimir automáticamente solo en PC; en celulares/tablets no
+    const ua = navigator.userAgent || '';
+    const esMovil =
+      (navigator.userAgentData && navigator.userAgentData.mobile) ||
+      /Android|iPhone|iPad|iPod|Mobile|Opera Mini|IEMobile/i.test(ua) ||
+      (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1); // iPad en modo escritorio
+    if (!esMovil) window.print();
   }
 
   document.addEventListener('DOMContentLoaded', render);
