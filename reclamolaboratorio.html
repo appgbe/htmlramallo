@@ -262,7 +262,23 @@
       color: #1a1a1a;
     }
 
+    /* Botón de impresión (solo se agrega en celulares/tablets) */
+    .btn-imprimir {
+      display: block;
+      margin: 12px 0 12px 12px;
+      padding: 12px 20px;
+      font: 700 16px/1 inherit;
+      font-family: inherit;
+      color: #fff;
+      background: #1a1a1a;
+      border: 0;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+      cursor: pointer;
+    }
+
     @media print {
+      .btn-imprimir { display: none !important; }
       html, body { width: 100%; }
       .pagina { min-height: 267mm; }
       @page { margin: 12mm 14mm; }
@@ -549,7 +565,24 @@
       tbody.appendChild(tr);
     });
 
-    window.print();
+    // Imprimir automáticamente solo en PC; en celulares/tablets no
+    const ua = navigator.userAgent || '';
+    const esMovil =
+      (navigator.userAgentData && navigator.userAgentData.mobile) ||
+      /Android|iPhone|iPad|iPod|Mobile|Opera Mini|IEMobile/i.test(ua) ||
+      (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1); // iPad en modo escritorio
+    if (!esMovil) {
+      window.print();
+    } else if (!document.querySelector('.btn-imprimir')) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn-imprimir';
+      btn.textContent = 'Imprimir';
+      btn.addEventListener('click', () => window.print());
+      // Arriba a la izquierda: la hoja es más ancha que la pantalla del celular,
+      // así queda visible sin tener que desplazarse
+      document.body.insertBefore(btn, document.body.firstChild);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', render);
